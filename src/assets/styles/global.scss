@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css";
+// @import "../node_modules/primeng/resources/primeng.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+/* Global :root variables, for those independent of themes */
+:root {
+  /* Typography */
+  --font-fallback: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+  --font-body: Inter, var(--font-fallback);
+  --font-heading: Inter, var(--font-fallback);
+  --font-code: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
+
+  --base-font-size: 100%;
+  --base-line-height: 1.2;
+  --intermediate-line-height: 1.5;
+  --heading-line-height: var(--base-line-height);
+  --heading-letter-spacing: -0.031rem;
+  --font-content-line-height: 1.75;
+  --font-body-strong-weight: 600;
+
+  /* based on the following type-scale https://type-scale.com/?size=16&scale=1.200&text=MDN%20Web%20Docs&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false */
+  --type-heading-h1-font-size: 2.488rem;
+  --type-heading-h2-font-size: 2.074rem;
+  --type-heading-h3-font-size: 1.728rem;
+  --type-heading-h4-font-size: 1.44rem;
+  --type-heading-h5-font-size: 1.2rem;
+  --type-base-font-size-rem: 1rem;
+  --type-smaller-font-size: 0.833rem;
+  --type-tiny-font-size: 0.694rem;
+
+  /* based on the following type-scale https://type-scale.com/?size=16&scale=1.125&text=MDN%20Web%20Docs&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false */
+  --type-heading-h1-font-size-mobile: 1.802rem;
+  --type-heading-h2-font-size-mobile: 1.602rem;
+  --type-heading-h3-font-size-mobile: 1.424rem;
+  --type-heading-h4-font-size-mobile: 1.266rem;
+
+  /* Grid and Layout */
+  --max-width: 1440px;
+  --gutter: 1rem; /* Space between content and browser window */
+  --top-navigation-height: 4rem;
+  --top-navigation-offset: -4rem;
+}
+
+/*Scroll*/
+  /* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+  /* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+  /* Handle */
+::-webkit-scrollbar-thumb {
+  background: #adadad;
+  border-radius: 5px;
+
+}
+
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bbbbbb;
+}
