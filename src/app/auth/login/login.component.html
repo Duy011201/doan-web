@@ -1,0 +1,48 @@
+<body class="max-h-screen max-w-screen">
+  <section class="grid">
+    <div class="col-12 md:col-4 lg:col-4 area-left relative h-screen">
+      <section class="wrap-container absolute">
+        <div class="flex align-items-center justify-content-center">
+          <img class="border-round" src="../../../assets/images/auth_logo_desktop.png" alt="auth_logo_desktop"
+            height="150px" width="150px" />
+        </div>
+        <h1 class="mt-5 w-20rem font-semibold text-xl text-center text-white">
+          Tiếp lợi thế - Nối thành công
+        </h1>
+        <p class="mt-3 text-center text-white">
+          Hệ sinh thái nhân sự tiên phong ứng dụng công nghệ tại Việt Nam
+        </p>
+      </section>
+    </div>
+    <div class="col-12 md:col-8 lg:col-8 area-right relative h-screen flex align-items-center justify-content-center">
+      <section class="w-30rem">
+        <h2 class="txt-title font-medium text-2xl">
+          Chào mừng bạn đã quay trở lại
+        </h2>
+        <p class="txt-sub-title">Cùng xây dựng một hồ sơ nổi bật và nhận được các cơ hội sự nghiệp lý tưởng</p>
+        <div class="p-fluid">
+          <div class="p-field mt-4">
+            <label class="font-normal text-lg" for="email">Email</label>
+            <input class="mt-2" id="email" type="email" placeholder="Nhập email" pInputText [(ngModel)]="email" />
+          </div>
+          <div class="p-field mt-4">
+            <label class="font-normal text-lg" for="password">Mật khẩu</label>
+            <input class="mt-2" id="password" type="password" placeholder="Nhập mật khẩu" pInputText
+              [(ngModel)]="password" />
+          </div>
+          <p class="txt-forgot-password mt-3 font-italic" routerLink="/auth/forgot-password">
+            Quên mật khẩu
+          </p>
+          <div class="p-field mt-2">
+            <button pButton type="button" label="Đăng nhập" (click)="onLogin()"></button>
+          </div>
+        </div>
+        <p class="mt-3">
+          Bạn đã chưa có tài khoản?
+          <span class="txt-register font-italic" routerLink="/auth/register">Đăng ký ngay</span>
+        </p>
+        <p-toast></p-toast>
+      </section>
+    </div>
+  </section>
+</body>

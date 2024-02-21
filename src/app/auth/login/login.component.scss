@@ -1,0 +1,29 @@
+.area-left {
+  background-image: url('../../../assets/images/auth_bg_desktop.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  transition: all .6s;
+  -webkit-transition: all .6s;
+  -moz-transition: all .6s;
+  -o-transition: all .6s;
+
+  .wrap-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.area-right {
+  .txt-title,
+  .txt-register,
+  .txt-forgot-password {
+    color: var(--primary-app-color);
+  }
+
+  .txt-sub-title {
+    color: var(--primary-app-txt-opacity);
+  }
+}
