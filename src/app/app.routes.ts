@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    data: { isHiddenMenuTop: true, isHiddenFooter: true },
+    data: { showHeader: false, showFooter: false },
   },
   { path: '**', component: PageNotFoundComponent },
 ];
