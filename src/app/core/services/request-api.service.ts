@@ -1,42 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from '../environments/develop.environment';
-import { constant } from '../settings/constant.setting';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../environments/develop.environment';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class RequestApiService {
-  public header: any;
-  headersPostApi: any;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  postApi(url: string, body?: object) {
-    return this.http
-      .post(`${environment.API_URL}/${url}`, body)
-      .pipe(map((data: any) => data));
+  postApi(url: string, body?: object): Observable<any> {
+    return this.http.post(`${environment.API_URL}/${url}`, body);
   }
-  getApiBody(url: string, body: object) {
-    return this.http
-      .get(`${environment.API_URL}/${url}`, body)
-      .pipe(map((data: any) => data));
+
+  getApi(url: string, body: object): Observable<any> {
+    return this.http.get(`${environment.API_URL}/${url}`, body);
   }
-  // postApiByHeader(apiUrl: string, dataInfo: any): Observable<any> {
-  //   this.headersPostApi = {
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer ' + localStorage.getItem(ConstSettings.TOKEN_KEY)
-  //     }
-  //   };
-  //   dataInfo.language = localStorage.getItem('lang') || ConstSettings.defaultLanguage;
-  //   return this.http.post(`${environment.API_URL}/${apiUrl}`, dataInfo, this.headersPostApi)
-  //     .pipe(
-  //       map(
-  //         res => {
-  //           //console.log(res);
-  //           return res;
-  //         }
-  //       ));
-  // }
+
+//  postApiByHeader(apiUrl: string, dataInfo: any): Observable<any> {
+//    const headers = new HttpHeaders({
+//      'Accept': 'application/json',
+//      'Content-Type': 'application/json',
+//      'Authorization': 'Bearer ' + localStorage.getItem(ConstSettings.TOKEN_KEY)
+//    });
+//    const options = { headers: headers };
+//    dataInfo.language = localStorage.getItem('lang') || ConstSettings.defaultLanguage;
+//    return this.http.post(`${environment.API_URL}/${apiUrl}`, dataInfo, options);
+//  }
 }

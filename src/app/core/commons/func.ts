@@ -1,16 +1,40 @@
 export function isEmpty(value: any): boolean {
-  if (value === undefined || value === null) {
-      return true;
+  if (typeof value === 'string') {
+    // Kiểm tra chuỗi
+    return !value.trim(); // Trả về true nếu chuỗi là rỗng hoặc chỉ gồm khoảng trắng
+  } else if (typeof value === 'object' && value !== null) {
+    // Kiểm tra đối tượng hoặc mảng
+    return !Object.keys(value).length; // Trả về true nếu không có thuộc tính hoặc phần tử nào
+  } else {
+    // Trường hợp còn lại, bao gồm mảng rỗng, null và undefined
+    return !value; // Trả về true nếu giá trị là null, undefined hoặc mảng rỗng
   }
-
-  if (typeof value === "string") {
-      return value.length === 0;
-  }
-
-  if (typeof value === "object") {
-      return Object.keys(value).length === 0;
-  }
-
-  return false;
 }
 
+export function isEmail(email: string) {
+  return !isEmpty(email) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+export function containsSpecialOrLetter(str: string) {
+  // Biểu thức chính quy để kiểm tra xem chuỗi có chứa ký tự đặc biệt hoặc chữ không
+  const regex = /[^a-zA-Z0-9]/; // Phát hiện ký tự không phải chữ cái hoặc số
+
+  // Kiểm tra chuỗi
+  return regex.test(str);
+}
+
+export function containsSpecialCharacter(str: string) {
+  // Biểu thức chính quy để kiểm tra ký tự đặc biệt
+  const regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+  // Kiểm tra xem chuỗi có chứa ký tự đặc biệt không
+  return regex.test(str);
+}
+
+export function saveToLocalStorage(key: string, value: any): void {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function getFromLocalStorage(key: string): void {
+  localStorage.getItem(key);
+}
