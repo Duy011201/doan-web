@@ -28,6 +28,11 @@ import { MenuModule } from 'primeng/menu';
 import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
 import { RippleModule } from 'primeng/ripple';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -60,6 +65,11 @@ import { RippleModule } from 'primeng/ripple';
     TreeModule,
     CardModule,
     TimelineModule,
+    InputGroupAddonModule,
+    InputGroupModule,
+    RadioButtonModule,
+    TriStateCheckboxModule,
+    TabViewModule
   ],
   exports: [
     AnimateOnScrollModule,
@@ -90,6 +100,11 @@ import { RippleModule } from 'primeng/ripple';
     TreeModule,
     CardModule,
     TimelineModule,
+    InputGroupAddonModule,
+    InputGroupModule,
+    RadioButtonModule,
+    TriStateCheckboxModule,
+    TabViewModule
   ],
   providers: [MessageService],
 })
