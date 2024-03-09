@@ -32,7 +32,7 @@
             <input class="mt-2" id="password" type="password" placeholder="Nhập mật khẩu" pInputText
               [(ngModel)]="password" />
           </div>
-          <p class="txt-forgot-password mt-3 font-italic" routerLink="/auth/forgot-password">
+          <p class="txt-forgot-password mt-3 font-italic cursor-pointer" routerLink="/auth/forgot-password">
             Quên mật khẩu
           </p>
           <div class="p-field mt-2">
@@ -41,7 +41,7 @@
         </div>
         <p class="mt-3">
           Bạn đã chưa có tài khoản?
-          <span class="txt-register font-italic" routerLink="/auth/register">Đăng ký ngay</span>
+          <span class="txt-register font-italic cursor-pointer" routerLink="/auth/register">Đăng ký ngay</span>
         </p>
         <p-toast></p-toast>
       </section>
