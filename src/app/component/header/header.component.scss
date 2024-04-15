@@ -1,0 +1,16 @@
+.item {
+  font-family: var(--font-heading);
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1
+  }
+}
+
+.active {
+  opacity: 1
+}
+
+.bg-header {
+  background-color: var(--secondary-app-color);
+}
