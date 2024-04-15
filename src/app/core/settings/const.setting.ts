@@ -126,6 +126,14 @@ export const CONSTANT = {
     {code: 'TELECOMMUNICATION', name: 'Viễn thông'},
     {code: 'OTHER', name: 'Khác'},
   ],
+  SYSTEM_PAGE: {
+    HOME: '/home',
+    BLOG: '/blog',
+    JOB: '/job',
+    COMPANY: '/company',
+    TABLE_PRICE: '/table-price',
+    LOGIN: '/auth/login',
+  },
   SYSTEM_STATUS_CODE: {
     OK: 200,
     CREATED: 201,
