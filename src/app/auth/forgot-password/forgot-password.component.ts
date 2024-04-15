@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
 import { isEmail, isEmpty } from '../../core/commons/func';
 import { CONSTANT } from '../../core/settings/const.setting';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-forgot-password',
@@ -25,7 +26,8 @@ export class ForgotPasswordComponent {
 
   constructor(
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -45,6 +47,10 @@ export class ForgotPasswordComponent {
     }
 
     this.isStep = !this.isStep;
+  }
+
+  public onNextPage(key: string): void {
+    this.router.navigate([key]);
   }
 
   public onChangeVerifyCode(): void {

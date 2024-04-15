@@ -18,6 +18,8 @@ import {Router} from "@angular/router";
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
+  public SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
+
   // Default variable
   public isCandidate: boolean = true;
   public isRule: boolean = true;
@@ -63,6 +65,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.listCompanyField = CONSTANT.COMPANY_FIELD;
     this.listCompanyProvince = DVHCVN.data;
+  }
+
+  public onNextPage(key: string): void {
+    this.router.navigate([key]);
   }
 
   public onChangeCandidate(): void {

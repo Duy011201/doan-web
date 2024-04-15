@@ -9,6 +9,7 @@ import {
   saveToLocalStorage
 } from '../../core/commons/func';
 import {CONSTANT} from "../../core/settings/const.setting";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,9 @@ import {CONSTANT} from "../../core/settings/const.setting";
 export class LoginComponent {
   public email: string = '';
   public password: string = '';
+  public SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
 
-  constructor(private messageService: MessageService, private authService: AuthService) {
+  constructor(private messageService: MessageService, private authService: AuthService, private router: Router) {
   }
 
   private isValidAuth(): string {
@@ -32,6 +34,10 @@ export class LoginComponent {
     }
 
     return '';
+  }
+
+  public onNextPage(key: string): void {
+    this.router.navigate([key]);
   }
 
   public onLogin(): void {
