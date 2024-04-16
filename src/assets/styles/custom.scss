@@ -1,1 +1,16 @@
+.bg-app {
+  background-color: var(--secondary-app-color);
+}
+
+.bg-gray-app {
+  background-color: var(--primary-app-bg);
+}
+
+.border-app {
+  border: 1px solid var(--primary-app-color);
+}
+
+.box-shadow-app {
+  box-shadow: var(--primary-app-box-shadow) 0px 8px 24px;
+}
 
