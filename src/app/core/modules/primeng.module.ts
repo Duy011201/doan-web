@@ -22,7 +22,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ChipModule } from 'primeng/chip';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { DropdownModule } from 'primeng/dropdown';
-import { ChartModule } from 'primeng/chart';
+import { CarouselModule } from 'primeng/carousel';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { CardModule } from 'primeng/card';
@@ -37,13 +37,13 @@ import { TabViewModule } from 'primeng/tabview';
 @NgModule({
   declarations: [],
   imports: [
+    CarouselModule,
     AnimateOnScrollModule,
     AvatarModule,
     BreadcrumbModule,
     ButtonModule,
     CascadeSelectModule,
     CheckboxModule,
-    ChartModule,
     ChipModule,
     ChipsModule,
     ConfirmDialogModule,
@@ -69,16 +69,16 @@ import { TabViewModule } from 'primeng/tabview';
     InputGroupModule,
     RadioButtonModule,
     TriStateCheckboxModule,
-    TabViewModule
+    TabViewModule,
   ],
   exports: [
+    CarouselModule,
     AnimateOnScrollModule,
     AvatarModule,
     BreadcrumbModule,
     ButtonModule,
     CascadeSelectModule,
     CheckboxModule,
-    ChartModule,
     ChipModule,
     ChipsModule,
     ConfirmDialogModule,
@@ -104,7 +104,7 @@ import { TabViewModule } from 'primeng/tabview';
     InputGroupModule,
     RadioButtonModule,
     TriStateCheckboxModule,
-    TabViewModule
+    TabViewModule,
   ],
   providers: [MessageService],
 })
