@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import {PageNotFoundComponent} from "../component/page-not-found/page-not-found.component";
+import { PageNotFoundComponent } from '../component/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: '**',
-    component: PageNotFoundComponent
+    component: PageNotFoundComponent,
   },
 ];
 
