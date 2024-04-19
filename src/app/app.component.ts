@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { isEmpty } from './core/commons/func';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 
