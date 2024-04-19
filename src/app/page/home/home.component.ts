@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule, Color, LegendPosition } from '@swimlane/ngx-charts';
-import { PrimengModule } from '../core/modules/primeng.module';
-import { CONSTANT } from '../core/settings/const.setting';
+import { PrimengModule } from '../../core/modules/primeng.module';
+import { CONSTANT } from '../../core/settings/const.setting';
 
 @Component({
   selector: 'app-home',
