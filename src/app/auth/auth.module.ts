@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import {LoginComponent} from './login/login.component';
-import {AuthRoutingModule} from './auth-routing.module';
+import {AuthRoutesModule} from './auth-routes.module';
 import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {PrimengModule} from '../core/modules/primeng.module';
@@ -13,7 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RequestApiService} from '../core/services/request-api.service';
 
 @NgModule({
-  imports: [AuthRoutingModule, PrimengModule, FormsModule, ToastModule, MessagesModule, CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [AuthRoutesModule, PrimengModule, FormsModule, ToastModule, MessagesModule, CommonModule, ReactiveFormsModule, HttpClientModule],
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
   providers: [AuthService, RequestApiService],
 })
