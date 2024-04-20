@@ -34,6 +34,7 @@ import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 import {TabViewModule} from 'primeng/tabview';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
+import {ImageModule} from "primeng/image";
 
 @NgModule({
   declarations: [],
@@ -71,7 +72,8 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
     RadioButtonModule,
     TriStateCheckboxModule,
     TabViewModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ImageModule
   ],
   exports: [
     CarouselModule,
@@ -107,7 +109,8 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
     RadioButtonModule,
     TriStateCheckboxModule,
     TabViewModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ImageModule
   ],
   providers: [MessageService],
 })
