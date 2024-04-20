@@ -127,12 +127,26 @@ export const CONSTANT = {
     { code: 'OTHER', name: 'Khác' },
   ],
   SYSTEM_PAGE: {
-    HOME: '/home',
-    BLOG: '/blog',
-    JOB: '/job',
-    COMPANY: '/company',
-    TABLE_PRICE: '/table-price',
-    LOGIN: '/auth/login',
+    // TODO: Url for related system pages
+    RELATED_ADMIN: 'admin',
+    RELATED_AUTH: 'auth',
+    RELATED_404: '**',
+
+    // TODO: Url for related home pages
+    HEADER_HOME: 'home',
+    HEADER_BLOG: 'blog',
+    HEADER_JOB: 'job',
+    HEADER_COMPANY: 'company',
+    HEADER_TABLE_PRICE: 'table-price',
+
+    // TODO: Url for related auth pages
+    AUTH_REGISTER: 'register',
+    AUTH_LOGIN: 'login',
+    AUTH_FORGOT_PASSWORD: 'forgot-password',
+
+    // TODO: Url for related admin pages
+    ADMIN_DASHBOARD: 'dashboard',
+    ADMIN_MANAGER_USER: 'manager-user',
   },
   SYSTEM_STATUS_CODE: {
     OK: 200,
