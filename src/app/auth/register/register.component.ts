@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {CONSTANT} from '../../core/settings/const.setting'
+import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { CONSTANT } from '../../core/settings/const.setting';
 import DVHCVN from '../../core/settings/json/dvhcvn.json';
 import {
   containsSpecialCharacter,
@@ -8,8 +8,8 @@ import {
   isEmail,
   isEmpty,
 } from '../../core/commons/func';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -51,16 +51,19 @@ export class RegisterComponent implements OnInit {
 
   public STEP_KEY: any = {
     NEXT: 'next',
-    PREV: 'prev'
-  }
+    PREV: 'prev',
+  };
 
   public VERIFY_KEY: any = {
     CANDIDATE: 'candidate',
-    EMPLOYER: 'employer'
-  }
+    EMPLOYER: 'employer',
+  };
 
-  constructor(private messageService: MessageService, private authService: AuthService, private router: Router) {
-  }
+  constructor(
+    private messageService: MessageService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.listCompanyField = CONSTANT.COMPANY_FIELD;
@@ -89,15 +92,17 @@ export class RegisterComponent implements OnInit {
     }
 
     if (key === this.VERIFY_KEY.CANDIDATE) {
-      if (!resend) this.authCandidate.isVerifyCode = !this.authCandidate.isVerifyCode;
+      if (!resend)
+        this.authCandidate.isVerifyCode = !this.authCandidate.isVerifyCode;
       email = this.authCandidate.email;
     } else if (key === this.VERIFY_KEY.EMPLOYER) {
-      if (!resend) this.authEmployer.isVerifyCode = !this.authEmployer.isVerifyCode;
+      if (!resend)
+        this.authEmployer.isVerifyCode = !this.authEmployer.isVerifyCode;
       email = this.authEmployer.email;
     }
 
     if (step === this.STEP_KEY.NEXT) {
-      this.authService.verifyCode({email: email}).subscribe(
+      this.authService.verifyCode({ email: email }).subscribe(
         (result: any) => {
           this.messageService.add({
             severity: 'success',
@@ -140,10 +145,15 @@ export class RegisterComponent implements OnInit {
     if (this.isCandidate) {
       if (!isEmail(this.authCandidate.email)) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-      } else if (isEmpty(this.authCandidate.password) || this.authCandidate.password.length < 5
-        || this.authCandidate.password.length > 20) {
+      } else if (
+        isEmpty(this.authCandidate.password) ||
+        this.authCandidate.password.length < 5 ||
+        this.authCandidate.password.length > 20
+      ) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
-      } else if (this.authCandidate.password !== this.authCandidate.rePassword) {
+      } else if (
+        this.authCandidate.password !== this.authCandidate.rePassword
+      ) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       }
     }
@@ -151,20 +161,28 @@ export class RegisterComponent implements OnInit {
     if (!this.isCandidate) {
       if (!isEmail(this.authEmployer.email)) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-      } else if (isEmpty(this.authEmployer.password) || this.authEmployer.password.length < 5
-        || this.authEmployer.password.length > 20) {
+      } else if (
+        isEmpty(this.authEmployer.password) ||
+        this.authEmployer.password.length < 5 ||
+        this.authEmployer.password.length > 20
+      ) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authEmployer.password !== this.authEmployer.rePassword) {
         return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       }
 
       if (this.authEmployer.isStep) {
-        if (isEmpty(this.authEmployer.companyName) || containsSpecialCharacter(this.authEmployer.companyName)) {
+        if (
+          isEmpty(this.authEmployer.companyName) ||
+          containsSpecialCharacter(this.authEmployer.companyName)
+        ) {
           return CONSTANT.SYSTEM_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
         } else if (!isEmail(this.authEmployer.companyEmail)) {
           return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-        } else if (isEmpty(this.authEmployer.companyCorporateTaxCode)
-          || containsSpecialOrLetter(this.authEmployer.companyCorporateTaxCode)) {
+        } else if (
+          isEmpty(this.authEmployer.companyCorporateTaxCode) ||
+          containsSpecialOrLetter(this.authEmployer.companyCorporateTaxCode)
+        ) {
           return CONSTANT.SYSTEM_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
         } else if (isEmpty(this.authEmployer.companyField)) {
           return CONSTANT.SYSTEM_MESSAGE.INVALID_COMPANY_FIELD;
@@ -198,15 +216,15 @@ export class RegisterComponent implements OnInit {
           email: this.authCandidate.email,
           password: this.authCandidate.password,
           verifyCode: this.authCandidate.verifyCode,
-          role: "candidate",
-          desc: "Ứng viên"
+          role: 'candidate',
+          desc: 'Ứng viên',
         };
       } else {
         payload = {
           email: this.authEmployer.email,
           password: this.authEmployer.password,
-          role: "employer",
-          desc: "Nhà tuyển dụng",
+          role: 'employer',
+          desc: 'Nhà tuyển dụng',
           verifyCode: this.authCandidate.verifyCode,
           companyName: this.authEmployer.companyName,
           companyField: this.authEmployer.companyField,
@@ -225,7 +243,7 @@ export class RegisterComponent implements OnInit {
           });
           setTimeout(() => {
             this.router.navigate(['/auth/login']);
-          }, 2000)
+          }, 2000);
         },
         (error: any) => {
           this.messageService.add({

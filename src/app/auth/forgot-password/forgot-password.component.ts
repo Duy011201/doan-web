@@ -3,7 +3,7 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
 import { isEmail, isEmpty } from '../../core/commons/func';
 import { CONSTANT } from '../../core/settings/const.setting';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -91,7 +91,9 @@ export class ForgotPasswordComponent {
       return;
     }
 
-    resend ? this.isVerifyCode = true : this.isVerifyCode = !this.isVerifyCode;
+    resend
+      ? (this.isVerifyCode = true)
+      : (this.isVerifyCode = !this.isVerifyCode);
 
     this.authService
       .verifyCode({ email: this.authForgotPassword.email })
