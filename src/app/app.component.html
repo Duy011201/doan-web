@@ -1,9 +1,12 @@
-@if (showHeader) {
-<app-header></app-header>
-}
+<!-- Show app header -->
+<div *ngIf="showHeader">
+  <app-header></app-header>
+</div>
 
 <router-outlet></router-outlet>
 
-@if (showFooter) {
-<app-footer></app-footer>
-}
+<!-- Show app footer -->
+<div *ngIf="showFooter">
+  <app-footer></app-footer>
+</div>
+

@@ -37,6 +37,8 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {ImageModule} from "primeng/image";
 import {SliderModule} from 'primeng/slider';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {InputOtpModule} from 'primeng/inputotp';
+import {FloatLabelModule} from 'primeng/floatlabel';
 
 @NgModule({
   declarations: [],
@@ -78,6 +80,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     ImageModule,
     SliderModule,
     MultiSelectModule,
+    InputOtpModule,
+    FloatLabelModule
   ],
   exports: [
     CarouselModule,
@@ -117,6 +121,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     ImageModule,
     SliderModule,
     MultiSelectModule,
+    InputOtpModule,
+    FloatLabelModule
   ],
   providers: [MessageService],
 })

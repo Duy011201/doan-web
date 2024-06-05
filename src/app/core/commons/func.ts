@@ -1,3 +1,5 @@
+import {CONSTANT} from "../settings/const.setting";
+
 export function isEmpty(value: any): boolean {
   if (typeof value === 'string') {
     // Kiểm tra chuỗi
@@ -13,6 +15,10 @@ export function isEmpty(value: any): boolean {
 
 export function isEmail(email: string) {
   return !isEmpty(email) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+export function isPassword(password: string) {
+  return !isEmpty(password) && password.length < 5 || !isEmpty(password) && password.length > 20;
 }
 
 export function containsSpecialOrLetter(str: string) {
@@ -37,4 +43,19 @@ export function saveToLocalStorage(key: string, value: any): void {
 
 export function getFromLocalStorage(key: string): void {
   localStorage.getItem(key);
+}
+
+export function trimStringObject(obj: any): any {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj; // Return the value if it is not an object
+  }
+
+  for (let key in obj) {
+    if (typeof obj[key] === 'string') {
+      obj[key] = obj[key].trim(); // Trim the string
+    } else if (typeof obj[key] === 'object') {
+      trimStringObject(obj[key]); // Recurse for nested objects
+    }
+  }
+  return obj;
 }

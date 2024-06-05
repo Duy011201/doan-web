@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { isEmpty } from './core/commons/func';
+import { CommonModule } from '@angular/common';
 import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
@@ -16,7 +17,7 @@ import { FooterComponent } from './component/footer/footer.component';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, CommonModule],
 })
 export class AppComponent implements OnInit {
   /*

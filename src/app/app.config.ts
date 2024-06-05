@@ -2,10 +2,6 @@ import {ApplicationConfig} from '@angular/core';
 import {provideRouter} from '@angular/router';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import {
-//   BrowserAnimationsModule,
-//   NoopAnimationsModule,
-// } from '@angular/platform-browser/animations';
 import {routes} from './app.routes';
 import {provideHttpClient} from "@angular/common/http";
 
