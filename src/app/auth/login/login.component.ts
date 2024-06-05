@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
 import {
-  containsSpecialCharacter,
-  containsSpecialOrLetter,
   isEmail,
-  isEmpty,
+  isEmpty, isPassword,
   saveToLocalStorage,
 } from '../../core/commons/func';
 import { CONSTANT } from '../../core/settings/const.setting';
@@ -13,7 +11,6 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -31,11 +28,7 @@ export class LoginComponent {
   private isValidAuth(): string {
     if (!isEmail(this.email)) {
       return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-    } else if (
-      isEmpty(this.password) ||
-      this.password.length < 5 ||
-      this.password.length > 20
-    ) {
+    } else if (isPassword(this.password)) {
       return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
     }
 
@@ -64,19 +57,21 @@ export class LoginComponent {
 
     this.authService.login(payload).subscribe(
       (result: any) => {
-        saveToLocalStorage('userID', result.data['_userID']);
-        saveToLocalStorage('token', result.data['_token']);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: result['message'],
-        });
+        if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+          saveToLocalStorage('userID', result.data['userID']);
+          saveToLocalStorage('token', result.data['token']);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: result.message,
+          });
+        }
       },
       (error: any) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: error.error.message,
+          detail: error.error.massage || error.error.message,
         });
       }
     );
