@@ -18,7 +18,7 @@ export function isEmail(email: string) {
 }
 
 export function isPassword(password: string) {
-  return !isEmpty(password) && password.length < 5 || !isEmpty(password) && password.length > 20;
+  return !isEmpty(password) && password.length >= 5 && password.length <= 20;
 }
 
 export function containsSpecialOrLetter(str: string) {

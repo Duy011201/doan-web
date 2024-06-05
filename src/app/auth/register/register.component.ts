@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
     if (type === this.TYPE_ROLE.CANDIDATE) {
       if (!isEmail(this.authCandidate.email)) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-      } else if (isPassword(this.authCandidate.password)) {
+      } else if (!isPassword(this.authCandidate.password)) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authCandidate.password !== this.authCandidate.confirmPassword) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
     } else if (type === this.TYPE_ROLE.EMPLOYER) {
       if (!isEmail(this.authEmployer.email)) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-      } else if (isPassword(this.authEmployer.password)) {
+      } else if (!isPassword(this.authEmployer.password)) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authEmployer.password !== this.authEmployer.confirmPassword) {
         errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;

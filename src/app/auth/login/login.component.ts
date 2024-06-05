@@ -28,7 +28,7 @@ export class LoginComponent {
   private isValidAuth(): string {
     if (!isEmail(this.email)) {
       return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
-    } else if (isPassword(this.password)) {
+    } else if (!isPassword(this.password)) {
       return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
     }
 
