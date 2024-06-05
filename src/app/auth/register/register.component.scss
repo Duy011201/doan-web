@@ -10,13 +10,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .area-right {
 
-  .txt-title,
-  .txt-login,
-  .txt-forgot-password {
+  .txt-title {
     color: var(--primary-app-color);
   }
 
@@ -39,16 +42,5 @@
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 6px;
-  }
-
-  .tab-view {
-    display: flex;
-    border-bottom: 2px solid var(--primary-app-line);
-
-    .active,
-    .tab-view-title:hover {
-      color: var(--primary-app-color);
-      border-bottom: 2px solid var(--primary-app-color);
-    }
   }
 }
