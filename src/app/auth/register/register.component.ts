@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
-import {CONSTANT} from '../../core/settings/const.setting';
+import {SETTING} from '../../core/configs/setting.config';
 import {
   containsSpecialCharacter,
   containsSpecialOrLetter,
@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
-  public SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
+  public SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
   public TYPE_ROLE = {
     CANDIDATE: 'candidate',
     EMPLOYER: 'employer'
@@ -65,29 +65,29 @@ export class RegisterComponent implements OnInit {
 
     if (type === this.TYPE_ROLE.CANDIDATE) {
       if (!isEmail(this.authCandidate.email)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authCandidate.password)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authCandidate.password !== this.authCandidate.confirmPassword) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       } else if (isEmpty(this.authCandidate.isPolicy)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_POLICY;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
       }
     } else if (type === this.TYPE_ROLE.EMPLOYER) {
       if (!isEmail(this.authEmployer.email)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authEmployer.password)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authEmployer.password !== this.authEmployer.confirmPassword) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       } else if (isEmpty(this.authEmployer.companyName)
         || containsSpecialCharacter(this.authEmployer.companyName)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
       } else if (isEmpty(this.authEmployer.companyCorporateTaxCode)
         || containsSpecialOrLetter(this.authEmployer.companyCorporateTaxCode)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
       } else if (isEmpty(this.authEmployer.isPolicy)) {
-        errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_POLICY;
+        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
       }
     }
 
@@ -143,7 +143,7 @@ export class RegisterComponent implements OnInit {
   apiVerifyCode(type: string, payload: any): void {
     this.authService.verifyCode(payload).subscribe(
       (result: any) => {
-        if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
 
           if (type === this.TYPE_ROLE.CANDIDATE)
             this.authCandidate.isStep = true;
@@ -171,7 +171,7 @@ export class RegisterComponent implements OnInit {
   apiRegister(payload: any): void {
     this.authService.register(payload).subscribe(
       (result: any) => {
-        if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',

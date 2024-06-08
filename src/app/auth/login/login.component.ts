@@ -1,13 +1,9 @@
-import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { AuthService } from '../auth.service';
-import {
-  isEmail,
-  isEmpty, isPassword,
-  saveToLocalStorage,
-} from '../../core/commons/func';
-import { CONSTANT } from '../../core/settings/const.setting';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {AuthService} from '../auth.service';
+import {isEmail, isEmpty, isPassword, saveToLocalStorage,} from '../../core/commons/func';
+import {SETTING} from '../../core/configs/setting.config';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   public email: string = '';
   public password: string = '';
-  public SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
+  public SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
 
   constructor(
     private messageService: MessageService,
@@ -27,9 +23,9 @@ export class LoginComponent {
 
   private isValidAuth(): string {
     if (!isEmail(this.email)) {
-      return CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+      return SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
     } else if (!isPassword(this.password)) {
-      return CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+      return SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
     }
 
     return '';
@@ -57,7 +53,7 @@ export class LoginComponent {
 
     this.authService.login(payload).subscribe(
       (result: any) => {
-        if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
           saveToLocalStorage('userID', result.data['userID']);
           saveToLocalStorage('token', result.data['token']);
           this.messageService.add({

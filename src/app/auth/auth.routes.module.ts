@@ -4,24 +4,24 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from '../component/page-not-found/page-not-found.component';
-import { CONSTANT } from '../core/settings/const.setting';
+import { SETTING } from '../core/configs/setting.config';
 
 const routes: Routes = [
   {
-    path: CONSTANT.SYSTEM_PAGE.AUTH_LOGIN,
+    path: SETTING.SYSTEM_PAGE.AUTH_LOGIN,
     component: LoginComponent,
   },
   {
-    path: CONSTANT.SYSTEM_PAGE.AUTH_REGISTER,
+    path: SETTING.SYSTEM_PAGE.AUTH_REGISTER,
     component: RegisterComponent,
   },
   {
-    path: CONSTANT.SYSTEM_PAGE.AUTH_FORGOT_PASSWORD,
+    path: SETTING.SYSTEM_PAGE.AUTH_FORGOT_PASSWORD,
     component: ForgotPasswordComponent,
   },
-  { path: '', redirectTo: CONSTANT.SYSTEM_PAGE.AUTH_LOGIN, pathMatch: 'full' },
+  { path: '', redirectTo: SETTING.SYSTEM_PAGE.AUTH_LOGIN, pathMatch: 'full' },
   {
-    path: CONSTANT.SYSTEM_PAGE.RELATED_404,
+    path: SETTING.SYSTEM_PAGE.RELATED_404,
     component: PageNotFoundComponent,
   },
 ];

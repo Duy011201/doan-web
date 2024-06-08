@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {AuthService} from '../auth.service';
 import {isEmail, isEmpty, isPassword} from '../../core/commons/func';
-import {CONSTANT} from '../../core/settings/const.setting';
+import {SETTING} from '../../core/configs/setting.config';
 import {Router} from '@angular/router';
 
 @Component({
@@ -45,7 +45,7 @@ export class ForgotPasswordComponent {
 
       this.authService.forgotPassword(payload).subscribe(
         (result: any) => {
-          if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+          if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
@@ -71,11 +71,11 @@ export class ForgotPasswordComponent {
     let errorMessage = '';
 
     if (!isEmail(this.authForgotPassword.email)) {
-      errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
     } else if (!isPassword(this.authForgotPassword.password)) {
-      errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
     } else if (isEmpty(this.authForgotPassword.isPolicy)) {
-      errorMessage = CONSTANT.SYSTEM_MESSAGE.INVALID_POLICY;
+      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
     }
 
     if (!isEmpty(errorMessage)) {
@@ -98,7 +98,7 @@ export class ForgotPasswordComponent {
 
       this.authService.verifyCode(payload).subscribe(
         (result: any) => {
-          if (result.status === CONSTANT.SYSTEM_STATUS_CODE.OK) {
+          if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
             this.authForgotPassword.isStep = true;
             this.messageService.add({
               severity: 'success',

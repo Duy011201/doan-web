@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CONSTANT } from '../../core/settings/const.setting';
+import { SETTING } from '../../core/configs/setting.config';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
+  SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
 
   constructor(private router: Router) {}
 

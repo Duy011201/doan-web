@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RequestApiService } from '../core/services/request-api.service';
-import { UrlApi } from '../core/settings/urlapi.setting';
+import { UrlApi } from '../core/configs/urlapi.config';
 import { map } from 'rxjs/operators';
 
 @Injectable({
