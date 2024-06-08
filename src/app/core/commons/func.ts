@@ -1,5 +1,3 @@
-import {CONSTANT} from "../settings/const.setting";
-
 export function isEmpty(value: any): boolean {
   if (typeof value === 'string') {
     // Kiểm tra chuỗi
@@ -41,8 +39,12 @@ export function saveToLocalStorage(key: string, value: any): void {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-export function getFromLocalStorage(key: string): void {
-  localStorage.getItem(key);
+export function getFromLocalStorage(key: string): string {
+  return <string>localStorage.getItem(key);
+}
+
+export function removeQuotes(str: string): string {
+  return str.replace(/"/g, '');
 }
 
 export function trimStringObject(obj: any): any {

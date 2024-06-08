@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CONSTANT } from '../../core/settings/const.setting';
+import { SETTING } from '../../core/configs/setting.config';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './menu-left.component.scss',
 })
 export class MenuLeftComponent {
-  SYSTEM_PAGE = CONSTANT.SYSTEM_PAGE;
+  SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
 
   constructor(private router: Router) {}
 

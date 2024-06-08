@@ -3,20 +3,20 @@ import { PageNotFoundComponent } from '../component/page-not-found/page-not-foun
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { Routes, RouterModule } from '@angular/router';
-import { CONSTANT } from '../core/settings/const.setting';
+import { SETTING } from '../core/configs/setting.config';
 
 export const routes: Routes = [
-  { path: '', redirectTo: CONSTANT.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
+  { path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
   {
-    path: CONSTANT.SYSTEM_PAGE.ADMIN_DASHBOARD,
+    path: SETTING.SYSTEM_PAGE.ADMIN_DASHBOARD,
     component: DashboardComponent,
   },
   {
-    path: CONSTANT.SYSTEM_PAGE.ADMIN_MANAGER_USER,
+    path: SETTING.SYSTEM_PAGE.ADMIN_MANAGER_USER,
     component: UserComponent,
   },
   {
-    path: CONSTANT.SYSTEM_PAGE.RELATED_404,
+    path: SETTING.SYSTEM_PAGE.RELATED_404,
     component: PageNotFoundComponent,
   },
 ];
