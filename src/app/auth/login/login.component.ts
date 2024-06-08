@@ -23,9 +23,9 @@ export class LoginComponent {
 
   private isValidAuth(): string {
     if (!isEmail(this.email)) {
-      return SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+      return SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
     } else if (!isPassword(this.password)) {
-      return SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+      return SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_FORMAT;
     }
 
     return '';
@@ -53,7 +53,7 @@ export class LoginComponent {
 
     this.authService.login(payload).subscribe(
       (result: any) => {
-        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           saveToLocalStorage('userID', result.data['userID']);
           saveToLocalStorage('token', result.data['token']);
           this.messageService.add({

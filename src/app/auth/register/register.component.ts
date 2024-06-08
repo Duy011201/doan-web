@@ -65,29 +65,29 @@ export class RegisterComponent implements OnInit {
 
     if (type === this.TYPE_ROLE.CANDIDATE) {
       if (!isEmail(this.authCandidate.email)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authCandidate.password)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authCandidate.password !== this.authCandidate.confirmPassword) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       } else if (isEmpty(this.authCandidate.isPolicy)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_POLICY;
       }
     } else if (type === this.TYPE_ROLE.EMPLOYER) {
       if (!isEmail(this.authEmployer.email)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authEmployer.password)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_FORMAT;
       } else if (this.authEmployer.password !== this.authEmployer.confirmPassword) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_NOT_MATCH;
       } else if (isEmpty(this.authEmployer.companyName)
         || containsSpecialCharacter(this.authEmployer.companyName)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
       } else if (isEmpty(this.authEmployer.companyCorporateTaxCode)
         || containsSpecialOrLetter(this.authEmployer.companyCorporateTaxCode)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
       } else if (isEmpty(this.authEmployer.isPolicy)) {
-        errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
+        errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_POLICY;
       }
     }
 
@@ -143,7 +143,7 @@ export class RegisterComponent implements OnInit {
   apiVerifyCode(type: string, payload: any): void {
     this.authService.verifyCode(payload).subscribe(
       (result: any) => {
-        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
 
           if (type === this.TYPE_ROLE.CANDIDATE)
             this.authCandidate.isStep = true;
@@ -171,7 +171,7 @@ export class RegisterComponent implements OnInit {
   apiRegister(payload: any): void {
     this.authService.register(payload).subscribe(
       (result: any) => {
-        if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',

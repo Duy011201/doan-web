@@ -21,7 +21,13 @@ export const SETTING = {
     ADMIN_DASHBOARD: 'dashboard',
     ADMIN_MANAGER_USER: 'manager-user',
   },
-  SYSTEM_STATUS_CODE: {
+  SYSTEM_ROLE: {
+    SUPER_ADMIN: 'super_admin',
+    ADMIN: 'admin',
+    CANDIDATE: 'candidate',
+    EMPLOYER: 'employer',
+  },
+  SYSTEM_HTTP_STATUS: {
     OK: 200,
     CREATED: 201,
     NO_CONTENT: 204,
@@ -32,7 +38,7 @@ export const SETTING = {
     INTERNAL_SERVER_ERROR: 500,
     SERVICE_UNAVAILABLE: 503,
   },
-  SYSTEM_MESSAGE: {
+  SYSTEM_HTTP_MESSAGE: {
     INVALID_EMAIL_FORMAT: 'Định dạng email không hợp lệ',
     INVALID_PASSWORD_FORMAT: 'Định dạng passwword không hợp lệ',
     INVALID_PASSWORD_NOT_MATCH: 'Định dạng passwword không khớp',

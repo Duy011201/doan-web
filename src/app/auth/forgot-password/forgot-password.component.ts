@@ -45,7 +45,7 @@ export class ForgotPasswordComponent {
 
       this.authService.forgotPassword(payload).subscribe(
         (result: any) => {
-          if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
@@ -71,11 +71,11 @@ export class ForgotPasswordComponent {
     let errorMessage = '';
 
     if (!isEmail(this.authForgotPassword.email)) {
-      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_EMAIL_FORMAT;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
     } else if (!isPassword(this.authForgotPassword.password)) {
-      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_PASSWORD_FORMAT;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PASSWORD_FORMAT;
     } else if (isEmpty(this.authForgotPassword.isPolicy)) {
-      errorMessage = SETTING.SYSTEM_MESSAGE.INVALID_POLICY;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_POLICY;
     }
 
     if (!isEmpty(errorMessage)) {
@@ -98,7 +98,7 @@ export class ForgotPasswordComponent {
 
       this.authService.verifyCode(payload).subscribe(
         (result: any) => {
-          if (result.status === SETTING.SYSTEM_STATUS_CODE.OK) {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             this.authForgotPassword.isStep = true;
             this.messageService.add({
               severity: 'success',
