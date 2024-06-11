@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {LazyLoadEvent} from 'primeng/api';
+import {Component, OnInit} from '@angular/core';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {Table} from 'primeng/table';
+import {SETTING} from "../../core/configs/setting.config";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-admin-user',
@@ -8,35 +10,180 @@ import {Table} from 'primeng/table';
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
-export class UserComponent {
-  customers = [{
-    id: 1000,
-    name: 'James Butt',
-    country: {
-      name: 'Algeria',
-      code: 'dz'
-    },
-    company: 'Benton, John B Jr',
-    date: '2015-09-13',
-    status: 'unqualified',
-    verified: true,
-    activity: 17,
-    representative: {
-      name: 'Ioni Bowcher',
-      image: 'ionibowcher.png'
-    },
-    balance: 70663
-  }]
+export class UserComponent implements OnInit {
 
-  loading: boolean = false;
+  SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
+  SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
-  activityValues: number[] = [0, 100];
+  constructor(
+    private messageService: MessageService,
+    private adminService: AdminService,
+    private confirmationService: ConfirmationService,
+  ) {
+  }
 
+  dataDialog: any = {
+    actionDialog: '',
+    headerDialog: '',
+    subHeaderDialog: ''
+  };
+  listUser: any = [];
+  visible: boolean = false;
+  loading: boolean = true;
 
   ngOnInit() {
+    this.apiGetAll();
   }
 
   clear(table: Table) {
     table.clear();
+  }
+
+  onShowDialog(action: string, data: any): void {
+    this.dataDialog = {...data};
+
+    switch (action) {
+      case this.SYSTEM_ACTION.VIEW:
+        this.dataDialog.headerDialog = 'View user';
+        this.dataDialog.subHeaderDialog = 'View user information';
+        break
+      case this.SYSTEM_ACTION.CREATE:
+        this.dataDialog.headerDialog = 'Create user';
+        this.dataDialog.subHeaderDialog = 'Create user information';
+        break
+      case this.SYSTEM_ACTION.UPDATE:
+        this.dataDialog.headerDialog = 'Update user';
+        this.dataDialog.subHeaderDialog = 'Update user information';
+        break
+    }
+
+    this.dataDialog.actionDialog = action;
+    this.visible = true;
+  }
+
+  confirmDelete(event: Event, user: any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this record?',
+      header: 'Delete User',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"p-button-text p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+
+      accept: () => {
+        this.apiDelete(user);
+      },
+      reject: () => {}
+    });
+  }
+
+  confirmLock(event: Event, user: any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want lock?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
+      accept: () => {
+        this.apiLock(user);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+      },
+      reject: () => {}
+    });
+  }
+
+  confirmResetPassword(event: Event, user: any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want reset password?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
+      accept: () => {
+        this.apiResetPassword(user);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+      },
+      reject: () => {}
+    });
+  }
+
+  handleVisibleChange(visible: boolean) {
+    this.visible = visible;
+    this.apiGetAll();
+  }
+
+  apiResetPassword(user: any) {
+    this.adminService.resetPassword({userID: user.userID}).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.apiGetAll();
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
+  }
+
+  apiLock(user: any) {
+    this.adminService.lockUser({userID: user.userID}).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.apiGetAll();
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
+  }
+
+  apiDelete(user: any) {
+    this.adminService.deleteUser({userID: user.userID}).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.apiGetAll();
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
+  }
+
+  apiGetAll() {
+    this.adminService.getAllUser({}).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.listUser = result.data;
+          this.loading = false;
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
   }
 }
