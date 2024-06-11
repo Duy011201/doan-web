@@ -27,6 +27,17 @@ export const SETTING = {
     CANDIDATE: 'candidate',
     EMPLOYER: 'employer',
   },
+  SYSTEM_STATUS: {
+    ACTIVE: 'active',
+    IN_ACTIVE: 'inactive',
+    LOCK: 'lock',
+  },
+  SYSTEM_ACTION: {
+    VIEW: 'view',
+    CREATE: 'create',
+    UPDATE: 'update',
+    DELETE: 'delete'
+  },
   SYSTEM_HTTP_STATUS: {
     OK: 200,
     CREATED: 201,
@@ -45,6 +56,8 @@ export const SETTING = {
     INVALID_POLICY:
       'Bạn chưa đồng ý với Điều khoản dịch vụ và Chính sách bảo mật của chúng tôi',
     INVALID_ENCRYPTION_AUTHENTICATION: 'Mã xác thực không hợp lệ',
+    INVALID_ROLE: 'Định dạng quyền không hợp lệ',
+    INVALID_STATUS: 'Định dạng trạng thái không hợp lệ',
 
     INVALID_COMPANY_NAME_FORMAT: 'Tên công ty không hợp lệ',
     INVALID_COMPANY_FIELD: 'Lĩnh vực công ty không hợp lệ',
