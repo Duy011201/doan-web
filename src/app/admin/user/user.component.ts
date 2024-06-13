@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Table} from 'primeng/table';
 import {SETTING} from "../../core/configs/setting.config";
 import {AdminService} from "../admin.service";
+import {environment} from '../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-user',
@@ -30,6 +31,7 @@ export class UserComponent implements OnInit {
   listUser: any = [];
   visible: boolean = false;
   loading: boolean = true;
+  pathEnvironment = environment.API_URL;
 
   ngOnInit() {
     this.apiGetAll();

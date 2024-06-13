@@ -4,6 +4,7 @@ import {SETTING} from "../../../core/configs/setting.config";
 import {CONSTANT} from "../../../core/configs/constant.config";
 import {AdminService} from "../../admin.service";
 import {getFromLocalStorage, isEmail, isEmpty, removeQuotes, trimStringObject} from "../../../core/commons/func";
+import {environment} from "../../../core/environments/develop.environment";
 
 @Component({
   selector: 'app-admin-user-dialog',
@@ -31,6 +32,9 @@ export class DialogUserComponent implements OnInit {
 
   listCompany: any = [];
   listRole: any = [];
+  listFile: any = [];
+
+  pathEnvironment = environment.API_URL;
 
   constructor(
     private messageService: MessageService,
@@ -57,7 +61,37 @@ export class DialogUserComponent implements OnInit {
     this.selectRole = this.listRole.find((item: any) => item.name === this.data.role);
   }
 
-  private validInput(type: string): boolean {
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.listFile.push(event.target.files[i]);
+      }
+    }
+  }
+
+  private uploadFile(payload: any, files: any[]): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      this.adminService.upload(payload, files).subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            resolve(result.data);
+          } else {
+            reject(new Error('Upload failed'));
+          }
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error?.message || error.message,
+          });
+          reject(error);
+        }
+      );
+    });
+  }
+
+  private validInput(): boolean {
     let errorMessage = '';
 
     if (!isEmail(this.data.email)) {
@@ -80,9 +114,18 @@ export class DialogUserComponent implements OnInit {
     return true;
   }
 
-  public onCreateUser(): void {
+  public async onCreateUser(): Promise<void> {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
-    if (this.validInput(this.SYSTEM_ACTION.CREATE)) {
+    const token = removeQuotes(getFromLocalStorage('token'));
+
+    let listFile = [];
+
+    if (this.listFile.length > 0) {
+      listFile = await this.uploadFile({userID: createdBy}, this.listFile);
+      console.log(listFile[0])
+    }
+
+    if (this.validInput()) {
       this.data = trimStringObject(this.data);
       const payload = {
         username: this.data.username || '',
@@ -90,31 +133,41 @@ export class DialogUserComponent implements OnInit {
         education: this.selectEducation?.NAME || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: this.data.avatar || '',
+        avatar: listFile[0].filePath || this.data.avatar || '',
         email: this.data.email,
         role: this.selectRole.NAME,
-        createdBy: createdBy
+        createdBy: createdBy,
+        token: token
       };
       this.apiCreate(payload);
     }
   }
 
-  public onUpdateUser(): void {
+  public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
-    if (this.validInput(this.SYSTEM_ACTION.UPDATE)) {
+    const token = removeQuotes(getFromLocalStorage('token'));
+    let listFile = [];
+
+    if (this.listFile.length > 0) {
+      listFile = await this.uploadFile({userID: updatedBy}, this.listFile);
+      console.log(listFile[0])
+    }
+
+    if (this.validInput()) {
       this.data = trimStringObject(this.data);
       const payload = {
         userID: this.data.userID,
         username: this.data.username || '',
         language: this.selectLanguage?.NAME || '',
         education: this.selectEducation?.NAME || '',
-        certificate: this.data.certificate,
+        certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: this.data.avatar || '',
-        updatedBy: updatedBy,
+        avatar: listFile[0].filePath || this.data.avatar || '',
         email: this.data.email,
         roleID: this.selectRole.roleID || this.data.roleID,
-        status: this.selectStatus.NAME || this.data.status
+        status: this.selectStatus.NAME || this.data.status,
+        updatedBy: updatedBy,
+        token: token
       };
       this.apiUpdate(payload);
     }

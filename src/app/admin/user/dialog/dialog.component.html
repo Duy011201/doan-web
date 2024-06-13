@@ -1,4 +1,5 @@
-<p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+<p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible"
+          [style]="{ width: '50rem' }"
           (onHide)="onHideDialog()">
   <span class="p-text-secondary block mb-5">{{ data.subHeaderDialog }} </span>
 
@@ -59,15 +60,11 @@
     </div>
 
     <div class="col-5 flex flex-column gap-4">
-      <div class="flex justify-content-center">
-        <p-avatar
-          label="D"
-          icon="pi pi-user"
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-          styleClass="mr-2"
-          shape="square"
-          [style]="{ 'background-color': '#ece9fc', color: '#2a1261', width: '18rem', height: '10.5rem', fontSize: '5rem' }">
-        </p-avatar>
+      <div>
+        <img width="200" height="200" src="{{ pathEnvironment + '/' + data.avatar }}" alt="favicon"/>
+        <div>
+          <input type="file" (change)="onFileSelected($event)">
+        </div>
       </div>
 
       <div class="flex flex-column gap-2">

@@ -15,4 +15,8 @@ export enum UrlApi {
   ADMIN_RESET_PASSWORD_USER = `api/admin/user/reset-password`,
   ADMIN_GET_ALL_USER = `api/admin/user/get-all`,
   ADMIN_LOCK_USER = `api/admin/user/lock`,
+
+  // Upload
+  STORE_UPLOAD = 'api/store/upload',
+  STORE_GET_FILE = 'api/store/files',
 }

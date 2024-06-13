@@ -9,7 +9,7 @@ export class RequestApiService {
   constructor(private http: HttpClient) {
   }
 
-  public getAuthHeaders(): HttpHeaders {
+  private static getAuthHeaders(): HttpHeaders {
     const token = removeQuotes(getFromLocalStorage('token'));
       return new HttpHeaders({
         'Accept': 'application/json',
@@ -26,8 +26,40 @@ export class RequestApiService {
     return this.http.get(`${environment.API_URL}/${url}`, body);
   }
 
-  postApiHeader(apiUrl: string, data: any): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${environment.API_URL}/${apiUrl}`, data, {headers});
+  postApiHeader(apiUrl: string, body: any): Observable<any> {
+    const headers = RequestApiService.getAuthHeaders();
+    return this.http.post(`${environment.API_URL}/${apiUrl}`, body, {headers});
+  }
+
+  private static getAuthHeadersFile(): HttpHeaders {
+    const token = removeQuotes(getFromLocalStorage('token'));
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
+  postApiHeaderFile(apiUrl: string, body: any, files?: File[]): Observable<any> {
+    const headers = RequestApiService.getAuthHeadersFile();
+    const formData: FormData = new FormData();
+
+    for (const key in body) {
+      if (body.hasOwnProperty(key)) {
+        formData.append(key, body[key]);
+      }
+    }
+
+    if (files && Array.isArray(files)) {
+      for (const file of files) {
+        if (file) {
+          formData.append('files', file, file.name);
+        } else {
+          console.error('File object is undefined');
+        }
+      }
+    } else {
+      console.error('No files provided or files is not an array');
+    }
+
+    return this.http.post(`${environment.API_URL}/${apiUrl}`, formData, { headers });
   }
 }

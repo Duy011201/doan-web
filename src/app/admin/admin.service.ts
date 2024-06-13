@@ -65,4 +65,12 @@ export class AdminService {
       })
     );
   }
+
+  public upload(body: object, files: any) {
+    return this._requestApiService.postApiHeaderFile(`${UrlApi.STORE_UPLOAD}`, body, files).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }
