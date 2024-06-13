@@ -63,7 +63,7 @@
       <div>
         <img width="200" height="200" src="{{ pathEnvironment + '/' + data.avatar }}" alt="favicon"/>
         <div>
-          <input type="file" (change)="onFileSelected($event)">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
         </div>
       </div>
 

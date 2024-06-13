@@ -30,9 +30,9 @@ export class DialogUserComponent implements OnInit {
   selectStatus: any = {};
   selectCompany: any = {};
 
+  listFile: any = [];
   listCompany: any = [];
   listRole: any = [];
-  listFile: any = [];
 
   pathEnvironment = environment.API_URL;
 
@@ -74,6 +74,7 @@ export class DialogUserComponent implements OnInit {
       this.adminService.upload(payload, files).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            this.listFile = [];
             resolve(result.data);
           } else {
             reject(new Error('Upload failed'));
@@ -118,11 +119,9 @@ export class DialogUserComponent implements OnInit {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
     const token = removeQuotes(getFromLocalStorage('token'));
 
-    let listFile = [];
-
+    let fileSelect = []
     if (this.listFile.length > 0) {
-      listFile = await this.uploadFile({userID: createdBy}, this.listFile);
-      console.log(listFile[0])
+      fileSelect = await this.uploadFile({userID: createdBy}, this.listFile);
     }
 
     if (this.validInput()) {
@@ -133,7 +132,7 @@ export class DialogUserComponent implements OnInit {
         education: this.selectEducation?.NAME || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: listFile[0].filePath || this.data.avatar || '',
+        avatar: fileSelect[0].filePath || this.data.avatar || '',
         email: this.data.email,
         role: this.selectRole.NAME,
         createdBy: createdBy,
@@ -146,11 +145,10 @@ export class DialogUserComponent implements OnInit {
   public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
     const token = removeQuotes(getFromLocalStorage('token'));
-    let listFile = [];
 
+    let fileSelect = []
     if (this.listFile.length > 0) {
-      listFile = await this.uploadFile({userID: updatedBy}, this.listFile);
-      console.log(listFile[0])
+      fileSelect = await this.uploadFile({userID: updatedBy}, this.listFile);
     }
 
     if (this.validInput()) {
@@ -162,7 +160,7 @@ export class DialogUserComponent implements OnInit {
         education: this.selectEducation?.NAME || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: listFile[0].filePath || this.data.avatar || '',
+        avatar: fileSelect[0].filePath || this.data.avatar || '',
         email: this.data.email,
         roleID: this.selectRole.roleID || this.data.roleID,
         status: this.selectStatus.NAME || this.data.status,
