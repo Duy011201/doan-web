@@ -108,7 +108,6 @@ export class UserComponent implements OnInit {
       rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.apiResetPassword(user);
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {}
     });
@@ -123,6 +122,11 @@ export class UserComponent implements OnInit {
     this.adminService.resetPassword({userID: user.userID}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: result.message,
+          });
           this.apiGetAll();
         }
       },
@@ -140,6 +144,11 @@ export class UserComponent implements OnInit {
     this.adminService.lockUser({userID: user.userID}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: result.message,
+          });
           this.apiGetAll();
         }
       },
@@ -157,6 +166,11 @@ export class UserComponent implements OnInit {
     this.adminService.deleteUser({userID: user.userID}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: result.message,
+          });
           this.apiGetAll();
         }
       },
