@@ -119,7 +119,6 @@ export class DialogUserComponent implements OnInit {
 
   public async onCreateUser(): Promise<void> {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
-    const token = removeQuotes(getFromLocalStorage('token'));
 
     let fileSelect = []
     if (this.listFile.length > 0) {
@@ -139,7 +138,6 @@ export class DialogUserComponent implements OnInit {
         email: this.data.email,
         role: this.selectRole.NAME,
         createdBy: createdBy,
-        token: token
       };
       this.apiCreate(payload);
     }
@@ -147,7 +145,6 @@ export class DialogUserComponent implements OnInit {
 
   public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
-    const token = removeQuotes(getFromLocalStorage('token'));
 
     let fileSelect = []
     if (this.listFile.length > 0) {
@@ -169,7 +166,6 @@ export class DialogUserComponent implements OnInit {
         roleID: this.selectRole.roleID || this.data.roleID,
         status: this.selectStatus.NAME || this.data.status,
         updatedBy: updatedBy,
-        token: token
       };
       this.apiUpdate(payload);
     }

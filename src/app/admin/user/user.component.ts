@@ -92,7 +92,6 @@ export class UserComponent implements OnInit {
       rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.apiLock(user);
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {}
     });

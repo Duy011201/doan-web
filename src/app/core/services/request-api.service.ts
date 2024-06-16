@@ -28,6 +28,7 @@ export class RequestApiService {
 
   postApiHeader(apiUrl: string, body: any): Observable<any> {
     const headers = RequestApiService.getAuthHeaders();
+    body.token = removeQuotes(getFromLocalStorage('token'));
     return this.http.post(`${environment.API_URL}/${apiUrl}`, body, {headers});
   }
 
