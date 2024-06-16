@@ -21,7 +21,7 @@
           <input pInputText id="phone" class="flex-auto" [(ngModel)]="data.phone"/>
         </div>
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
-          <label for="certificate" class="font-semibold">Certificate</label>
+          <label for="certificate" class="font-semibold">Chứng chỉ</label>
           <input pInputText id="certificate" class="flex-auto" [(ngModel)]="data.certificate"/>
         </div>
       </div>
@@ -54,7 +54,7 @@
       <div class="flex flex-column gap-2">
         <label for="company" class="font-semibold">Công ty</label>
         <p-dropdown id="company" [options]="listCompany" [(ngModel)]="selectCompany"
-                    placeholder="Chọn công ty" optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+                    placeholder="Chọn công ty" optionLabel="name" [showClear]="true" [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
     </div>

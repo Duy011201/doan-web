@@ -47,6 +47,7 @@ export class DialogUserComponent implements OnInit {
     this.LIST_STATUS = this.LIST_STATUS.filter((item: any) => item.CODE !== 'IN_ACTIVE');
 
     this.apiGetAllRole();
+    this.apiGetAllCompany();
   }
 
   onHideDialog() {
@@ -59,6 +60,7 @@ export class DialogUserComponent implements OnInit {
     this.selectEducation = this.LIST_EDUCATION.find((item: any) => item.NAME === this.data.education);
     this.selectLanguage = this.LIST_LANGUAGES.find((item: any) => item.NAME === this.data.language);
     this.selectRole = this.listRole.find((item: any) => item.name === this.data.role);
+    this.selectCompany = this.listCompany.find((item: any) => item.name === this.data.companyName);
   }
 
   onFileSelected(event: any) {
@@ -128,11 +130,12 @@ export class DialogUserComponent implements OnInit {
       this.data = trimStringObject(this.data);
       const payload = {
         username: this.data.username || '',
+        companyID: this.selectCompany?.companyID || this.data.companyID,
         language: this.selectLanguage?.NAME || '',
         education: this.selectEducation?.NAME || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: fileSelect[0].filePath || this.data.avatar || '',
+        avatar: fileSelect[0]?.filePath || this.data.avatar || '',
         email: this.data.email,
         role: this.selectRole.NAME,
         createdBy: createdBy,
@@ -155,12 +158,13 @@ export class DialogUserComponent implements OnInit {
       this.data = trimStringObject(this.data);
       const payload = {
         userID: this.data.userID,
+        companyID: this.selectCompany?.companyID || '',
         username: this.data.username || '',
         language: this.selectLanguage?.NAME || '',
         education: this.selectEducation?.NAME || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: fileSelect[0].filePath || this.data.avatar || '',
+        avatar: fileSelect[0]?.filePath || this.data.avatar || '',
         email: this.data.email,
         roleID: this.selectRole.roleID || this.data.roleID,
         status: this.selectStatus.NAME || this.data.status,
@@ -220,6 +224,23 @@ export class DialogUserComponent implements OnInit {
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listRole = result.data;
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
+  }
+
+  apiGetAllCompany() {
+    this.adminService.getAllCompany({}).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.listCompany = result.data;
         }
       },
       (error: any) => {
