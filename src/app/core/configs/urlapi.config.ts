@@ -9,6 +9,13 @@ export enum UrlApi {
   ADMIN_GET_ALL_ROLE = `api/role/get-all`,
 
   // Admin user
+  ADMIN_CREATE_COMPANY = `api/admin/company/create`,
+  ADMIN_UPDATE_COMPANY = `api/admin/company/update`,
+  ADMIN_DELETE_COMPANY = `api/admin/company/delete`,
+  ADMIN_GET_ALL_COMPANY = `api/admin/company/get-all`,
+  ADMIN_LOCK_COMPANY = `api/admin/company/lock`,
+
+  // Admin company
   ADMIN_CREATE_USER = `api/admin/user/create`,
   ADMIN_UPDATE_USER = `api/admin/user/update`,
   ADMIN_DELETE_USER = `api/admin/user/delete`,

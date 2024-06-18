@@ -20,6 +20,7 @@ export const SETTING = {
     // TODO: Url for related admin pages
     ADMIN_DASHBOARD: 'dashboard',
     ADMIN_MANAGER_USER: 'manager-user',
+    ADMIN_MANAGER_COMPANY: 'manager-company',
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'super_admin',

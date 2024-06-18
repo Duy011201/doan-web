@@ -73,4 +73,45 @@ export class AdminService {
       })
     );
   }
+
+
+  public getAllCompany(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_COMPANY}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public updateCompany(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_UPDATE_COMPANY}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public createCompany(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_CREATE_COMPANY}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public deleteCompany(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_DELETE_COMPANY}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public lockCompany(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_LOCK_COMPANY}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }

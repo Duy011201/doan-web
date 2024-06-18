@@ -20,6 +20,7 @@
           <label for="phone" class="font-semibold">Phone</label>
           <input pInputText id="phone" class="flex-auto" [(ngModel)]="data.phone"/>
         </div>
+
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
           <label for="certificate" class="font-semibold">Chứng chỉ</label>
           <input pInputText id="certificate" class="flex-auto" [(ngModel)]="data.certificate"/>
@@ -62,7 +63,7 @@
     <div class="col-5 flex flex-column gap-4">
       <div>
         <img width="200" height="200" src="{{ pathEnvironment + '/' + data.avatar }}" alt="favicon"/>
-        <div>
+        <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
           <input type="file" (change)="onFileSelected($event)" accept="image/*">
         </div>
       </div>

@@ -38,7 +38,9 @@
     <span>Quản lý quyền truy cập</span>
   </div>
 
-  <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+  <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.ADMIN_MANAGER_COMPANY)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.ADMIN_MANAGER_COMPANY) }">
     <i class="fa-solid fa-building text-xl"></i>
     <span>Quản lý công ty</span>
   </div>

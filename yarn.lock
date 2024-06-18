@@ -5394,10 +5394,10 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ngx-quill@^25.2.0:
-  version "25.2.0"
-  resolved "https://registry.npmjs.org/ngx-quill/-/ngx-quill-25.2.0.tgz"
-  integrity sha512-izOR53ekxSV4mKgOhzamBhOfhr5RAT3g8Wl2bH0olPpgg0FoUvezpY7Us+WWvs2L5s0iGmNJ2L9PSqEs0xFdUw==
+ngx-quill@^25.3.2:
+  version "25.3.2"
+  resolved "https://registry.npmjs.org/ngx-quill/-/ngx-quill-25.3.2.tgz"
+  integrity sha512-CukrvIm2XbcoS1ry23UyCIT/7lN/Et/IZsgQP1TW8C4X1b7VZ/H53Ki1jRBEL59u/xH71my9zkp7+kWH86j3vQ==
   dependencies:
     tslib "^2.3.0"
 
@@ -5848,10 +5848,10 @@ pacote@17.0.6:
     ssri "^10.0.0"
     tar "^6.1.11"
 
-parchment@3.0.0-rc.1:
-  version "3.0.0-rc.1"
-  resolved "https://registry.npmjs.org/parchment/-/parchment-3.0.0-rc.1.tgz"
-  integrity sha512-UiXun/99vbUgfPgAIuyZzqRN1YARfMz3ktAoTOxDWnrK/OMQlshPh0TKrNhePxxDWCGz/xVsexMtsaEQy+fmXQ==
+parchment@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/parchment/-/parchment-3.0.0.tgz"
+  integrity sha512-HUrJFQ/StvgmXRcQ1ftY6VEZUq3jA2t9ncFN4F84J/vN0/FPpQF+8FKXb3l6fLces6q0uOHj6NJn+2xvZnxO6A==
 
 parent-module@^1.0.0:
   version "1.0.1"
@@ -6187,14 +6187,14 @@ quill-delta@^5.1.0:
     lodash.clonedeep "^4.5.0"
     lodash.isequal "^4.5.0"
 
-quill@2.0.0-rc.5:
-  version "2.0.0-rc.5"
-  resolved "https://registry.npmjs.org/quill/-/quill-2.0.0-rc.5.tgz"
-  integrity sha512-3jpk3Jb+TETSZ+3owQqneMDVe30qWmp7vXEVkj9Z5b+qp443HKF/jVu86U+uSW1vB2dphFYgHXhh71c/oq4ohQ==
+quill@^2.0.0, quill@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz"
+  integrity sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw==
   dependencies:
     eventemitter3 "^5.0.1"
     lodash-es "^4.17.21"
-    parchment "3.0.0-rc.1"
+    parchment "^3.0.0"
     quill-delta "^5.1.0"
 
 randombytes@^2.1.0:

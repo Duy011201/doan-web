@@ -41,6 +41,7 @@ import {InputOtpModule} from 'primeng/inputotp';
 import {FloatLabelModule} from 'primeng/floatlabel';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {BlockUIModule} from 'primeng/blockui';
+import {EditorModule} from 'primeng/editor';
 
 @NgModule({
   declarations: [],
@@ -85,7 +86,8 @@ import {BlockUIModule} from 'primeng/blockui';
     InputOtpModule,
     FloatLabelModule,
     DynamicDialogModule,
-    BlockUIModule
+    BlockUIModule,
+    EditorModule
   ],
   exports: [
     CarouselModule,
@@ -128,7 +130,8 @@ import {BlockUIModule} from 'primeng/blockui';
     InputOtpModule,
     FloatLabelModule,
     DynamicDialogModule,
-    BlockUIModule
+    BlockUIModule,
+    EditorModule
   ],
   providers: [MessageService],
 })
