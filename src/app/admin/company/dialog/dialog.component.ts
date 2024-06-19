@@ -91,11 +91,13 @@ export class DialogCompanyComponent implements OnInit {
   private validInput(): boolean {
     let errorMessage = '';
 
-    // if (!isEmail(this.data.email)) {
-    //   errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
-    // }  else if (isEmpty(this.selectStatus)) {
-    //   errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
-    // }
+    if (isEmpty(this.data.name)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_NAME_FORMAT;
+    } else if (isEmpty(this.selectStatus)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
+    } else if (isEmpty(this.data.corporateTaxCode)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
+    }
 
     if (!isEmpty(errorMessage)) {
       this.messageService.add({
@@ -130,7 +132,7 @@ export class DialogCompanyComponent implements OnInit {
         address: this.data.address || '',
         field: this.selectField?.NAME || '',
         logo: listFile[0]?.filePath || this.data.logo || '',
-        scale: this.selectScale?.NAME || '',
+        scale: this.selectScale?.NAME || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
         website: this.data.address || '',
         status: this.selectStatus.NAME || this.data.status,
@@ -160,7 +162,7 @@ export class DialogCompanyComponent implements OnInit {
         address: this.data.address || '',
         field: this.selectField?.NAME || '',
         logo: listFile[0]?.filePath || this.data.logo || '',
-        scale: this.selectScale?.NAME || '',
+        scale: this.selectScale?.NAME || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
         website: this.data.address || '',
         status: this.selectStatus.NAME || this.data.status,
