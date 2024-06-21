@@ -21,6 +21,7 @@ export const SETTING = {
     ADMIN_DASHBOARD: 'dashboard',
     ADMIN_MANAGER_USER: 'manager-user',
     ADMIN_MANAGER_COMPANY: 'manager-company',
+    ADMIN_MANAGER_BLOG: 'manager-blog',
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'super_admin',
@@ -39,6 +40,12 @@ export const SETTING = {
     UPDATE: 'update',
     DELETE: 'delete'
   },
+  BLOG_STATUS: {
+    PENDING: 'pending',
+    APPROVED: 'approved',
+    PUBLISHED: 'published',
+    ARCHIVED: 'archived'
+  },
   SYSTEM_HTTP_STATUS: {
     OK: 200,
     CREATED: 201,
@@ -52,6 +59,8 @@ export const SETTING = {
   },
   SYSTEM_HTTP_MESSAGE: {
     INVALID_EMAIL_FORMAT: 'Định dạng email không hợp lệ',
+    INVALID_TITLE_FORMAT: 'Định dạng tiêu đề không hợp lệ',
+    INVALID_CONTENT_FORMAT: 'Định dạng nội dung không hợp lệ',
     INVALID_PASSWORD_FORMAT: 'Định dạng passwword không hợp lệ',
     INVALID_PASSWORD_NOT_MATCH: 'Định dạng passwword không khớp',
     INVALID_POLICY:

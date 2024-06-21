@@ -52,10 +52,10 @@ export class DialogCompanyComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.selectStatus = this.LIST_STATUS.find((item: any) => item.NAME === this.data.status);
-    this.selectProvince = this.LIST_PROVINCE.find((item: any) => item.NAME === this.data.education);
-    this.selectField = this.LIST_FIELD.find((item: any) => item.NAME === this.data.language);
-    this.selectScale = this.LIST_SCALE.find((item: any) => item.NAME === this.data.scale);
+    this.selectStatus = this.LIST_STATUS.find((item: any) => item.CODE === this.data.status);
+    this.selectProvince = this.LIST_PROVINCE.find((item: any) => item.CODE === this.data.province);
+    this.selectField = this.LIST_FIELD.find((item: any) => item.CODE === this.data.field);
+    this.selectScale = this.LIST_SCALE.find((item: any) => item.CODE === this.data.scale);
   }
 
   onFileSelected(event: any) {
@@ -128,14 +128,14 @@ export class DialogCompanyComponent implements OnInit {
         introduce: this.data.introduce || '',
         email: this.data.email || '',
         phone: this.data.phone || '',
-        province: this.selectProvince?.NAME || '',
+        province: this.selectProvince?.CODE || '',
         address: this.data.address || '',
-        field: this.selectField?.NAME || '',
+        field: this.selectField?.CODE || '',
         logo: listFile[0]?.filePath || this.data.logo || '',
-        scale: this.selectScale?.NAME || 0,
+        scale: this.selectScale?.CODE || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
         website: this.data.address || '',
-        status: this.selectStatus.NAME || this.data.status,
+        status: this.selectStatus.CODE || this.data.status,
         createdBy: createdBy,
       };
       this.apiCreate(payload);
@@ -158,14 +158,14 @@ export class DialogCompanyComponent implements OnInit {
         introduce: this.data.introduce || '',
         email: this.data.email || '',
         phone: this.data.phone || '',
-        province: this.selectProvince?.NAME || '',
+        province: this.selectProvince?.CODE || '',
         address: this.data.address || '',
-        field: this.selectField?.NAME || '',
+        field: this.selectField?.CODE || '',
         logo: listFile[0]?.filePath || this.data.logo || '',
-        scale: this.selectScale?.NAME || 0,
+        scale: this.selectScale?.CODE || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
         website: this.data.address || '',
-        status: this.selectStatus.NAME || this.data.status,
+        status: this.selectStatus.CODE || this.data.status,
         updatedBy: updatedBy,
       };
 

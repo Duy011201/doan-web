@@ -56,10 +56,10 @@ export class DialogUserComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.selectStatus = this.LIST_STATUS.find((item: any) => item.NAME === this.data.status);
-    this.selectEducation = this.LIST_EDUCATION.find((item: any) => item.NAME === this.data.education);
-    this.selectLanguage = this.LIST_LANGUAGES.find((item: any) => item.NAME === this.data.language);
-    this.selectRole = this.listRole.find((item: any) => item.name === this.data.role);
+    this.selectStatus = this.LIST_STATUS.find((item: any) => item.CODE === this.data.status);
+    this.selectEducation = this.LIST_EDUCATION.find((item: any) => item.CODE === this.data.education);
+    this.selectLanguage = this.LIST_LANGUAGES.find((item: any) => item.CODE === this.data.language);
+    this.selectRole = this.listRole.find((item: any) => item.roleName === this.data.roleName);
     this.selectCompany = this.listCompany.find((item: any) => item.name === this.data.companyName);
   }
 
@@ -130,13 +130,13 @@ export class DialogUserComponent implements OnInit {
       const payload = {
         username: this.data.username || '',
         companyID: this.selectCompany?.companyID || this.data.companyID,
-        language: this.selectLanguage?.NAME || '',
-        education: this.selectEducation?.NAME || '',
+        language: this.selectLanguage?.CODE || '',
+        education: this.selectEducation?.CODE || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
         avatar: fileSelect[0]?.filePath || this.data.avatar || '',
         email: this.data.email,
-        role: this.selectRole.NAME,
+        role: this.selectRole.CODE,
         createdBy: createdBy,
       };
       this.apiCreate(payload);
@@ -157,14 +157,14 @@ export class DialogUserComponent implements OnInit {
         userID: this.data.userID,
         companyID: this.selectCompany?.companyID || '',
         username: this.data.username || '',
-        language: this.selectLanguage?.NAME || '',
-        education: this.selectEducation?.NAME || '',
+        language: this.selectLanguage?.CODE || '',
+        education: this.selectEducation?.CODE || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
         avatar: fileSelect[0]?.filePath || this.data.avatar || '',
         email: this.data.email,
         roleID: this.selectRole.roleID || this.data.roleID,
-        status: this.selectStatus.NAME || this.data.status,
+        status: this.selectStatus.CODE || this.data.status,
         updatedBy: updatedBy,
       };
       this.apiUpdate(payload);
