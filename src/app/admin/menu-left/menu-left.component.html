@@ -15,7 +15,8 @@
 
     <div class="pt-2 pb-2 pl-3 pr-3 bg-white border-round">
       <span class="block text-sm">Cho phép tìm kiếm hồ sơ</span>
-      <span class="block mt-2 text-xs txt-sub-title">Thiết Lập Hồ Sơ</span>
+      <span class="block mt-2 text-xs txt-sub-title"
+            (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.ADMIN_DASHBOARD)">Thiết Lập Hồ Sơ</span>
     </div>
   </div>
 
@@ -45,7 +46,9 @@
     <span>Quản lý công ty</span>
   </div>
 
-  <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+  <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.ADMIN_MANAGER_BLOG)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.ADMIN_MANAGER_BLOG) }">
     <i class="fa-solid fa-newspaper text-xl"></i>
     <span>Quản lý bài viết</span>
   </div>
@@ -53,6 +56,11 @@
   <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
     <i class="fa-solid fa-bullhorn text-xl"></i>
     <span>Quản lý tin tuyển dụng</span>
+  </div>
+
+  <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+    <i class="fa-solid fa-gear text-xl"></i>
+    <span>Quản lý quy trình tuyển dụng</span>
   </div>
 
   <div class="w-18rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">

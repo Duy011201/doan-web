@@ -196,8 +196,8 @@ export const CONSTANT = {
     {CODE: 'EMPLOYER', NAME: 'Nhà tuyển dụng'},
   ],
   BLOG_STATUS: [
-    {CODE: 'PENDING', NAME: 'đang chờ xử lý'},
-    {CODE: 'APPROVED', NAME: 'đã phê duyệt'},
-    {CODE: 'PUBLISHED', NAME: 'đã xuất bản'},
+    {CODE: 'PENDING', NAME: 'Đang chờ xử lý'},
+    {CODE: 'APPROVED', NAME: 'Đã phê duyệt'},
+    {CODE: 'PUBLISHED', NAME: 'Đã xuất bản'},
   ]
 };

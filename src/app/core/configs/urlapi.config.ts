@@ -23,6 +23,13 @@ export enum UrlApi {
   ADMIN_GET_ALL_USER = `api/admin/user/get-all`,
   ADMIN_LOCK_USER = `api/admin/user/lock`,
 
+  // Admin blog
+  ADMIN_CREATE_BLOG = `api/admin/blog/create`,
+  ADMIN_UPDATE_BLOG = `api/admin/blog/update`,
+  ADMIN_DELETE_BLOG = `api/admin/blog/delete`,
+  ADMIN_GET_ALL_BLOG = `api/admin/blog/get-all`,
+  ADMIN_STATUS_BLOG = `api/admin/blog/status`,
+
   // Upload
   STORE_UPLOAD = 'api/store/upload',
   STORE_GET_FILE = 'api/store/files',

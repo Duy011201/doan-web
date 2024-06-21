@@ -114,4 +114,44 @@ export class AdminService {
       })
     );
   }
+
+  public getAllBlog(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_BLOG}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public updateBlog(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_UPDATE_BLOG}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public createBlog(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_CREATE_BLOG}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public deleteBlog(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_DELETE_BLOG}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
+
+  public statusBlog(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_STATUS_BLOG}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }
