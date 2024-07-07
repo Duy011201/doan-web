@@ -80,5 +80,6 @@ export const SETTING = {
     INVALID_COMPANY_PROVINCE: 'Tỉnh không hợp lệ',
     INVALID_COMPANY_CORPORATE_TAX_CODE: 'Mã số thuế công ty không hợp lệ',
     INVALID_TOKEN: 'Định dạng token không hợp lệ',
+    INVALID_CONTENT: 'Định dạng nội dung không hợp lệ',
   },
 };

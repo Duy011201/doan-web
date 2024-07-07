@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SETTING} from '../core/configs/setting.config';
 import {CompanyComponent} from "./company/company.component";
 import {BlogComponent} from "./blog/blog.component";
+import {NotificationComponent} from "./notification/notification.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_BLOG,
     component: BlogComponent,
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.MANAGER_NOTIFICATION,
+    component: NotificationComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_404,

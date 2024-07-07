@@ -16,6 +16,7 @@ import {DialogUserComponent} from './user/dialog/dialog.component';
 import {DialogCompanyComponent} from './company/dialog/dialog.component';
 import {BlogComponent} from './blog/blog.component';
 import {DialogBlogComponent} from './blog/dialog/dialog.component';
+import {NotificationComponent} from "./notification/notification.component";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {QuillModule} from 'ngx-quill';
 
@@ -32,7 +33,7 @@ import {QuillModule} from 'ngx-quill';
     QuillModule,
   ],
   declarations: [DashboardComponent, MenuLeftComponent, UserComponent, DialogUserComponent, CompanyComponent,
-    DialogCompanyComponent, BlogComponent, DialogBlogComponent],
+    DialogCompanyComponent, BlogComponent, DialogBlogComponent, NotificationComponent],
   providers: [AdminService, RequestApiService, ConfirmationService, MessageService],
 })
 export class AdminModule {

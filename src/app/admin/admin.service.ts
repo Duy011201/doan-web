@@ -154,4 +154,12 @@ export class AdminService {
       })
     );
   }
+
+  public sendNotificationEmail(body: object) {
+    return this._requestApiService.postApiHeader(`${UrlApi.SEND_NOTIFICATION_EMAIL}`, body).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+  }
 }

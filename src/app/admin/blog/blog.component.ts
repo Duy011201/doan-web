@@ -13,7 +13,7 @@ import {environment} from '../../core/environments/develop.environment';
 })
 export class BlogComponent implements OnInit {
 
-  SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
+  BLOG_STATUS = SETTING.BLOG_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   constructor(

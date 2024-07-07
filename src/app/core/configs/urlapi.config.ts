@@ -33,4 +33,7 @@ export enum UrlApi {
   // Upload
   STORE_UPLOAD = 'api/store/upload',
   STORE_GET_FILE = 'api/store/files',
+
+  // Send notification email
+  SEND_NOTIFICATION_EMAIL = 'api/notification/send-content-email',
 }
