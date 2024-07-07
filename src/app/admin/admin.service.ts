@@ -76,7 +76,7 @@ export class AdminService {
 
 
   public getAllCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_COMPANY}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.GET_ALL_COMPANY}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -84,7 +84,7 @@ export class AdminService {
   }
 
   public updateCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_UPDATE_COMPANY}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.UPDATE_COMPANY}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -92,7 +92,7 @@ export class AdminService {
   }
 
   public createCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_CREATE_COMPANY}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.CREATE_COMPANY}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -100,7 +100,7 @@ export class AdminService {
   }
 
   public deleteCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_DELETE_COMPANY}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.DELETE_COMPANY}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -108,7 +108,7 @@ export class AdminService {
   }
 
   public lockCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_LOCK_COMPANY}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.LOCK_COMPANY}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -116,7 +116,7 @@ export class AdminService {
   }
 
   public getAllBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_BLOG}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.GET_ALL_BLOG}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -124,7 +124,7 @@ export class AdminService {
   }
 
   public updateBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_UPDATE_BLOG}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.UPDATE_BLOG}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -132,7 +132,7 @@ export class AdminService {
   }
 
   public createBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_CREATE_BLOG}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.CREATE_BLOG}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -140,7 +140,7 @@ export class AdminService {
   }
 
   public deleteBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_DELETE_BLOG}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.DELETE_BLOG}`, body).pipe(
       map((res) => {
         return res;
       })
@@ -148,7 +148,7 @@ export class AdminService {
   }
 
   public statusBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_STATUS_BLOG}`, body).pipe(
+    return this._requestApiService.postApiHeader(`${UrlApi.STATUS_BLOG}`, body).pipe(
       map((res) => {
         return res;
       })

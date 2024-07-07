@@ -18,33 +18,39 @@ export const SETTING = {
     AUTH_FORGOT_PASSWORD: 'forgot-password',
 
     // TODO: Url for related admin pages
-    ADMIN_DASHBOARD: 'dashboard',
+    DASHBOARD: 'dashboard',
     ADMIN_MANAGER_USER: 'manager-user',
-    ADMIN_MANAGER_COMPANY: 'manager-company',
-    ADMIN_MANAGER_BLOG: 'manager-blog',
+    MANAGER_COMPANY: 'manager-company',
+    MANAGER_BLOG: 'manager-blog',
+    MANAGER_NOTIFICATION : 'manager-notification',
   },
   SYSTEM_ROLE: {
-    SUPER_ADMIN: 'super_admin',
-    ADMIN: 'admin',
-    CANDIDATE: 'candidate',
-    EMPLOYER: 'employer',
+    SUPER_ADMIN: 'SUPER_ADMIN',
+    ADMIN: 'ADMIN',
+    CANDIDATE: 'CANDIDATE',
+    EMPLOYER: 'EMPLOYER',
   },
   SYSTEM_STATUS: {
-    ACTIVE: 'active',
-    IN_ACTIVE: 'inactive',
-    LOCK: 'lock',
+    ACTIVE: 'ACTIVE',
+    IN_ACTIVE: 'IN_ACTIVE',
+    LOCK: 'LOCK',
+  },
+  BLOG_STATUS: {
+    PENDING: 'PENDING',
+    APPROVED: 'APPROVED',
+    PUBLISHED: 'PUBLISHED',
+  },
+  SQL_METHOD: {
+    GET: 'GET',
+    DELETE: 'DELETE',
+    INSERT: 'INSERT',
+    UPDATE: 'UPDATE',
   },
   SYSTEM_ACTION: {
     VIEW: 'view',
     CREATE: 'create',
     UPDATE: 'update',
     DELETE: 'delete'
-  },
-  BLOG_STATUS: {
-    PENDING: 'pending',
-    APPROVED: 'approved',
-    PUBLISHED: 'published',
-    ARCHIVED: 'archived'
   },
   SYSTEM_HTTP_STATUS: {
     OK: 200,

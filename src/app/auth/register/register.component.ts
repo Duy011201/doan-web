@@ -20,10 +20,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   public SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
-  public TYPE_ROLE = {
-    CANDIDATE: 'candidate',
-    EMPLOYER: 'employer'
-  }
+  public SYSTEM_ROLE = SETTING.SYSTEM_ROLE;
   public authCandidate: any = {
     email: '',
     password: '',
@@ -63,7 +60,7 @@ export class RegisterComponent implements OnInit {
   private validAuthInput(type: string): boolean {
     let errorMessage = '';
 
-    if (type === this.TYPE_ROLE.CANDIDATE) {
+    if (type === this.SYSTEM_ROLE.CANDIDATE) {
       if (!isEmail(this.authCandidate.email)) {
         errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authCandidate.password)) {
@@ -73,7 +70,7 @@ export class RegisterComponent implements OnInit {
       } else if (isEmpty(this.authCandidate.isPolicy)) {
         errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_POLICY;
       }
-    } else if (type === this.TYPE_ROLE.EMPLOYER) {
+    } else if (type === this.SYSTEM_ROLE.EMPLOYER) {
       if (!isEmail(this.authEmployer.email)) {
         errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_EMAIL_FORMAT;
       } else if (!isPassword(this.authEmployer.password)) {
@@ -104,25 +101,25 @@ export class RegisterComponent implements OnInit {
   }
 
   public onRegisterCandidate(): void {
-    if (this.validAuthInput(this.TYPE_ROLE.CANDIDATE)) {
+    if (this.validAuthInput(this.SYSTEM_ROLE.CANDIDATE)) {
       this.authCandidate = trimStringObject(this.authCandidate);
       const payload = {
         email: this.authCandidate.email,
         password: this.authCandidate.password,
         verifyCode: this.authCandidate.verifyCode,
-        role: this.TYPE_ROLE.CANDIDATE,
+        role: this.SYSTEM_ROLE.CANDIDATE,
       };
       this.apiRegister(payload);
     }
   }
 
   public onRegisterEmployer(): void {
-    if (this.validAuthInput(this.TYPE_ROLE.EMPLOYER)) {
+    if (this.validAuthInput(this.SYSTEM_ROLE.EMPLOYER)) {
       this.authEmployer = trimStringObject(this.authEmployer);
       const payload = {
         email: this.authEmployer.email,
         password: this.authEmployer.password,
-        role: this.TYPE_ROLE.EMPLOYER,
+        role: this.SYSTEM_ROLE.EMPLOYER,
         verifyCode: this.authCandidate.verifyCode,
         companyName: this.authEmployer.companyName,
         companyEmail: this.authEmployer.companyEmail,
@@ -133,10 +130,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onVerifyCode(type: string): void {
-    if (type === this.TYPE_ROLE.CANDIDATE && this.validAuthInput(type))
+    if (type === this.SYSTEM_ROLE.CANDIDATE && this.validAuthInput(type))
       this.apiVerifyCode(type, {email: this.authCandidate.email});
 
-    if (type === this.TYPE_ROLE.EMPLOYER && this.validAuthInput(type))
+    if (type === this.SYSTEM_ROLE.EMPLOYER && this.validAuthInput(type))
       this.apiVerifyCode(type, {email: this.authEmployer.email});
   }
 
@@ -145,10 +142,10 @@ export class RegisterComponent implements OnInit {
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
 
-          if (type === this.TYPE_ROLE.CANDIDATE)
+          if (type === this.SYSTEM_ROLE.CANDIDATE)
             this.authCandidate.isStep = true;
 
-          if (type === this.TYPE_ROLE.EMPLOYER)
+          if (type === this.SYSTEM_ROLE.EMPLOYER)
             this.authEmployer.isStep = true;
 
           this.messageService.add({

@@ -9,11 +9,11 @@ export enum UrlApi {
   ADMIN_GET_ALL_ROLE = `api/role/get-all`,
 
   // Admin user
-  ADMIN_CREATE_COMPANY = `api/admin/company/create`,
-  ADMIN_UPDATE_COMPANY = `api/admin/company/update`,
-  ADMIN_DELETE_COMPANY = `api/admin/company/delete`,
-  ADMIN_GET_ALL_COMPANY = `api/admin/company/get-all`,
-  ADMIN_LOCK_COMPANY = `api/admin/company/lock`,
+  CREATE_COMPANY = `api/company/create`,
+  UPDATE_COMPANY = `api/company/update`,
+  DELETE_COMPANY = `api/company/delete`,
+  GET_ALL_COMPANY = `api/company/get-all`,
+  LOCK_COMPANY = `api/company/lock`,
 
   // Admin company
   ADMIN_CREATE_USER = `api/admin/user/create`,
@@ -24,11 +24,11 @@ export enum UrlApi {
   ADMIN_LOCK_USER = `api/admin/user/lock`,
 
   // Admin blog
-  ADMIN_CREATE_BLOG = `api/admin/blog/create`,
-  ADMIN_UPDATE_BLOG = `api/admin/blog/update`,
-  ADMIN_DELETE_BLOG = `api/admin/blog/delete`,
-  ADMIN_GET_ALL_BLOG = `api/admin/blog/get-all`,
-  ADMIN_STATUS_BLOG = `api/admin/blog/status`,
+  CREATE_BLOG = `api/blog/create`,
+  UPDATE_BLOG = `api/blog/update`,
+  DELETE_BLOG = `api/blog/delete`,
+  GET_ALL_BLOG = `api/blog/get-all`,
+  STATUS_BLOG = `api/blog/status`,
 
   // Upload
   STORE_UPLOAD = 'api/store/upload',

@@ -10,7 +10,7 @@ import {BlogComponent} from "./blog/blog.component";
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
   {
-    path: SETTING.SYSTEM_PAGE.ADMIN_DASHBOARD,
+    path: SETTING.SYSTEM_PAGE.DASHBOARD,
     component: DashboardComponent,
   },
   {
@@ -18,11 +18,11 @@ export const routes: Routes = [
     component: UserComponent,
   },
   {
-    path: SETTING.SYSTEM_PAGE.ADMIN_MANAGER_COMPANY,
+    path: SETTING.SYSTEM_PAGE.MANAGER_COMPANY,
     component: CompanyComponent,
   },
   {
-    path: SETTING.SYSTEM_PAGE.ADMIN_MANAGER_BLOG,
+    path: SETTING.SYSTEM_PAGE.MANAGER_BLOG,
     component: BlogComponent,
   },
   {
