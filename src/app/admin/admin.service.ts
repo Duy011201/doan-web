@@ -1,165 +1,241 @@
-import {Injectable} from '@angular/core';
-import {RequestApiService} from '../core/services/request-api.service';
-import {UrlApi} from '../core/configs/urlapi.config';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { RequestApiService } from '../core/services/request-api.service';
+import { UrlApi } from '../core/configs/urlapi.config';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private _requestApiService: RequestApiService) {
-  }
+  constructor(private _requestApiService: RequestApiService) {}
 
   public getAllRole(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_ROLE}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_GET_ALL_ROLE}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public getAllUser(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_GET_ALL_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_GET_ALL_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public updateUser(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_UPDATE_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_UPDATE_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public createUser(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_CREATE_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_CREATE_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public resetPassword(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_RESET_PASSWORD_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_RESET_PASSWORD_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public deleteUser(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_DELETE_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_DELETE_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public lockUser(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.ADMIN_LOCK_USER}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_LOCK_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public upload(body: object, files: any) {
-    return this._requestApiService.postApiHeaderFile(`${UrlApi.STORE_UPLOAD}`, body, files).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeaderFile(`${UrlApi.STORE_UPLOAD}`, body, files)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
-
   public getAllCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.GET_ALL_COMPANY}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public updateCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.UPDATE_COMPANY}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.UPDATE_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public createCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.CREATE_COMPANY}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public deleteCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.DELETE_COMPANY}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public lockCompany(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.LOCK_COMPANY}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.LOCK_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public getAllBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.GET_ALL_BLOG}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public updateBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.UPDATE_BLOG}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.UPDATE_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public createBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.CREATE_BLOG}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public deleteBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.DELETE_BLOG}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public statusBlog(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.STATUS_BLOG}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.STATUS_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 
   public sendNotificationEmail(body: object) {
-    return this._requestApiService.postApiHeader(`${UrlApi.SEND_NOTIFICATION_EMAIL}`, body).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.SEND_NOTIFICATION_EMAIL}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public getAllServicePack(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_SERVICE_PACK}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public updateServicePack(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.UPDATE_SERVICE_PACK}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public createServicePack(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_SERVICE_PACK}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public deleteServicePack(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_SERVICE_PACK}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 }

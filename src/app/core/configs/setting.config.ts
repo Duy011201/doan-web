@@ -22,7 +22,9 @@ export const SETTING = {
     ADMIN_MANAGER_USER: 'manager-user',
     MANAGER_COMPANY: 'manager-company',
     MANAGER_BLOG: 'manager-blog',
-    MANAGER_NOTIFICATION : 'manager-notification',
+    MANAGER_NOTIFICATION: 'manager-notification',
+    MANAGER_SERVICE_PACK: 'manager-service-pack',
+
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'SUPER_ADMIN',
@@ -50,7 +52,7 @@ export const SETTING = {
     VIEW: 'view',
     CREATE: 'create',
     UPDATE: 'update',
-    DELETE: 'delete'
+    DELETE: 'delete',
   },
   SYSTEM_HTTP_STATUS: {
     OK: 200,
@@ -81,5 +83,8 @@ export const SETTING = {
     INVALID_COMPANY_CORPORATE_TAX_CODE: 'Mã số thuế công ty không hợp lệ',
     INVALID_TOKEN: 'Định dạng token không hợp lệ',
     INVALID_CONTENT: 'Định dạng nội dung không hợp lệ',
+
+    INVALID_SERVICE_PACK_NAME: 'Định dạng tên gói dịch vụ không hợp lệ',
+    INVALID_SERVICE_PACK_PRICE: 'Định dạng giá gói dịch vụ không hợp lệ',
   },
 };

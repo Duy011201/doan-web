@@ -1,0 +1,33 @@
+<p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible"
+  [style]="{ width: '50rem' }" (onHide)="onHideDialog()">
+  <span class="p-text-secondary block mb-5">{{ data.subHeaderDialog }} </span>
+
+  <div class="grid col" [style.pointer-events]="data.actionDialog === SYSTEM_ACTION.VIEW ? 'none' : 'auto'">
+    <div class="col-12 flex flex-column gap-2">
+      <label for="name" class="font-semibold">Tên gói dịch vụ<span class="pl-2 text-red-600">*</span></label>
+      <input pInputText id="name" class="flex-auto" [(ngModel)]="data.servicePackName" />
+    </div>
+
+    <div class="col-12 flex flex-column gap-2">
+      <label for="address" class="font-semibold">Khuyến mãi<span class="pl-2 text-red-600">*</span></label>
+      <p-inputNumber inputId="integeronly" class="flex-auto" [style]="{ width: '100%' }" [(ngModel)]="data.promotion"
+        [min]="0" [max]="100" />
+    </div>
+
+    <div class="col-12 flex flex-column gap-2">
+      <label for="website" class="font-semibold">Giá cước<span class="pl-2 text-red-600">*</span></label>
+      <p-inputNumber inputId="integeronly" class="flex-auto w-full" [style]="{ width: '100%' }"
+        [(ngModel)]="data.price" />
+    </div>
+
+    <div class="col-12 flex flex-column gap-2">
+      <label for="website" class="font-semibold">Giá cước<span class="pl-2 text-red-600">*</span></label>
+      <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="data.content"></textarea>
+    </div>
+  </div>
+  <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW" class="flex justify-content-end gap-2 mt-3">
+    <p-button label="Cancel" severity="secondary" (click)="onHideDialog()"></p-button>
+    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.CREATE" label="Create" (click)="onCreateUser()"></p-button>
+    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.UPDATE" label="Save" (click)="onUpdateUser()"></p-button>
+  </div>
+</p-dialog>
