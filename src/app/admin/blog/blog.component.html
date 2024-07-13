@@ -2,6 +2,7 @@
   <app-admin-menu-left></app-admin-menu-left>
 
   <div>
+    <h2 class="header-component">Quản lý bài viết</h2>
     <p-table #dt1 [value]="listBlog" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
              [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
              [tableStyle]="{'min-width': '50rem'}"
@@ -75,9 +76,9 @@
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, blog)"></i>
-              <i class="text-xl fa-solid fa-pen-to-square" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, blog)"></i>
-              <i class="text-xl fa-solid fa-trash-can" (click)="confirmDelete($event, blog)"></i>
+              <i class="text-xl icon fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, blog)"></i>
+              <i class="text-xl icon fa-solid fa-pen-to-square" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, blog)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, blog)"></i>
             </div>
           </td>
         </tr>

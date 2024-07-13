@@ -14,3 +14,15 @@
   box-shadow: var(--primary-app-box-shadow) 0px 8px 24px;
 }
 
+.header-component {
+  border-left: 4px solid var(--primary-color);
+  padding: 5px;
+}
+
+.icon {
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

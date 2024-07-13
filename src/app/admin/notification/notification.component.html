@@ -2,18 +2,19 @@
   <app-admin-menu-left></app-admin-menu-left>
 
   <div>
+    <h2 class="header-component">Quản lý thông báo người dùng</h2>
     <p-table [value]="listUser" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-             [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
-             [tableStyle]="{'min-width': '50rem'}"
-             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-             [globalFilterFields]="['username', 'companyName', 'email', 'phone', 'status']" styleClass="p-datatable-sm">
+      [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true" [tableStyle]="{'min-width': '50rem'}"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['username', 'companyName', 'email', 'phone', 'status']" styleClass="p-datatable-sm">
       <ng-template pTemplate="caption">
         <div class="grid align-items-center">
           <div class="col-3">
             <div class="flex flex-column gap-2">
               <label for="role" class="font-semibold">Quyền<span class="pl-2 text-red-600">*</span></label>
               <p-dropdown id="role" [options]="LIST_ROLE" [(ngModel)]="dataSendNotificationEmail.role"
-                          placeholder="Chọn quyền" optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+                [disabled]="dataSendNotificationEmail.userID" placeholder="Chọn quyền" optionLabel="NAME"
+                [showClear]="true" [style]="{ width: '100%' }">
               </p-dropdown>
             </div>
           </div>
@@ -21,11 +22,7 @@
           <div class="col-7">
             <div class="flex flex-column gap-2">
               <label for="role" class="font-semibold">Nội dung<span class="pl-2 text-red-600">*</span></label>
-              <textarea
-                rows="2"
-                cols="30"
-                pInputTextarea
-                [(ngModel)]="dataSendNotificationEmail.content">
+              <textarea rows="2" cols="30" pInputTextarea [(ngModel)]="dataSendNotificationEmail.content">
               </textarea>
             </div>
           </div>
@@ -77,10 +74,7 @@
       <ng-template pTemplate="body" let-user>
         <tr>
           <td class="flex align-items-center gap-3">
-            <p-avatar
-              image="{{ pathEnvironment + '/' + user.avatar }}"
-              styleClass="mr-2"
-              size="large"
+            <p-avatar image="{{ pathEnvironment + '/' + user.avatar }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
             <span class="vertical-align-middle">{{ user.username ? user.username : '...' }}</span>
           </td>
@@ -100,7 +94,7 @@
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl fa-regular fa-paper-plane" (click)="onChoseUserSendNotification(user)"></i>
+              <i class="text-xl fa-regular fa-paper-plane icon" (click)="onChoseUserSendNotification(user)"></i>
             </div>
           </td>
         </tr>
