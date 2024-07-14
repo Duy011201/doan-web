@@ -16,9 +16,8 @@ export const routes: Routes = [
     data: { showHeader: false, showFooter: false },
   },
   {
-    path: SETTING.SYSTEM_PAGE.RELATED_ADMIN,
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
+    path: SETTING.SYSTEM_PAGE.RELATED_PAGE,
+    loadChildren: () => import('./page/page.module').then((m) => m.PageModule),
     data: { showHeader: true, showFooter: true },
   },
   {

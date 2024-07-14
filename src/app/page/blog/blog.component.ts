@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {Table} from 'primeng/table';
-import {SETTING} from "../../core/configs/setting.config";
-import {AdminService} from "../admin.service";
-import {environment} from '../../core/environments/develop.environment';
+import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { SETTING } from '../../core/configs/setting.config';
+import { PageService } from '../page.service';
+import { environment } from '../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-blog',
@@ -12,21 +12,19 @@ import {environment} from '../../core/environments/develop.environment';
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent implements OnInit {
-
   BLOG_STATUS = SETTING.BLOG_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-    private confirmationService: ConfirmationService,
-  ) {
-  }
+    private service: PageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   dataDialog: any = {
     actionDialog: '',
     headerDialog: '',
-    subHeaderDialog: ''
+    subHeaderDialog: '',
   };
 
   listBlog: any = [];
@@ -43,21 +41,21 @@ export class BlogComponent implements OnInit {
   }
 
   onShowDialog(action: string, data: any): void {
-    this.dataDialog = {...data};
+    this.dataDialog = { ...data };
 
     switch (action) {
       case this.SYSTEM_ACTION.VIEW:
         this.dataDialog.headerDialog = 'View blog';
         this.dataDialog.subHeaderDialog = 'View blog information';
-        break
+        break;
       case this.SYSTEM_ACTION.CREATE:
         this.dataDialog.headerDialog = 'Create blog';
         this.dataDialog.subHeaderDialog = 'Create blog information';
-        break
+        break;
       case this.SYSTEM_ACTION.UPDATE:
         this.dataDialog.headerDialog = 'Update blog';
         this.dataDialog.subHeaderDialog = 'Update blog information';
-        break
+        break;
     }
 
     this.dataDialog.actionDialog = action;
@@ -70,15 +68,15 @@ export class BlogComponent implements OnInit {
       message: 'Do you want to delete this record?',
       header: 'Delete Blog',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
 
       accept: () => {
         this.apiDelete(blog);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -88,13 +86,13 @@ export class BlogComponent implements OnInit {
       message: 'Are you sure that you want lock?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
       accept: () => {
         // this.apiLock(company);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -104,7 +102,7 @@ export class BlogComponent implements OnInit {
   }
 
   apiStatus(blog: any) {
-    this.adminService.lockCompany({blogID: blog.blogID}).subscribe(
+    this.service.lockCompany({ blogID: blog.blogID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -126,7 +124,7 @@ export class BlogComponent implements OnInit {
   }
 
   apiDelete(blog: any) {
-    this.adminService.deleteCompany({blogID: blog.blogID}).subscribe(
+    this.service.deleteCompany({ blogID: blog.blogID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -148,7 +146,7 @@ export class BlogComponent implements OnInit {
   }
 
   apiGetAll() {
-    this.adminService.getAllBlog({}).subscribe(
+    this.service.getAllBlog({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listBlog = result.data;

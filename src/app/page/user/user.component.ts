@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {Table} from 'primeng/table';
-import {SETTING} from "../../core/configs/setting.config";
-import {AdminService} from "../admin.service";
-import {environment} from '../../core/environments/develop.environment';
+import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { SETTING } from '../../core/configs/setting.config';
+import { PageService } from '../page.service';
+import { environment } from '../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-user',
@@ -12,21 +12,19 @@ import {environment} from '../../core/environments/develop.environment';
   styleUrl: './user.component.scss',
 })
 export class UserComponent implements OnInit {
-
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-    private confirmationService: ConfirmationService,
-  ) {
-  }
+    private service: PageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   dataDialog: any = {
     actionDialog: '',
     headerDialog: '',
-    subHeaderDialog: ''
+    subHeaderDialog: '',
   };
   listUser: any = [];
   visible: boolean = false;
@@ -42,21 +40,21 @@ export class UserComponent implements OnInit {
   }
 
   onShowDialog(action: string, data: any): void {
-    this.dataDialog = {...data};
+    this.dataDialog = { ...data };
 
     switch (action) {
       case this.SYSTEM_ACTION.VIEW:
         this.dataDialog.headerDialog = 'View user';
         this.dataDialog.subHeaderDialog = 'View user information';
-        break
+        break;
       case this.SYSTEM_ACTION.CREATE:
         this.dataDialog.headerDialog = 'Create user';
         this.dataDialog.subHeaderDialog = 'Create user information';
-        break
+        break;
       case this.SYSTEM_ACTION.UPDATE:
         this.dataDialog.headerDialog = 'Update user';
         this.dataDialog.subHeaderDialog = 'Update user information';
-        break
+        break;
     }
 
     this.dataDialog.actionDialog = action;
@@ -69,15 +67,15 @@ export class UserComponent implements OnInit {
       message: 'Do you want to delete this record?',
       header: 'Delete User',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
 
       accept: () => {
         this.apiDelete(user);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -87,13 +85,13 @@ export class UserComponent implements OnInit {
       message: 'Are you sure that you want lock?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
       accept: () => {
         this.apiLock(user);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -103,13 +101,13 @@ export class UserComponent implements OnInit {
       message: 'Are you sure that you want reset password?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
       accept: () => {
         this.apiResetPassword(user);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -119,7 +117,7 @@ export class UserComponent implements OnInit {
   }
 
   apiResetPassword(user: any) {
-    this.adminService.resetPassword({userID: user.userID}).subscribe(
+    this.service.resetPassword({ userID: user.userID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -141,7 +139,7 @@ export class UserComponent implements OnInit {
   }
 
   apiLock(user: any) {
-    this.adminService.lockUser({userID: user.userID}).subscribe(
+    this.service.lockUser({ userID: user.userID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -163,7 +161,7 @@ export class UserComponent implements OnInit {
   }
 
   apiDelete(user: any) {
-    this.adminService.deleteUser({userID: user.userID}).subscribe(
+    this.service.deleteUser({ userID: user.userID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -185,7 +183,7 @@ export class UserComponent implements OnInit {
   }
 
   apiGetAll() {
-    this.adminService.getAllUser({}).subscribe(
+    this.service.getAllUser({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listUser = result.data;

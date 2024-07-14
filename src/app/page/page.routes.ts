@@ -8,6 +8,7 @@ import {CompanyComponent} from "./company/company.component";
 import {BlogComponent} from "./blog/blog.component";
 import {NotificationComponent} from "./notification/notification.component";
 import { ServicePackComponent } from './service-pack/service-pack.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -16,7 +17,7 @@ export const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: SETTING.SYSTEM_PAGE.ADMIN_MANAGER_USER,
+    path: SETTING.SYSTEM_PAGE.MANAGER_USER,
     component: UserComponent,
   },
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
     component: ServicePackComponent,
   },
   {
+    path: SETTING.SYSTEM_PAGE.MANAGER_CART,
+    component: CartComponent,
+  },
+  {
     path: SETTING.SYSTEM_PAGE.RELATED_404,
     component: PageNotFoundComponent,
   },
@@ -45,5 +50,5 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutesModule {
+export class PageRoutesModule {
 }

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminService {
+export class PageService {
   constructor(private _requestApiService: RequestApiService) {}
 
   public getAllRole(body: object) {

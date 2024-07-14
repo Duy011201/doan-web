@@ -3,7 +3,7 @@ import { MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
-import { AdminService } from '../admin.service';
+import { PageService } from '../page.service';
 
 @Component({
   selector: 'app-service-pack',
@@ -17,7 +17,7 @@ export class ServicePackComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
+    private service: PageService,
     private confirmationService: ConfirmationService
   ) {}
 
@@ -86,7 +86,7 @@ export class ServicePackComponent implements OnInit {
   }
 
   apiDelete(servicePack: any) {
-    this.adminService
+    this.service
       .deleteServicePack({ servicePackID: servicePack.servicePackID })
       .subscribe(
         (result: any) => {
@@ -110,7 +110,7 @@ export class ServicePackComponent implements OnInit {
   }
 
   apiGetAll() {
-    this.adminService.getAllServicePack({}).subscribe(
+    this.service.getAllServicePack({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listServicePack = result.data;

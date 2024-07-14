@@ -2,7 +2,7 @@
   <div class="navbar-left">
     <div class="flex align-items-center gap-5">
       <svg width="144" height="64" viewBox="0 0 144 32" fill="none" xmlns="http://www.w3.org/2000/svg"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_HOME)">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_HOME)">
         <path
           d="M28.4926 12.5287C28.4237 12.3235 28.3319 12.1297 28.2171 11.9587C27.9072 11.4913 27.4365 11.1265 26.9084 10.8985C26.1278 10.5679 25.1979 10.5337 24.3599 10.8985C24.0614 11.0239 23.7859 11.2063 23.5219 11.4343L22.9479 11.9587L22.3165 12.5287L21.1915 13.5433L20.7552 13.9309L20.5027 14.1589L20.4912 14.1703L21.5474 15.1279L22.2821 15.7891L23.2923 16.7125L23.5219 16.9177C23.6941 17.0773 23.8433 17.2369 23.9811 17.4193C24.1877 17.6929 24.3599 17.9779 24.4747 18.2857C24.4977 18.3313 24.5206 18.3769 24.5321 18.4339C24.5551 18.3883 24.578 18.3313 24.6125 18.2857C24.6469 18.2287 24.6813 18.1831 24.7158 18.1261C24.8306 17.9551 24.9683 17.7955 25.1405 17.6473L25.3931 17.4193L26.1737 16.7125L27.1839 15.7891L27.712 15.3103C27.7809 15.2533 27.8383 15.1963 27.8957 15.1279C28.1597 14.8429 28.3549 14.5123 28.4697 14.1589C28.5385 13.9651 28.573 13.7485 28.5845 13.5433C28.5845 13.4977 28.5959 13.4407 28.5959 13.3951V13.3495C28.6304 13.0531 28.5845 12.7795 28.4926 12.5287Z"
           fill="white"></path>
@@ -56,37 +56,37 @@
           fill="white"></path>
         <defs>
           <linearGradient id="paint0_linear_701_62777" x1="0.99943" y1="19.5388" x2="26.5751" y2="19.5388"
-                          gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse">
             <stop stop-color="#53DAEE"></stop>
             <stop offset="1" stop-color="#2C95FF"></stop>
           </linearGradient>
           <linearGradient id="paint1_linear_701_62777" x1="1.44642" y1="19.5386" x2="27.9815" y2="19.5386"
-                          gradientUnits="userSpaceOnUse">
+            gradientUnits="userSpaceOnUse">
             <stop stop-color="#53DAEE"></stop>
             <stop offset="1" stop-color="#2C95FF"></stop>
           </linearGradient>
         </defs>
       </svg>
       <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_HOME)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_HOME) }">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_HOME)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_HOME) }">
         <i class="fa-solid fa-house text-xl"></i><span class="hidden md:block text-xs">Trang chủ</span>
       </div>
       <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_TABLE_PRICE)"
-           [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_TABLE_PRICE) }">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_TABLE_PRICE)"
+        [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_TABLE_PRICE) }">
         <i class="fa-solid fa-rectangle-list text-xl"></i><span class="hidden md:block text-xs">Bảng giá</span>
       </div>
       <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_JOB)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_JOB) }">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_JOB)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_JOB) }">
         <i class="fa-solid fa-briefcase text-xl"></i><span class="hidden md:block text-xs">Việc làm</span>
       </div>
       <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_COMPANY)"
-           [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_COMPANY) }">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_COMPANY)"
+        [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_COMPANY) }">
         <i class="fa-solid fa-building text-xl"></i><span class="hidden md:block text-xs">Công ty</span>
       </div>
       <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-           (click)="onNextPage(SYSTEM_PAGE.HEADER_BLOG)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_BLOG) }">
+        (click)="onNextPage(SYSTEM_PAGE.HEADER_BLOG)" [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.HEADER_BLOG) }">
         <i class="fa-solid fa-blog text-xl"></i><span class="hidden md:block text-xs">Blog</span>
       </div>
     </div>
@@ -94,24 +94,24 @@
 
   <div class="navbar-left flex">
     <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-         (click)="onNextPage(SYSTEM_PAGE.RELATED_AUTH + '/' + SYSTEM_PAGE.AUTH_LOGIN)"
-         [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
+      (click)="onNextPage(SYSTEM_PAGE.RELATED_AUTH + '/' + SYSTEM_PAGE.AUTH_LOGIN)"
+      [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
       <i class="fa-solid fa-clipboard-list text-xl"></i><span class="hidden md:block text-xs">Đơn hàng</span>
     </div>
     <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-         (click)="onNextPage(SYSTEM_PAGE.RELATED_AUTH + '/' + SYSTEM_PAGE.AUTH_LOGIN)"
-         [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
+      (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_CART)"
+      [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.MANAGER_CART) }">
       <i class="fa-solid fa-cart-shopping text-xl"></i><span class="hidden md:block text-xs">Giỏ hàng</span>
     </div>
 
     <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-         (click)="onNextPage(SYSTEM_PAGE.RELATED_AUTH + '/' + SYSTEM_PAGE.AUTH_LOGIN)"
-         [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
+      (click)="onNextPage(SYSTEM_PAGE.RELATED_AUTH + '/' + SYSTEM_PAGE.AUTH_LOGIN)"
+      [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
       <i class="fa-solid fa-user text-xl"></i><span class="hidden md:block text-xs">Login</span>
     </div>
     <div class="h-4rem p-2 flex flex-column justify-content-center text-center gap-1 item"
-         (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)"
-         [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
+      (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.DASHBOARD)"
+      [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_AUTH + SYSTEM_PAGE.AUTH_LOGIN) }">
       <i class="fa-solid fa-user text-xl"></i><span class="hidden md:block text-xs">Admin</span>
     </div>
   </div>

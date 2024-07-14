@@ -17,7 +17,13 @@ import { FooterComponent } from './component/footer/footer.component';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, CommonModule],
+  imports: [
+    RouterOutlet,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    CommonModule,
+  ],
 })
 export class AppComponent implements OnInit {
   /*

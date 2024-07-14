@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { SETTING } from '../../../core/configs/setting.config';
 import { CONSTANT } from '../../../core/configs/constant.config';
-import { AdminService } from '../../admin.service';
+import { PageService } from '../../page.service';
 import {
   getFromLocalStorage,
   isEmail,
@@ -13,22 +13,24 @@ import {
 import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-service-pack-dialog',
+  selector: 'app-admin-blog-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
 })
-export class DialogServiceDialogComponent implements OnInit {
+export class DialogBlogComponent implements OnInit {
   @Input() visible: boolean = false;
   @Input() data: any = {};
   @Output() visibleChange = new EventEmitter<boolean>();
 
+  LIST_STATUS: any = CONSTANT.BLOG_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
-  pathEnvironment = environment.API_URL;
+
+  selectStatus: any = {};
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService
+    private service: PageService
   ) {}
 
   ngOnInit() {}
@@ -38,22 +40,21 @@ export class DialogServiceDialogComponent implements OnInit {
     this.visibleChange.emit(this.visible);
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    this.selectStatus = this.LIST_STATUS.find(
+      (item: any) => item.CODE === this.data.status
+    );
+  }
 
   private validInput(): boolean {
     let errorMessage = '';
 
-    if (isEmpty(this.data.servicePackName)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_NAME;
-    } else if (isEmpty(this.data.price)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
-    } else if (isEmpty(this.data.promotion)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PROMOTION;
-    } else if (isEmpty(this.data.expirationDate)) {
-      errorMessage =
-        SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_EXPIRATION_DATE;
+    if (isEmpty(this.data.title)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TITLE_FORMAT;
+    } else if (isEmpty(this.selectStatus)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
     } else if (isEmpty(this.data.content)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT_FORMAT;
     }
 
     if (!isEmpty(errorMessage)) {
@@ -68,33 +69,34 @@ export class DialogServiceDialogComponent implements OnInit {
     return true;
   }
 
-  public async onCreateUser(): Promise<void> {
+  public async onCreateBlog(): Promise<void> {
+    const createdBy = removeQuotes(getFromLocalStorage('userID'));
+
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
 
       const payload = {
-        servicePackName: this.data.servicePackName,
-        price: this.data.price,
-        content: this.data.content,
-        promotion: this.data.promotion,
-        expirationDate: this.data.expirationDate,
-        createdBy: removeQuotes(getFromLocalStorage('userID')),
+        title: this.data.title || '',
+        keyword: this.data.keyword || '',
+        content: this.data.content || '',
+        createdBy: createdBy,
       };
       this.apiCreate(payload);
     }
   }
 
-  public async onUpdateUser(): Promise<void> {
+  public async onUpdateBlog(): Promise<void> {
+    const updatedBy = removeQuotes(getFromLocalStorage('userID'));
+
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
       const payload = {
-        servicePackID: this.data.servicePackID,
-        servicePackName: this.data.servicePackName,
-        price: this.data.price,
-        content: this.data.content,
-        promotion: this.data.promotion,
-        expirationDate: this.data.expirationDate,
-        updatedBy: removeQuotes(getFromLocalStorage('userID')),
+        blogID: this.data.blogID,
+        title: this.data.title || '',
+        keyword: this.data.keyword || '',
+        content: this.data.content || '',
+        status: this.selectStatus.CODE || this.data.status,
+        updatedBy: updatedBy,
       };
 
       this.apiUpdate(payload);
@@ -102,7 +104,7 @@ export class DialogServiceDialogComponent implements OnInit {
   }
 
   apiCreate(payload: any) {
-    this.adminService.createServicePack(payload).subscribe(
+    this.service.createBlog(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -124,7 +126,7 @@ export class DialogServiceDialogComponent implements OnInit {
   }
 
   apiUpdate(payload: any) {
-    this.adminService.updateServicePack(payload).subscribe(
+    this.service.updateBlog(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({

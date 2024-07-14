@@ -1,7 +1,7 @@
 export const SETTING = {
   SYSTEM_PAGE: {
     // TODO: Url for related system pages
-    RELATED_ADMIN: 'admin',
+    RELATED_PAGE: 'page',
     RELATED_AUTH: 'auth',
     RELATED_404: '**',
 
@@ -17,14 +17,14 @@ export const SETTING = {
     AUTH_LOGIN: 'login',
     AUTH_FORGOT_PASSWORD: 'forgot-password',
 
-    // TODO: Url for related admin pages
+    // TODO: Url for related pages
     DASHBOARD: 'dashboard',
-    ADMIN_MANAGER_USER: 'manager-user',
+    MANAGER_USER: 'manager-user',
     MANAGER_COMPANY: 'manager-company',
     MANAGER_BLOG: 'manager-blog',
     MANAGER_NOTIFICATION: 'manager-notification',
     MANAGER_SERVICE_PACK: 'manager-service-pack',
-
+    MANAGER_CART: 'manager-cart',
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'SUPER_ADMIN',

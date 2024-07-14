@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {Table} from 'primeng/table';
-import {SETTING} from "../../core/configs/setting.config";
-import {AdminService} from "../admin.service";
-import {environment} from '../../core/environments/develop.environment';
+import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { SETTING } from '../../core/configs/setting.config';
+import { PageService } from '../page.service';
+import { environment } from '../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-company',
@@ -12,21 +12,19 @@ import {environment} from '../../core/environments/develop.environment';
   styleUrl: './company.component.scss',
 })
 export class CompanyComponent implements OnInit {
-
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-    private confirmationService: ConfirmationService,
-  ) {
-  }
+    private service: PageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   dataDialog: any = {
     actionDialog: '',
     headerDialog: '',
-    subHeaderDialog: ''
+    subHeaderDialog: '',
   };
 
   listCompany: any = [];
@@ -43,21 +41,21 @@ export class CompanyComponent implements OnInit {
   }
 
   onShowDialog(action: string, data: any): void {
-    this.dataDialog = {...data};
+    this.dataDialog = { ...data };
 
     switch (action) {
       case this.SYSTEM_ACTION.VIEW:
         this.dataDialog.headerDialog = 'View company';
         this.dataDialog.subHeaderDialog = 'View company information';
-        break
+        break;
       case this.SYSTEM_ACTION.CREATE:
         this.dataDialog.headerDialog = 'Create company';
         this.dataDialog.subHeaderDialog = 'Create company information';
-        break
+        break;
       case this.SYSTEM_ACTION.UPDATE:
         this.dataDialog.headerDialog = 'Update company';
         this.dataDialog.subHeaderDialog = 'Update company information';
-        break
+        break;
     }
 
     this.dataDialog.actionDialog = action;
@@ -70,15 +68,15 @@ export class CompanyComponent implements OnInit {
       message: 'Do you want to delete this record?',
       header: 'Delete Company',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
 
       accept: () => {
         this.apiDelete(company);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -88,13 +86,13 @@ export class CompanyComponent implements OnInit {
       message: 'Are you sure that you want lock?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
       accept: () => {
         this.apiLock(company);
       },
-      reject: () => {}
+      reject: () => {},
     });
   }
 
@@ -104,7 +102,7 @@ export class CompanyComponent implements OnInit {
   }
 
   apiLock(company: any) {
-    this.adminService.lockCompany({companyID: company.companyID}).subscribe(
+    this.service.lockCompany({ companyID: company.companyID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -126,7 +124,7 @@ export class CompanyComponent implements OnInit {
   }
 
   apiDelete(company: any) {
-    this.adminService.deleteCompany({companyID: company.companyID}).subscribe(
+    this.service.deleteCompany({ companyID: company.companyID }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -148,7 +146,7 @@ export class CompanyComponent implements OnInit {
   }
 
   apiGetAll() {
-    this.adminService.getAllCompany({}).subscribe(
+    this.service.getAllCompany({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listCompany = result.data;

@@ -1,10 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {SETTING} from "../../../core/configs/setting.config";
-import {CONSTANT} from "../../../core/configs/constant.config";
-import {AdminService} from "../../admin.service";
-import {getFromLocalStorage, isEmail, isEmpty, removeQuotes, trimStringObject} from "../../../core/commons/func";
-import {environment} from "../../../core/environments/develop.environment";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { SETTING } from '../../../core/configs/setting.config';
+import { CONSTANT } from '../../../core/configs/constant.config';
+import { PageService } from '../../page.service';
+import {
+  getFromLocalStorage,
+  isEmail,
+  isEmpty,
+  removeQuotes,
+  trimStringObject,
+} from '../../../core/commons/func';
+import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-user-dialog',
@@ -13,7 +19,6 @@ import {environment} from "../../../core/environments/develop.environment";
   styleUrl: './dialog.component.scss',
 })
 export class DialogUserComponent implements OnInit {
-
   @Input() visible: boolean = false;
   @Input() data: any = {};
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -38,13 +43,14 @@ export class DialogUserComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-  ) {
-  }
+    private service: PageService
+  ) {}
 
   ngOnInit() {
     // Default remove inactive
-    this.LIST_STATUS = this.LIST_STATUS.filter((item: any) => item.CODE !== 'IN_ACTIVE');
+    this.LIST_STATUS = this.LIST_STATUS.filter(
+      (item: any) => item.CODE !== 'IN_ACTIVE'
+    );
 
     this.apiGetAllRole();
     this.apiGetAllCompany();
@@ -56,11 +62,21 @@ export class DialogUserComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.selectStatus = this.LIST_STATUS.find((item: any) => item.CODE === this.data.status);
-    this.selectEducation = this.LIST_EDUCATION.find((item: any) => item.CODE === this.data.education);
-    this.selectLanguage = this.LIST_LANGUAGES.find((item: any) => item.CODE === this.data.language);
-    this.selectRole = this.listRole.find((item: any) => item.roleName === this.data.roleName);
-    this.selectCompany = this.listCompany.find((item: any) => item.name === this.data.companyName);
+    this.selectStatus = this.LIST_STATUS.find(
+      (item: any) => item.CODE === this.data.status
+    );
+    this.selectEducation = this.LIST_EDUCATION.find(
+      (item: any) => item.CODE === this.data.education
+    );
+    this.selectLanguage = this.LIST_LANGUAGES.find(
+      (item: any) => item.CODE === this.data.language
+    );
+    this.selectRole = this.listRole.find(
+      (item: any) => item.roleName === this.data.roleName
+    );
+    this.selectCompany = this.listCompany.find(
+      (item: any) => item.name === this.data.companyName
+    );
   }
 
   onFileSelected(event: any) {
@@ -73,7 +89,7 @@ export class DialogUserComponent implements OnInit {
 
   private uploadFile(payload: any, files: any[]): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this.adminService.upload(payload, files).subscribe(
+      this.service.upload(payload, files).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             this.listFile = [];
@@ -120,9 +136,9 @@ export class DialogUserComponent implements OnInit {
   public async onCreateUser(): Promise<void> {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
 
-    let fileSelect = []
+    let fileSelect = [];
     if (this.listFile.length > 0) {
-      fileSelect = await this.uploadFile({userID: createdBy}, this.listFile);
+      fileSelect = await this.uploadFile({ userID: createdBy }, this.listFile);
     }
 
     if (this.validInput()) {
@@ -146,9 +162,9 @@ export class DialogUserComponent implements OnInit {
   public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
 
-    let fileSelect = []
+    let fileSelect = [];
     if (this.listFile.length > 0) {
-      fileSelect = await this.uploadFile({userID: updatedBy}, this.listFile);
+      fileSelect = await this.uploadFile({ userID: updatedBy }, this.listFile);
     }
 
     if (this.validInput()) {
@@ -172,7 +188,7 @@ export class DialogUserComponent implements OnInit {
   }
 
   apiCreate(payload: any) {
-    this.adminService.createUser(payload).subscribe(
+    this.service.createUser(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -194,7 +210,7 @@ export class DialogUserComponent implements OnInit {
   }
 
   apiUpdate(payload: any) {
-    this.adminService.updateUser(payload).subscribe(
+    this.service.updateUser(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -216,7 +232,7 @@ export class DialogUserComponent implements OnInit {
   }
 
   apiGetAllRole() {
-    this.adminService.getAllRole({}).subscribe(
+    this.service.getAllRole({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listRole = result.data;
@@ -233,7 +249,7 @@ export class DialogUserComponent implements OnInit {
   }
 
   apiGetAllCompany() {
-    this.adminService.getAllCompany({}).subscribe(
+    this.service.getAllCompany({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listCompany = result.data;

@@ -1,55 +1,59 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {SETTING} from "../../../core/configs/setting.config";
-import {CONSTANT} from "../../../core/configs/constant.config";
-import {AdminService} from "../../admin.service";
-import {getFromLocalStorage, isEmail, isEmpty, removeQuotes, trimStringObject} from "../../../core/commons/func";
-import {environment} from "../../../core/environments/develop.environment";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { SETTING } from '../../../core/configs/setting.config';
+import { CONSTANT } from '../../../core/configs/constant.config';
+import { PageService } from '../../page.service';
+import {
+  getFromLocalStorage,
+  isEmail,
+  isEmpty,
+  removeQuotes,
+  trimStringObject,
+} from '../../../core/commons/func';
+import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-blog-dialog',
+  selector: 'app-admin-service-pack-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
 })
-export class DialogBlogComponent implements OnInit {
-
+export class DialogServiceDialogComponent implements OnInit {
   @Input() visible: boolean = false;
   @Input() data: any = {};
   @Output() visibleChange = new EventEmitter<boolean>();
 
-  LIST_STATUS: any = CONSTANT.BLOG_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
-
-  selectStatus: any = {};
+  pathEnvironment = environment.API_URL;
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-  ) {
-  }
+    private service: PageService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onHideDialog() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
-  ngOnChanges() {
-    this.selectStatus = this.LIST_STATUS.find((item: any) => item.CODE === this.data.status);
-  }
+  ngOnChanges() {}
 
   private validInput(): boolean {
     let errorMessage = '';
 
-    if (isEmpty(this.data.title)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TITLE_FORMAT;
-    }  else if (isEmpty(this.selectStatus)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
+    if (isEmpty(this.data.servicePackName)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_NAME;
+    } else if (isEmpty(this.data.price)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
+    } else if (isEmpty(this.data.promotion)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PROMOTION;
+    } else if (isEmpty(this.data.expirationDate)) {
+      errorMessage =
+        SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_EXPIRATION_DATE;
     } else if (isEmpty(this.data.content)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT_FORMAT;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT;
     }
 
     if (!isEmpty(errorMessage)) {
@@ -64,34 +68,33 @@ export class DialogBlogComponent implements OnInit {
     return true;
   }
 
-  public async onCreateBlog(): Promise<void> {
-    const createdBy = removeQuotes(getFromLocalStorage('userID'));
-
+  public async onCreateUser(): Promise<void> {
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
 
       const payload = {
-        title: this.data.title || '',
-        keyword: this.data.keyword || '',
-        content: this.data.content || '',
-        createdBy: createdBy,
+        servicePackName: this.data.servicePackName,
+        price: this.data.price,
+        content: this.data.content,
+        promotion: this.data.promotion,
+        expirationDate: this.data.expirationDate,
+        createdBy: removeQuotes(getFromLocalStorage('userID')),
       };
       this.apiCreate(payload);
     }
   }
 
-  public async onUpdateBlog(): Promise<void> {
-    const updatedBy = removeQuotes(getFromLocalStorage('userID'));
-
+  public async onUpdateUser(): Promise<void> {
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
       const payload = {
-        blogID: this.data.blogID,
-        title: this.data.title || '',
-        keyword: this.data.keyword || '',
-        content: this.data.content || '',
-        status: this.selectStatus.CODE || this.data.status,
-        updatedBy: updatedBy,
+        servicePackID: this.data.servicePackID,
+        servicePackName: this.data.servicePackName,
+        price: this.data.price,
+        content: this.data.content,
+        promotion: this.data.promotion,
+        expirationDate: this.data.expirationDate,
+        updatedBy: removeQuotes(getFromLocalStorage('userID')),
       };
 
       this.apiUpdate(payload);
@@ -99,7 +102,7 @@ export class DialogBlogComponent implements OnInit {
   }
 
   apiCreate(payload: any) {
-    this.adminService.createBlog(payload).subscribe(
+    this.service.createServicePack(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -121,7 +124,7 @@ export class DialogBlogComponent implements OnInit {
   }
 
   apiUpdate(payload: any) {
-    this.adminService.updateBlog(payload).subscribe(
+    this.service.updateServicePack(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({

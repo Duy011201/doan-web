@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { AdminService } from './admin.service';
-import { AdminRoutesModule } from './admin.routes';
+import { PageService } from './page.service';
+import { PageRoutesModule } from './page.routes';
 import { PrimengModule } from '../core/modules/primeng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
@@ -24,7 +24,7 @@ import { DialogServiceDialogComponent } from './service-pack/dialog/dialog.compo
 
 @NgModule({
   imports: [
-    AdminRoutesModule,
+    PageRoutesModule,
     PrimengModule,
     FormsModule,
     ToastModule,
@@ -48,10 +48,10 @@ import { DialogServiceDialogComponent } from './service-pack/dialog/dialog.compo
     DialogServiceDialogComponent,
   ],
   providers: [
-    AdminService,
+    PageService,
     RequestApiService,
     ConfirmationService,
     MessageService,
   ],
 })
-export class AdminModule {}
+export class PageModule {}

@@ -1,10 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {SETTING} from "../../../core/configs/setting.config";
-import {CONSTANT} from "../../../core/configs/constant.config";
-import {AdminService} from "../../admin.service";
-import {getFromLocalStorage, isEmail, isEmpty, removeQuotes, trimStringObject} from "../../../core/commons/func";
-import {environment} from "../../../core/environments/develop.environment";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { SETTING } from '../../../core/configs/setting.config';
+import { CONSTANT } from '../../../core/configs/constant.config';
+import { PageService } from '../../page.service';
+import {
+  getFromLocalStorage,
+  isEmail,
+  isEmpty,
+  removeQuotes,
+  trimStringObject,
+} from '../../../core/commons/func';
+import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
   selector: 'app-admin-company-dialog',
@@ -13,7 +19,6 @@ import {environment} from "../../../core/environments/develop.environment";
   styleUrl: './dialog.component.scss',
 })
 export class DialogCompanyComponent implements OnInit {
-
   @Input() visible: boolean = false;
   @Input() data: any = {};
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -36,14 +41,14 @@ export class DialogCompanyComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-  ) {
-  }
+    private service: PageService
+  ) {}
 
   ngOnInit() {
     // Default remove inactive
-    this.LIST_STATUS = this.LIST_STATUS.filter((item: any) => item.CODE !== 'IN_ACTIVE');
-
+    this.LIST_STATUS = this.LIST_STATUS.filter(
+      (item: any) => item.CODE !== 'IN_ACTIVE'
+    );
   }
 
   onHideDialog() {
@@ -52,10 +57,18 @@ export class DialogCompanyComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.selectStatus = this.LIST_STATUS.find((item: any) => item.CODE === this.data.status);
-    this.selectProvince = this.LIST_PROVINCE.find((item: any) => item.CODE === this.data.province);
-    this.selectField = this.LIST_FIELD.find((item: any) => item.CODE === this.data.field);
-    this.selectScale = this.LIST_SCALE.find((item: any) => item.CODE === this.data.scale);
+    this.selectStatus = this.LIST_STATUS.find(
+      (item: any) => item.CODE === this.data.status
+    );
+    this.selectProvince = this.LIST_PROVINCE.find(
+      (item: any) => item.CODE === this.data.province
+    );
+    this.selectField = this.LIST_FIELD.find(
+      (item: any) => item.CODE === this.data.field
+    );
+    this.selectScale = this.LIST_SCALE.find(
+      (item: any) => item.CODE === this.data.scale
+    );
   }
 
   onFileSelected(event: any) {
@@ -68,7 +81,7 @@ export class DialogCompanyComponent implements OnInit {
 
   private uploadFile(payload: any, files: any[]): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this.adminService.upload(payload, files).subscribe(
+      this.service.upload(payload, files).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             resolve(result.data);
@@ -96,7 +109,8 @@ export class DialogCompanyComponent implements OnInit {
     } else if (isEmpty(this.selectStatus)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
     } else if (isEmpty(this.data.corporateTaxCode)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
+      errorMessage =
+        SETTING.SYSTEM_HTTP_MESSAGE.INVALID_COMPANY_CORPORATE_TAX_CODE;
     }
 
     if (!isEmpty(errorMessage)) {
@@ -117,7 +131,7 @@ export class DialogCompanyComponent implements OnInit {
     let listFile = [];
 
     if (this.listFile.length > 0) {
-      listFile = await this.uploadFile({userID: createdBy}, this.listFile);
+      listFile = await this.uploadFile({ userID: createdBy }, this.listFile);
     }
 
     if (this.validInput()) {
@@ -147,7 +161,10 @@ export class DialogCompanyComponent implements OnInit {
     let listFile = [];
 
     if (this.listFile.length > 0) {
-      listFile = await this.uploadFile({companyID: this.data.companyID}, this.listFile);
+      listFile = await this.uploadFile(
+        { companyID: this.data.companyID },
+        this.listFile
+      );
     }
 
     if (this.validInput()) {
@@ -174,7 +191,7 @@ export class DialogCompanyComponent implements OnInit {
   }
 
   apiCreate(payload: any) {
-    this.adminService.createCompany(payload).subscribe(
+    this.service.createCompany(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
@@ -196,7 +213,7 @@ export class DialogCompanyComponent implements OnInit {
   }
 
   apiUpdate(payload: any) {
-    this.adminService.updateCompany(payload).subscribe(
+    this.service.updateCompany(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({

@@ -1,17 +1,23 @@
 import { Component } from '@angular/core';
-import {SETTING} from "../../core/configs/setting.config";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {AdminService} from "../admin.service";
-import {environment} from "../../core/environments/develop.environment";
-import {Table} from "primeng/table";
-import {CONSTANT} from "../../core/configs/constant.config";
-import {getFromLocalStorage, isEmail, isEmpty, removeQuotes, trimStringObject} from "../../core/commons/func";
+import { SETTING } from '../../core/configs/setting.config';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { PageService } from '../page.service';
+import { environment } from '../../core/environments/develop.environment';
+import { Table } from 'primeng/table';
+import { CONSTANT } from '../../core/configs/constant.config';
+import {
+  getFromLocalStorage,
+  isEmail,
+  isEmpty,
+  removeQuotes,
+  trimStringObject,
+} from '../../core/commons/func';
 
 @Component({
   selector: 'app-notification',
   standalone: false,
   templateUrl: './notification.component.html',
-  styleUrl: './notification.component.scss'
+  styleUrl: './notification.component.scss',
 })
 export class NotificationComponent {
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
@@ -20,14 +26,13 @@ export class NotificationComponent {
 
   constructor(
     private messageService: MessageService,
-    private adminService: AdminService,
-  ) {
-  }
+    private service: PageService
+  ) {}
 
   dataDialog: any = {
     actionDialog: '',
     headerDialog: '',
-    subHeaderDialog: ''
+    subHeaderDialog: '',
   };
   listUser: any = [];
   visible: boolean = false;
@@ -68,14 +73,16 @@ export class NotificationComponent {
 
   public async onSendNotificationEmail(): Promise<void> {
     if (this.validInput()) {
-      this.dataSendNotificationEmail = trimStringObject(this.dataSendNotificationEmail);
+      this.dataSendNotificationEmail = trimStringObject(
+        this.dataSendNotificationEmail
+      );
       const payload = {
         userID: this.dataSendNotificationEmail?.userID || '',
         role: this.dataSendNotificationEmail?.role?.CODE || '',
         content: this.dataSendNotificationEmail.content,
       };
 
-      this.adminService.sendNotificationEmail(payload).subscribe(
+      this.service.sendNotificationEmail(payload).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             this.dataSendNotificationEmail = {};
@@ -103,11 +110,11 @@ export class NotificationComponent {
   }
 
   onChoseUserSendNotification(item: any) {
-    this.dataSendNotificationEmail.userID = item.userID
+    this.dataSendNotificationEmail.userID = item.userID;
   }
 
   apiGetAll() {
-    this.adminService.getAllUser({}).subscribe(
+    this.service.getAllUser({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.listUser = result.data;
