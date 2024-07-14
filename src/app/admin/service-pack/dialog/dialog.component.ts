@@ -48,7 +48,10 @@ export class DialogServiceDialogComponent implements OnInit {
     } else if (isEmpty(this.data.price)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
     } else if (isEmpty(this.data.promotion)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PROMOTION;
+    } else if (isEmpty(this.data.expirationDate)) {
+      errorMessage =
+        SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_EXPIRATION_DATE;
     } else if (isEmpty(this.data.content)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT;
     }
@@ -74,6 +77,7 @@ export class DialogServiceDialogComponent implements OnInit {
         price: this.data.price,
         content: this.data.content,
         promotion: this.data.promotion,
+        expirationDate: this.data.expirationDate,
         createdBy: removeQuotes(getFromLocalStorage('userID')),
       };
       this.apiCreate(payload);
@@ -89,6 +93,7 @@ export class DialogServiceDialogComponent implements OnInit {
         price: this.data.price,
         content: this.data.content,
         promotion: this.data.promotion,
+        expirationDate: this.data.expirationDate,
         updatedBy: removeQuotes(getFromLocalStorage('userID')),
       };
 

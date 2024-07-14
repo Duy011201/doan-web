@@ -86,5 +86,7 @@ export const SETTING = {
 
     INVALID_SERVICE_PACK_NAME: 'Định dạng tên gói dịch vụ không hợp lệ',
     INVALID_SERVICE_PACK_PRICE: 'Định dạng giá gói dịch vụ không hợp lệ',
+    INVALID_SERVICE_PACK_PROMOTION: 'Định dạng khuyến mãi không hợp lệ',
+    INVALID_SERVICE_PACK_EXPIRATION_DATE: 'Định dạng ngày hết hạn không hợp lệ',
   },
 };

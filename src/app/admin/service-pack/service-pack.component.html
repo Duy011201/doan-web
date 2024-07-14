@@ -5,8 +5,7 @@
     <h2 class="header-component">Quản lý gói dịch vụ</h2>
     <p-table #dt1 [value]="listServicePack" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true" [tableStyle]="{'min-width': '50rem'}"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [globalFilterFields]="['servicePackName', 'content']" styleClass="p-datatable-sm">
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" styleClass="p-datatable-sm">
       <ng-template pTemplate="caption">
         <div class="flex gap-3">
           <button pButton label="Add" class="p-button-outlined" icon="fa-solid fa-plus"
@@ -17,28 +16,29 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th class="w-20rem">
+          <th class="w-15rem">
             <div class="flex align-items-center">
               Tên gói dịch vụ
-              <p-columnFilter type="text" field="servicePackName" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th class="w-20rem">
+          <th class="w-15rem">
             <div class="flex align-items-center">
               Mô tả
-              <p-columnFilter type="text" field="content" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th class="w-15rem">
+          <th class="w-10rem">
             <div class="flex align-items-center">
               Khuyến mãi
-              <p-columnFilter type="text" field="promotion" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th class="w-15rem">
+          <th class="w-10rem">
             <div class="flex align-items-center">
               Giá cước
-              <p-columnFilter type="text" field="price" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th class="w-10rem">
+            <div class="flex align-items-center">
+              Hết hạn
             </div>
           </th>
           <th class="w-10rem">
@@ -61,6 +61,9 @@
           </td>
           <td>
             <span class="vertical-align-middle">{{ service.price | number:'1.0-0' }} VNĐ</span>
+          </td>
+          <td>
+            <span class="vertical-align-middle">{{ service.expirationDate | number:'1.0-0' }} ngày</span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
