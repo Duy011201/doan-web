@@ -1,5 +1,5 @@
 <div class="p-3 flex gap-3" style="background-color: var(--primary-app-background);">
-  <app-admin-menu-left></app-admin-menu-left>
+  <app-menu-left></app-menu-left>
 
   <div>
     <h2 class="header-component">Quản lý công ty</h2>
@@ -102,6 +102,6 @@
 
   <p-toast></p-toast>
   <p-confirmDialog></p-confirmDialog>
-  <app-admin-company-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
-  </app-admin-company-dialog>
+  <app-company-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
+  </app-company-dialog>
 </div>

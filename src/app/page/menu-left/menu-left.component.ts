@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-admin-menu-left',
+  selector: 'app-menu-left',
   standalone: false,
   templateUrl: './menu-left.component.html',
   styleUrl: './menu-left.component.scss',

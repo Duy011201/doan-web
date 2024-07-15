@@ -7,7 +7,7 @@ import { environment } from '../../core/environments/develop.environment';
 import { CONSTANT } from '../../core/configs/constant.config';
 
 @Component({
-  selector: 'app-admin-company',
+  selector: 'app-company',
   standalone: false,
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss',

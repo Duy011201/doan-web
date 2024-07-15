@@ -13,7 +13,7 @@ import {
 import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-user-dialog',
+  selector: 'app-user-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',

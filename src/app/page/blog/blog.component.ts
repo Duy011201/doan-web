@@ -6,7 +6,7 @@ import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-blog',
+  selector: 'app-blog',
   standalone: false,
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',

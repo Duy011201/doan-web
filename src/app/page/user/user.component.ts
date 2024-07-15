@@ -6,7 +6,7 @@ import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-user',
+  selector: 'app-user',
   standalone: false,
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
