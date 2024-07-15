@@ -1,0 +1,79 @@
+import { Component, OnInit } from '@angular/core';
+import { MessageService, ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import { SETTING } from '../../core/configs/setting.config';
+import { CONSTANT } from '../../core/configs/constant.config';
+import { environment } from '../../core/environments/develop.environment';
+import { PageService } from '../page.service';
+import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
+
+@Component({
+  selector: 'app-history',
+  standalone: false,
+  templateUrl: './history.component.html',
+  styleUrl: './history.component.scss',
+})
+export class HistoryComponent implements OnInit {
+  PRODUCT_STATUS = CONSTANT.PRODUCT_STATUS;
+  SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
+
+  constructor(
+    private messageService: MessageService,
+    private service: PageService,
+    private confirmationService: ConfirmationService
+  ) {}
+
+  listProduct: any = [];
+  loading: boolean = true;
+  dataDialog: any = {
+    actionDialog: '',
+    headerDialog: '',
+    subHeaderDialog: '',
+  };
+  visible: boolean = false;
+  pathEnvironment = environment.API_URL;
+
+  ngOnInit() {
+    this.apiGetAll();
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  apiGetAll() {
+    this.service
+      .getAllProduct({
+        userID: removeQuotes(getFromLocalStorage('userID')),
+        status: this.PRODUCT_STATUS[3].CODE,
+      })
+      .subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            this.listProduct = result.data;
+            this.loading = false;
+          }
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.massage || error.error.message,
+          });
+        }
+      );
+  }
+
+  handleVisibleChange(visible: boolean) {
+    this.visible = visible;
+    this.apiGetAll();
+  }
+
+  onShowDialog(action: string, data: any): void {
+    this.dataDialog = { ...data };
+    this.dataDialog.headerDialog = 'Payment';
+    this.dataDialog.subHeaderDialog = 'View payment information';
+    this.dataDialog.actionDialog = action;
+    this.visible = true;
+  }
+}
