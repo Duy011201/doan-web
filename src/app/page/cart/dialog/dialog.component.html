@@ -1,0 +1,53 @@
+<p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible"
+          [style]="{ width: '50rem' }"
+          (onHide)="onHideDialog()">
+  <span class="p-text-secondary block mb-5">{{ data.subHeaderDialog }} </span>
+
+  <div>
+    <div class="grid">
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="" class="font-semibold">Mã đơn hàng</label>
+        <p>{{ data.servicePackID }}</p>
+      </div>
+
+      <div class="w-full" style="border: 1px solid var(--primary-app-box-shadow);"></div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-center">
+        <img height="300" width="300" src="../../../../assets/images/qr-tknh.jpg" alt="" srcset="">
+      </div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="" class="font-semibold">Tài khoản thụ hưởng</label>
+        <p>Công Ty Cổ Phần Việc Làm 24h</p>
+      </div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="" class="font-semibold">Số tài khoản</label>
+        <p>1903 8834 1910 14</p>
+      </div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="status" class="font-semibold">Ngân hàng</label>
+        <p>Techcombank - Ngân hàng TMCP Kỹ thương Việt Nam</p>
+      </div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="status" class="font-semibold">Lời nhắn</label>
+        <p>{{data.servicePackName}} + Email tài khoản</p>
+      </div>
+
+      <div class="w-full" style="border: 1px solid var(--primary-app-box-shadow);"></div>
+
+      <div class="col-12 flex gap-2 align-items-center justify-content-between">
+        <label for="status" class="font-semibold">Tổng giá trị</label>
+        <p>{{data.price - (data.promotion * data.price)/100 | number:'1.0-0' }}  VNĐ</p>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-3">
+      <p-button label="Cancel" severity="secondary" (click)="onHideDialog()"></p-button>
+      <p-button label="Thanh toán" (click)="onUpdateProduct()"></p-button>
+    </div>
+  </div>
+</p-dialog>
