@@ -278,4 +278,14 @@ export class PageService {
         })
       );
   }
+
+  public getAllHistory(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_HISTORY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

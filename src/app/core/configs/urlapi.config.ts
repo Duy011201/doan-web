@@ -48,4 +48,7 @@ export enum UrlApi {
   UPDATE_PRODUCT = `api/product/update`,
   DELETE_PRODUCT = `api/product/delete`,
   GET_ALL_PRODUCT = `api/product/get-all`,
+
+  // history
+  GET_ALL_HISTORY = `api/history/get-all`,
 }

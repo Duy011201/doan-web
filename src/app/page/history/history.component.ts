@@ -43,9 +43,8 @@ export class HistoryComponent implements OnInit {
 
   apiGetAll() {
     this.service
-      .getAllProduct({
+      .getAllHistory({
         userID: removeQuotes(getFromLocalStorage('userID')),
-        status: this.PRODUCT_STATUS[3].CODE,
       })
       .subscribe(
         (result: any) => {
