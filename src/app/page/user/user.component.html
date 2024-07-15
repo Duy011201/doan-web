@@ -77,11 +77,11 @@
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl icon fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, user)"></i>
-              <i class="text-xl icon fa-solid fa-pen-to-square" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, user)"></i>
-              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, user)"></i>
-              <i class="text-xl icon fa-solid fa-lock" (click)="confirmLock($event, user)"></i>
-              <i class="text-xl icon fa-solid fa-repeat" (click)="confirmResetPassword($event, user)"></i>
+              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết" (click)="onShowDialog(SYSTEM_ACTION.VIEW, user)"></i>
+              <i class="text-xl icon fa-solid fa-pen-to-square" pTooltip="Chỉnh sửa" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, user)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa tài khoản" (click)="confirmDelete($event, user)"></i>
+              <i class="text-xl icon fa-solid fa-lock" pTooltip="Khóa tài khoản" (click)="confirmLock($event, user)"></i>
+              <i class="text-xl icon fa-solid fa-repeat" pTooltip="Đặt lại mật khẩu" (click)="confirmResetPassword($event, user)"></i>
             </div>
           </td>
         </tr>

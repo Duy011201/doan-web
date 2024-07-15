@@ -25,6 +25,7 @@ export class DialogServiceDialogComponent implements OnInit {
 
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
   pathEnvironment = environment.API_URL;
+  listFile: any = [];
 
   constructor(
     private messageService: MessageService,
@@ -68,9 +69,46 @@ export class DialogServiceDialogComponent implements OnInit {
     return true;
   }
 
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.listFile.push(event.target.files[i]);
+      }
+    }
+  }
+
+  private uploadFile(payload: any, files: any[]): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      this.service.upload(payload, files).subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            resolve(result.data);
+          } else {
+            reject(new Error('Upload failed'));
+          }
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error?.message || error.message,
+          });
+          reject(error);
+        }
+      );
+    });
+  }
+
   public async onCreateUser(): Promise<void> {
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
+      const createdBy = removeQuotes(getFromLocalStorage('userID'));
+
+      let listFile = [];
+
+      if (this.listFile.length > 0) {
+        listFile = await this.uploadFile({ userID: createdBy }, this.listFile);
+      }
 
       const payload = {
         servicePackName: this.data.servicePackName,
@@ -78,7 +116,8 @@ export class DialogServiceDialogComponent implements OnInit {
         content: this.data.content,
         promotion: this.data.promotion,
         expirationDate: this.data.expirationDate,
-        createdBy: removeQuotes(getFromLocalStorage('userID')),
+        image: listFile[0]?.filePath || this.data.image,
+        createdBy: createdBy,
       };
       this.apiCreate(payload);
     }
@@ -87,6 +126,15 @@ export class DialogServiceDialogComponent implements OnInit {
   public async onUpdateUser(): Promise<void> {
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
+
+      const updatedBy = removeQuotes(getFromLocalStorage('userID'));
+
+      let listFile = [];
+
+      if (this.listFile.length > 0) {
+        listFile = await this.uploadFile({ userID: updatedBy }, this.listFile);
+      }
+
       const payload = {
         servicePackID: this.data.servicePackID,
         servicePackName: this.data.servicePackName,
@@ -94,7 +142,8 @@ export class DialogServiceDialogComponent implements OnInit {
         content: this.data.content,
         promotion: this.data.promotion,
         expirationDate: this.data.expirationDate,
-        updatedBy: removeQuotes(getFromLocalStorage('userID')),
+        image: listFile[0]?.filePath || this.data.image,
+        updatedBy: updatedBy,
       };
 
       this.apiUpdate(payload);

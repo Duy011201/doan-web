@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
   confirmDelete(event: Event, user: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this user?',
       header: 'Delete User',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -82,7 +82,7 @@ export class UserComponent implements OnInit {
   confirmLock(event: Event, user: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Are you sure that you want lock?',
+      message: 'Are you sure that you want lock user?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: 'none',
@@ -98,7 +98,7 @@ export class UserComponent implements OnInit {
   confirmResetPassword(event: Event, user: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Are you sure that you want reset password?',
+      message: 'Are you sure that you want reset default password?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: 'none',

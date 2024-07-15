@@ -65,7 +65,7 @@ export class BlogComponent implements OnInit {
   confirmDelete(event: Event, blog: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this blog?',
       header: 'Delete Blog',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -75,22 +75,6 @@ export class BlogComponent implements OnInit {
 
       accept: () => {
         this.apiDelete(blog);
-      },
-      reject: () => {},
-    });
-  }
-
-  confirmLock(event: Event, company: any) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want lock?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      acceptIcon: 'none',
-      rejectIcon: 'none',
-      rejectButtonStyleClass: 'p-button-text',
-      accept: () => {
-        // this.apiLock(company);
       },
       reject: () => {},
     });

@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { SETTING } from '../../core/configs/setting.config';
 import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
+import { CONSTANT } from '../../core/configs/constant.config';
 
 @Component({
   selector: 'app-admin-company',
@@ -14,6 +15,9 @@ import { environment } from '../../core/environments/develop.environment';
 export class CompanyComponent implements OnInit {
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
+  LIST_PROVINCE = CONSTANT.COMPANY_PROVINCE;
+  LIST_FIELD = CONSTANT.COMPANY_FIELD;
+  LIST_SCALE = CONSTANT.COMPANY_SCALE;
 
   constructor(
     private messageService: MessageService,
@@ -65,7 +69,7 @@ export class CompanyComponent implements OnInit {
   confirmDelete(event: Event, company: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this company?',
       header: 'Delete Company',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -83,7 +87,7 @@ export class CompanyComponent implements OnInit {
   confirmLock(event: Event, company: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Are you sure that you want lock?',
+      message: 'Are you sure that you want lock company?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: 'none',
