@@ -48,6 +48,7 @@ export class DialogCartComponent implements OnInit {
     this.data = trimStringObject(this.data);
     const payload = {
       productID: this.data.productID,
+      servicePackID: this.data.servicePackID,
       status: this.PRODUCT_STATUS[1].CODE || this.data.status,
       updatedBy: updatedBy,
     };
