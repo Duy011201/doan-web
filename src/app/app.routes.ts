@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { HomeComponent } from './page/home/home.component';
 import { SETTING } from './core/configs/setting.config';
+import { TablePriceComponent } from './page/table-price/table-price.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
@@ -18,6 +19,11 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.RELATED_PAGE,
     loadChildren: () => import('./page/page.module').then((m) => m.PageModule),
+    data: { showHeader: true, showFooter: true },
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_TABLE_PRICE,
+    component: TablePriceComponent,
     data: { showHeader: true, showFooter: true },
   },
   {

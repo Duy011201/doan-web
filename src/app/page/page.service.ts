@@ -238,4 +238,44 @@ export class PageService {
         })
       );
   }
+
+  public getAllProduct(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_PRODUCT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public updateProduct(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.UPDATE_PRODUCT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public createProduct(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_PRODUCT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public deleteProduct(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_PRODUCT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

@@ -55,20 +55,19 @@
             <span class="vertical-align-middle">{{ item.servicePackName }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.price | number:'1.0-0'}}</span>
+            <span class="vertical-align-middle">{{ item.price | number:'1.0-0'}} VNĐ</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}</span>
+            <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}%</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.expirationDate | number:'1.0-0' }}</span>
+            <span class="vertical-align-middle">{{ item.expirationDate | number:'1.0-0' }} ngày</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.content }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle
-              {{ item.status ? 'text-green-500' : 'text-red-500'}}"> {{ item.status }}
+            <span class="vertical-align-middle text-red-500"> {{ item.status | DynamicPipe: PRODUCT_STATUS }}
             </span>
           </td>
           <td>

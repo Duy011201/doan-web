@@ -25,6 +25,8 @@ export const SETTING = {
     MANAGER_NOTIFICATION: 'manager-notification',
     MANAGER_SERVICE_PACK: 'manager-service-pack',
     MANAGER_CART: 'manager-cart',
+    MANAGER_HISTORY: 'manager-history',
+    HEADER_ORDER: 'manager-order',
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'SUPER_ADMIN',

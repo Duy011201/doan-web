@@ -21,6 +21,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { QuillModule } from 'ngx-quill';
 import { ServicePackComponent } from './service-pack/service-pack.component';
 import { DialogServiceDialogComponent } from './service-pack/dialog/dialog.component';
+import { CartComponent } from './cart/cart.component';
+import { DynamicPipe } from '../core/pipe/dynamic-pipe';
+import { DialogCartComponent } from './cart/dialog/dialog.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   imports: [
@@ -46,6 +50,10 @@ import { DialogServiceDialogComponent } from './service-pack/dialog/dialog.compo
     NotificationComponent,
     ServicePackComponent,
     DialogServiceDialogComponent,
+    CartComponent,
+    DynamicPipe,
+    DialogCartComponent,
+    HistoryComponent
   ],
   providers: [
     PageService,

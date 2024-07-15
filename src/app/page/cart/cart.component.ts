@@ -83,7 +83,10 @@ export class CartComponent implements OnInit {
 
   apiGetAll() {
     this.service
-      .getAllProduct({ userID: removeQuotes(getFromLocalStorage('userID')) })
+      .getAllProduct({
+        userID: removeQuotes(getFromLocalStorage('userID')),
+        status: this.PRODUCT_STATUS[0].CODE,
+      })
       .subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
