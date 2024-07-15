@@ -71,30 +71,30 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-user>
+      <ng-template pTemplate="body" let-item>
         <tr>
           <td class="flex align-items-center gap-3">
-            <p-avatar image="{{ pathEnvironment + '/' + user.avatar }}" styleClass="mr-2" size="large"
+            <p-avatar image="{{ pathEnvironment + '/' + item.avatar }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
-            <span class="vertical-align-middle">{{ user.username ? user.username : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.username ? item.username : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.companyName ? user.companyName : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.companyName ? item.companyName : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.email }}</span>
+            <span class="vertical-align-middle">{{ item.email }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.phone ? user.phone : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.phone ? item.phone : '...' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle
-              {{ user.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ user.status }}
+              {{ item.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ item.status }}
             </span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl fa-regular fa-paper-plane icon" (click)="onChoseUserSendNotification(user)"></i>
+              <i class="text-xl fa-regular fa-paper-plane icon" (click)="onChoseUserSendNotification(item)"></i>
             </div>
           </td>
         </tr>

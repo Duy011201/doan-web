@@ -1,5 +1,5 @@
 <div class="p-3 flex gap-3" style="background-color: var(--primary-app-background);">
-  <app-admin-menu-left></app-admin-menu-left>
+  <app-menu-left></app-menu-left>
 
   <div>
     <h2 class="header-component">Quản lý gói dịch vụ</h2>
@@ -46,38 +46,38 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-service>
+      <ng-template pTemplate="body" let-item>
         <tr>
           <td class="flex align-items-center gap-3">
-            <p-avatar image="{{ pathEnvironment + '/' + service.image }}" styleClass="mr-2" size="large"
+            <p-avatar image="{{ pathEnvironment + '/' + item.image }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
-            <span class="vertical-align-middle">{{ service.servicePackName }}</span>
+            <span class="vertical-align-middle">{{ item.servicePackName }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ service.content }}</span>
+            <span class="vertical-align-middle">{{ item.content }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ service.promotion | number:'1.0-0' }}%</span>
+            <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}%</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ service.price | number:'1.0-0' }} VNĐ</span>
+            <span class="vertical-align-middle">{{ item.price | number:'1.0-0' }} VNĐ</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ service.expirationDate | number:'1.0-0' }} ngày</span>
+            <span class="vertical-align-middle">{{ item.expirationDate | number:'1.0-0' }} ngày</span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl icon fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, service)"></i>
+              <i class="text-xl icon fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
               <i class="text-xl icon fa-solid fa-pen-to-square"
-                (click)="onShowDialog(SYSTEM_ACTION.UPDATE, service)"></i>
-              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, service)"></i>
+                (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, item)"></i>
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td class="text-center" colspan="6">No users found.</td>
+          <td class="text-center" colspan="6">No service found.</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="loadingbody" let-columns="columns">
@@ -92,6 +92,6 @@
 
   <p-toast></p-toast>
   <p-confirmDialog></p-confirmDialog>
-  <app-admin-service-pack-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
-  </app-admin-service-pack-dialog>
+  <app-service-pack-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
+  </app-service-pack-dialog>
 </div>
