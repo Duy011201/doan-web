@@ -62,17 +62,4 @@ export class HistoryComponent implements OnInit {
         }
       );
   }
-
-  handleVisibleChange(visible: boolean) {
-    this.visible = visible;
-    this.apiGetAll();
-  }
-
-  onShowDialog(action: string, data: any): void {
-    this.dataDialog = { ...data };
-    this.dataDialog.headerDialog = 'Payment';
-    this.dataDialog.subHeaderDialog = 'View payment information';
-    this.dataDialog.actionDialog = action;
-    this.visible = true;
-  }
 }
