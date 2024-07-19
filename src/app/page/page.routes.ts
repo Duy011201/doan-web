@@ -10,6 +10,7 @@ import {NotificationComponent} from "./notification/notification.component";
 import { ServicePackComponent } from './service-pack/service-pack.component';
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
+import { OrderComponent } from './order/order.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -44,7 +45,11 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_HISTORY,
     component: HistoryComponent,
-  },  
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_ORDER,
+    component: OrderComponent,
+  },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_404,
     component: PageNotFoundComponent,
