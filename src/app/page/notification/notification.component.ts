@@ -23,6 +23,7 @@ export class NotificationComponent {
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
   LIST_ROLE: any = CONSTANT.SYSTEM_ROLE;
+  LIST_SYSTEM_STATUS = CONSTANT.SYSTEM_STATUS;
 
   constructor(
     private messageService: MessageService,

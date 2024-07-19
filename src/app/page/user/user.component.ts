@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { SETTING } from '../../core/configs/setting.config';
 import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
+import { CONSTANT } from '../../core/configs/constant.config';
 
 @Component({
   selector: 'app-user',
@@ -12,6 +13,7 @@ import { environment } from '../../core/environments/develop.environment';
   styleUrl: './user.component.scss',
 })
 export class UserComponent implements OnInit {
+  LIST_SYSTEM_STATUS = CONSTANT.SYSTEM_STATUS;
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 

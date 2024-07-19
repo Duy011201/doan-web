@@ -54,34 +54,40 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-user>
+      <ng-template pTemplate="body" let-item>
         <tr>
           <td class="flex align-items-center gap-3">
-            <p-avatar image="{{ pathEnvironment + '/' + user.avatar }}" styleClass="mr-2" size="large"
+            <p-avatar image="{{ pathEnvironment + '/' + item.avatar }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
-            <span class="vertical-align-middle">{{ user.username ? user.username : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.itemname ? item.itemname : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.companyName ? user.companyName : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.companyName ? item.companyName : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.email }}</span>
+            <span class="vertical-align-middle">{{ item.email }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ user.phone ? user.phone : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.phone ? item.phone : '...' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle
-              {{ user.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ user.status }}
+              {{ item.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ item.status |
+              DynamicPipe: LIST_SYSTEM_STATUS }}
             </span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết" (click)="onShowDialog(SYSTEM_ACTION.VIEW, user)"></i>
-              <i class="text-xl icon fa-solid fa-pen-to-square" pTooltip="Chỉnh sửa" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, user)"></i>
-              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa tài khoản" (click)="confirmDelete($event, user)"></i>
-              <i class="text-xl icon fa-solid fa-lock" pTooltip="Khóa tài khoản" (click)="confirmLock($event, user)"></i>
-              <i class="text-xl icon fa-solid fa-repeat" pTooltip="Đặt lại mật khẩu" (click)="confirmResetPassword($event, user)"></i>
+              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
+                (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
+              <i class="text-xl icon fa-solid fa-pen-to-square" pTooltip="Chỉnh sửa"
+                (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa tài khoản"
+                (click)="confirmDelete($event, item)"></i>
+              <i class="text-xl icon fa-solid fa-lock" pTooltip="Khóa tài khoản"
+                (click)="confirmLock($event, item)"></i>
+              <i class="text-xl icon fa-solid fa-repeat" pTooltip="Đặt lại mật khẩu"
+                (click)="confirmResetPassword($event, item)"></i>
             </div>
           </td>
         </tr>

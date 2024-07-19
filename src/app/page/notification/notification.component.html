@@ -89,12 +89,14 @@
           </td>
           <td>
             <span class="vertical-align-middle
-              {{ item.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ item.status }}
+              {{ item.status === SYSTEM_STATUS.ACTIVE ? 'text-green-500' : 'text-red-500'}}"> {{ item.status |
+              DynamicPipe: LIST_SYSTEM_STATUS }}
             </span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl fa-regular fa-paper-plane icon" pTooltip="Chọn người dùng" (click)="onChoseUserSendNotification(item)"></i>
+              <i class="text-xl fa-regular fa-paper-plane icon" pTooltip="Chọn người dùng"
+                (click)="onChoseUserSendNotification(item)"></i>
             </div>
           </td>
         </tr>
