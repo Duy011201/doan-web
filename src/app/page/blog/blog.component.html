@@ -3,7 +3,7 @@
 
   <div>
     <h2 class="header-component">Quản lý bài viết</h2>
-    <p-table #dt1 [value]="listBlog" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+    <p-table #table [value]="listBlog" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true" [tableStyle]="{'min-width': '50rem'}"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="['title', 'keyword', 'username', 'createdAt', 'status']" styleClass="p-datatable-sm">
@@ -12,7 +12,7 @@
           <button pButton label="Add" class="p-button-outlined" icon="fa-solid fa-plus"
             (click)="onShowDialog(SYSTEM_ACTION.CREATE, {})"></button>
           <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
-            (click)="clear(dt1)"></button>
+            (click)="clear(table)"></button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">

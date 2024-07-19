@@ -14,33 +14,38 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th class="w-15rem">
-            <div class="flex align-items-center">
-              Tên gói dịch vụ
+          <th class="w-5rem">
+            <div>
+              Ảnh
+            </div>
+          </th>
+          <th class="w-10rem">
+            <div>
+              Tên gói
             </div>
           </th>
           <th class="w-15rem">
-            <div class="flex align-items-center">
+            <div>
               Mô tả
             </div>
           </th>
           <th class="w-10rem">
-            <div class="flex align-items-center">
+            <div>
               Khuyến mãi
             </div>
           </th>
           <th class="w-10rem">
-            <div class="flex align-items-center">
+            <div>
               Giá cước
             </div>
           </th>
           <th class="w-10rem">
-            <div class="flex align-items-center">
+            <div>
               Hết hạn
             </div>
           </th>
           <th class="w-10rem">
-            <div class="flex align-items-center">
+            <div>
               Thao tác
             </div>
           </th>
@@ -48,9 +53,11 @@
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td class="flex align-items-center gap-3">
+          <td>
             <p-avatar image="{{ pathEnvironment + '/' + item.image }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
+          </td>
+          <td>
             <span class="vertical-align-middle">{{ item.servicePackName }}</span>
           </td>
           <td>
@@ -67,10 +74,12 @@
           </td>
           <td>
             <div class="flex align-items-center gap-2">
-              <i class="text-xl icon fa-solid fa-eye" (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
-              <i class="text-xl icon fa-solid fa-pen-to-square"
-                (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
-              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, item)"></i>
+              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
+                (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
+              <i class="text-xl icon fa-solid fa-pen-to-square" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"
+                pTooltip="Chỉnh sửa"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa gói dịch vụ"
+                (click)="confirmDelete($event, item)"></i>
             </div>
           </td>
         </tr>

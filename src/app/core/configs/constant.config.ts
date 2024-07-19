@@ -230,7 +230,6 @@ export const CONSTANT = {
   PRODUCT_STATUS: [
     { CODE: 'DRAFT', NAME: 'Chưa thanh toán' },
     { CODE: 'PENDING', NAME: 'Chờ duyệt' },
-    { CODE: 'EXPIRE', NAME: 'Đã hết hạn' },
     { CODE: 'PAID', NAME: 'Đã thanh toán' },
   ],
 };

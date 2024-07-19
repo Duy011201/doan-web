@@ -17,22 +17,22 @@
           </th>
           <th class="w-10rem">
             <div class="flex align-items-center">
-              Giá gói
-            </div>
-          </th>
-          <th class="w-10rem">
-            <div class="flex align-items-center">
               Khuyến mại
             </div>
           </th>
           <th class="w-10rem">
             <div class="flex align-items-center">
-              Ngày hết hạn
+              Hết hạn
             </div>
           </th>
           <th class="w-15rem">
             <div class="flex align-items-center">
               Mô tả
+            </div>
+          </th>
+          <th class="w-10rem">
+            <div class="flex align-items-center">
+              Giá gói
             </div>
           </th>
           <th class="w-10rem">
@@ -55,9 +55,6 @@
             <span class="vertical-align-middle">{{ item.servicePackName }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.price | number:'1.0-0'}} VNĐ</span>
-          </td>
-          <td>
             <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}%</span>
           </td>
           <td>
@@ -65,6 +62,9 @@
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.content }}</span>
+          </td>
+          <td>
+            <span class="vertical-align-middle">{{ item.price | number:'1.0-0'}} VNĐ</span>
           </td>
           <td>
             <span class="vertical-align-middle text-red-500"> {{ item.status | DynamicPipe: PRODUCT_STATUS }}
