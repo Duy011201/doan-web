@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {AuthService} from '../auth.service';
-import {isEmail, isEmpty, isPassword} from '../../core/commons/func';
-import {SETTING} from '../../core/configs/setting.config';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { AuthService } from '../auth.service';
+import { isEmail, isEmpty, isPassword } from '../../core/commons/func';
+import { SETTING } from '../../core/configs/setting.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -21,27 +21,26 @@ export class ForgotPasswordComponent {
     isStep: false,
   };
 
+  public SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
+
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
     private router: Router
-  ) {
-  }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public onNextPage(key: string): void {
     this.router.navigate([key]);
   }
-
   apiForgotPassword(): void {
     if (this.validAuthInput()) {
       const payload = {
         email: this.authForgotPassword.email,
         password: this.authForgotPassword.password,
-        verifyCode: this.authForgotPassword.verifyCode
-      }
+        verifyCode: this.authForgotPassword.verifyCode,
+      };
 
       this.authService.forgotPassword(payload).subscribe(
         (result: any) => {
@@ -93,8 +92,8 @@ export class ForgotPasswordComponent {
   apiVerifyCode(): void {
     if (this.validAuthInput()) {
       const payload = {
-        email: this.authForgotPassword.email
-      }
+        email: this.authForgotPassword.email,
+      };
 
       this.authService.verifyCode(payload).subscribe(
         (result: any) => {
