@@ -3,9 +3,11 @@
 
   <div>
     <h2 class="header-component">Quản lý đơn hàng</h2>
+
     <p-table #table [value]="listProduct" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true" [tableStyle]="{'min-width': '50rem'}"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" styleClass="p-datatable-sm">
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" styleClass="p-datatable-sm"
+      [globalFilterFields]="['servicePackName', 'email', 'status']">
       <ng-template pTemplate="caption">
         <div class="flex gap-3">
           <p-dropdown [(ngModel)]="selectedStatusProduct" [options]="LIST_PRODUCT_STATUS" optionLabel="NAME"
@@ -22,23 +24,24 @@
             </div>
           </th>
           <th class="w-10rem">
-            <div>
+            <div class="flex align-items-center">
               Tên gói
+              <p-columnFilter type="text" field="servicePackName" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th class="w-7rem">
-            <div>
-              Khuyến mại
-            </div>
-          </th>
-          <th class="w-10rem">
+          <th class="w-15rem">
             <div>
               Mô tả
             </div>
           </th>
           <th class="w-7rem">
             <div>
-              Ngày tạo
+              Khuyến mãi
+            </div>
+          </th>
+          <th class="w-7rem">
+            <div>
+              Giá gói
             </div>
           </th>
           <th class="w-7rem">
@@ -52,18 +55,20 @@
             </div>
           </th>
           <th class="w-7rem">
-            <div>
-              Thanh toán
-            </div>
-          </th>
-          <th class="w-7rem">
-            <div>
+            <div class="flex align-items-center">
               Trạng thái
+              <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
             </div>
           </th>
           <th class="w-7rem">
+            <div class="flex align-items-center">
+              Người tạo
+              <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th class="w-10rem">
             <div>
-              Hành động
+              Thao tác
             </div>
           </th>
         </tr>
@@ -78,13 +83,13 @@
             <span class="vertical-align-middle">{{ item.servicePackName }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}%</span>
-          </td>
-          <td>
             <span class="vertical-align-middle">{{ item.content }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
+            <span class="vertical-align-middle">{{ item.promotion | number:'1.0-0' }}%</span>
+          </td>
+          <td>
+            <span class="vertical-align-middle">{{ item.price | number:'1.0-0' }} VNĐ</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.expirationDate | number:'1.0-0' }} ngày</span>
@@ -93,25 +98,27 @@
             <span class="vertical-align-middle">{{ item.totalExpiration | number:'1.0-0' }} ngày</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{item.price - (item.promotion * item.price)/100 | number:'1.0-0' }}
-              VNĐ</span>
-          </td>
-          <td>
             <span class="vertical-align-middle {{item.status === PRODUCT_STATUS.DRAFT ? 'text-red-500'
               : item.status === PRODUCT_STATUS.PENDING ? 'text-yellow-500'
               : 'text-green-500' }}">{{
               item.status | DynamicPipe: LIST_PRODUCT_STATUS }}</span>
           </td>
           <td>
+            <span class="vertical-align-middle">{{ item.email }}</span>
+          </td>
+          <td>
             <div class="flex align-items-center justify-content-center gap-2">
-              <i class="text-xl icon fa-solid fa-trash-can" (click)="confirmDelete($event, item)"></i>
+              <i *ngIf="item.status === PRODUCT_STATUS.PENDING" class="text-xl icon fa-brands fa-paypal"
+                (click)="apiUpdate(item)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa gói dịch vụ"
+                (click)="confirmDelete($event, item)"></i>
             </div>
           </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td class="text-center" colspan="7">No order found.</td>
+          <td class="text-center" colspan="9">No service found.</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="loadingbody" let-columns="columns">

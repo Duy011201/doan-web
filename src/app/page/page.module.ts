@@ -26,6 +26,7 @@ import { DynamicPipe } from '../core/pipe/dynamic-pipe';
 import { DialogCartComponent } from './cart/dialog/dialog.component';
 import { HistoryComponent } from './history/history.component';
 import { OrderComponent } from './order/order.component';
+import { OrderApprovalComponent } from './order-approval/order-approval.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { OrderComponent } from './order/order.component';
     DynamicPipe,
     DialogCartComponent,
     HistoryComponent,
-    OrderComponent
+    OrderComponent,
+    OrderApprovalComponent,
   ],
   providers: [
     PageService,

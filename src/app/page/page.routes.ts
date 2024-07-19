@@ -11,6 +11,7 @@ import { ServicePackComponent } from './service-pack/service-pack.component';
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
 import { OrderComponent } from './order/order.component';
+import { OrderApprovalComponent } from './order-approval/order-approval.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -49,6 +50,10 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.HEADER_ORDER,
     component: OrderComponent,
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.MANAGER_ORDER_APPROVAL,
+    component: OrderApprovalComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_404,

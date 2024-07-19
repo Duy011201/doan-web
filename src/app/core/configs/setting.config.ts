@@ -24,6 +24,7 @@ export const SETTING = {
     MANAGER_BLOG: 'manager-blog',
     MANAGER_NOTIFICATION: 'manager-notification',
     MANAGER_SERVICE_PACK: 'manager-service-pack',
+    MANAGER_ORDER_APPROVAL: 'manager-order-approval',
     MANAGER_CART: 'manager-cart',
     MANAGER_HISTORY: 'manager-history',
     HEADER_ORDER: 'manager-order',
@@ -90,5 +91,10 @@ export const SETTING = {
     INVALID_SERVICE_PACK_PRICE: 'Định dạng giá gói dịch vụ không hợp lệ',
     INVALID_SERVICE_PACK_PROMOTION: 'Định dạng khuyến mãi không hợp lệ',
     INVALID_SERVICE_PACK_EXPIRATION_DATE: 'Định dạng ngày hết hạn không hợp lệ',
+  },
+  PRODUCT_STATUS: {
+    DRAFT: 'DRAFT',
+    PENDING: 'PENDING',
+    PAID: 'PAID',
   },
 };
