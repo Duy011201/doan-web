@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { PageService } from '../page.service';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-service-pack',
@@ -18,7 +19,8 @@ export class ServicePackComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private service: PageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   dataDialog: any = {
@@ -110,14 +112,19 @@ export class ServicePackComponent implements OnInit {
   }
 
   apiGetAll() {
+    this.loadingService.show();
     this.service.getAllServicePack({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.listServicePack = result.data;
-          this.loading = false;
+          setTimeout(() => {
+            this.loadingService.hide();
+            this.listServicePack = result.data;
+            this.loading = false;
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

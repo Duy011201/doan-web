@@ -7,6 +7,7 @@ import { PageService } from '../page.service';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { CONSTANT } from '../../core/configs/constant.config';
 import dayjs from 'dayjs';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-order-approval',
@@ -23,7 +24,8 @@ export class OrderApprovalComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private service: PageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   dataDialog: any = {
@@ -121,25 +123,30 @@ export class OrderApprovalComponent implements OnInit {
   }
 
   apiGetAll(payload: any) {
+    this.loadingService.show();
     this.service.getAllProduct(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.listProduct = result.data;
-          this.listProduct = this.listProduct.map((item: any) => {
-            if (item.totalExpiration > 0) {
-              let updatedAtDate = dayjs(item.updatedAt);
-              let differenceInDays = this.currentDate.diff(
-                updatedAtDate,
-                'day'
-              );
-              item.totalExpiration -= differenceInDays;
-            }
-            return item;
-          });
-          this.loading = false;
+          setTimeout(() => {
+            this.listProduct = result.data;
+            this.listProduct = this.listProduct.map((item: any) => {
+              if (item.totalExpiration > 0) {
+                let updatedAtDate = dayjs(item.updatedAt);
+                let differenceInDays = this.currentDate.diff(
+                  updatedAtDate,
+                  'day'
+                );
+                item.totalExpiration -= differenceInDays;
+              }
+              return item;
+            });
+            this.loadingService.hide();
+            this.loading = false;
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

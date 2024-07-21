@@ -1,9 +1,15 @@
-import {Component} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {AuthService} from '../auth.service';
-import {isEmail, isEmpty, isPassword, saveToLocalStorage,} from '../../core/commons/func';
-import {SETTING} from '../../core/configs/setting.config';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { AuthService } from '../auth.service';
+import {
+  isEmail,
+  isEmpty,
+  isPassword,
+  saveToLocalStorage,
+} from '../../core/commons/func';
+import { SETTING } from '../../core/configs/setting.config';
+import { Router } from '@angular/router';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +24,8 @@ export class LoginComponent {
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   private isValidAuth(): string {
@@ -51,19 +58,28 @@ export class LoginComponent {
       password: this.password,
     };
 
+    this.loadingService.show();
     this.authService.login(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          saveToLocalStorage('userID', result.data['userID']);
-          saveToLocalStorage('token', result.data['token']);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
             detail: result.message,
           });
+          setTimeout(() => {
+            this.loadingService.hide();
+            saveToLocalStorage('userID', result.data['userID']);
+            saveToLocalStorage('token', result.data['token']);
+            saveToLocalStorage('role', result.data['role']);
+            this.onNextPage(
+              this.SYSTEM_PAGE.RELATED_PAGE + '/' + this.SYSTEM_PAGE.DASHBOARD
+            );
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

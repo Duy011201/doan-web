@@ -5,6 +5,7 @@ import { SETTING } from '../../core/configs/setting.config';
 import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
 import { CONSTANT } from '../../core/configs/constant.config';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-blog',
@@ -19,7 +20,8 @@ export class BlogComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private service: PageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   dataDialog: any = {
@@ -131,14 +133,19 @@ export class BlogComponent implements OnInit {
   }
 
   apiGetAll() {
+    this.loadingService.show();
     this.service.getAllBlog({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.listBlog = result.data;
-          this.loading = false;
+          setTimeout(() => {
+            this.loadingService.hide();
+            this.listBlog = result.data;
+            this.loading = false;
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

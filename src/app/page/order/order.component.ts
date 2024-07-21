@@ -7,6 +7,7 @@ import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { PageService } from '../page.service';
 import dayjs from 'dayjs';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-order',
@@ -22,7 +23,8 @@ export class OrderComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private service: PageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   listProduct: any = [];
@@ -52,22 +54,27 @@ export class OrderComponent implements OnInit {
 
   apiGetAll(payload: any) {
     payload.userID = removeQuotes(getFromLocalStorage('userID'));
+    this.loadingService.show();
     this.service.getAllProduct(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.listProduct = result.data;
-          this.listProduct = result.data.filter((item: any) => {
-            if (item.totalExpiration > 0) {
-              let updatedAtDate = dayjs(item.updatedAt);
-              let differenceInDays = dayjs().diff(updatedAtDate, 'day');
-              item.totalExpiration -= differenceInDays;
-            }
-            return item.status !== this.PRODUCT_STATUS.DRAFT;
-          });
-          this.loading = false;
+          setTimeout(() => {
+            this.listProduct = result.data;
+            this.listProduct = result.data.filter((item: any) => {
+              if (item.totalExpiration > 0) {
+                let updatedAtDate = dayjs(item.updatedAt);
+                let differenceInDays = dayjs().diff(updatedAtDate, 'day');
+                item.totalExpiration -= differenceInDays;
+              }
+              return item.status !== this.PRODUCT_STATUS.DRAFT;
+            });
+            this.loadingService.hide();
+            this.loading = false;
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

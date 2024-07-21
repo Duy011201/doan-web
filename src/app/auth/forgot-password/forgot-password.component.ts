@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { isEmail, isEmpty, isPassword } from '../../core/commons/func';
 import { SETTING } from '../../core/configs/setting.config';
 import { Router } from '@angular/router';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -26,7 +27,8 @@ export class ForgotPasswordComponent {
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {}
@@ -42,20 +44,25 @@ export class ForgotPasswordComponent {
         verifyCode: this.authForgotPassword.verifyCode,
       };
 
+      this.loadingService.show();
       this.authService.forgotPassword(payload).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
             this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: result['message'],
-            });
+                severity: 'success',
+                summary: 'Success',
+                detail: result['message'],
+              });
             setTimeout(() => {
-              this.router.navigate(['/auth/login']);
-            }, 2000);
+              this.loadingService.hide();
+              setTimeout(() => {
+                this.router.navigate(['/auth/login']);
+              }, 2000);
+            }, 500);
           }
         },
         (error: any) => {
+          this.loadingService.hide();
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -90,6 +97,7 @@ export class ForgotPasswordComponent {
   }
 
   apiVerifyCode(): void {
+    this.loadingService.show();
     if (this.validAuthInput()) {
       const payload = {
         email: this.authForgotPassword.email,
@@ -98,15 +106,19 @@ export class ForgotPasswordComponent {
       this.authService.verifyCode(payload).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-            this.authForgotPassword.isStep = true;
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
               detail: result['message'],
             });
+            setTimeout(() => {
+              this.loadingService.hide();
+              this.authForgotPassword.isStep = true;
+            }, 500);
           }
         },
         (error: any) => {
+          this.loadingService.hide();
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

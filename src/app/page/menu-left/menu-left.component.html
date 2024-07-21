@@ -66,17 +66,17 @@
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION) }">
-    <i class="fa-solid fa-bell text-xl"></i>
-    <span>Quản lý thông báo người dùng</span>
-  </div>
-
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
     (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK)"
     [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK) }">
     <i class="fa-solid fa-cube text-xl"></i>
     <span>Quản lý gói dịch vụ</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION) }">
+    <i class="fa-solid fa-bell text-xl"></i>
+    <span>Quản lý thông báo người dùng</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">

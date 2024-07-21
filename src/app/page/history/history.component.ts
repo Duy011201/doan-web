@@ -6,6 +6,7 @@ import { CONSTANT } from '../../core/configs/constant.config';
 import { environment } from '../../core/environments/develop.environment';
 import { PageService } from '../page.service';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-history',
@@ -20,7 +21,8 @@ export class HistoryComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private service: PageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private loadingService: LoadingService
   ) {}
 
   listProduct: any = [];
@@ -42,6 +44,7 @@ export class HistoryComponent implements OnInit {
   }
 
   apiGetAll() {
+    this.loadingService.show();
     this.service
       .getAllHistory({
         userID: removeQuotes(getFromLocalStorage('userID')),
@@ -49,11 +52,15 @@ export class HistoryComponent implements OnInit {
       .subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-            this.listProduct = result.data;
-            this.loading = false;
+            setTimeout(() => {
+              this.loadingService.hide();
+              this.listProduct = result.data;
+              this.loading = false;
+            }, 500);
           }
         },
         (error: any) => {
+          this.loadingService.hide();
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

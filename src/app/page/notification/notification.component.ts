@@ -12,6 +12,7 @@ import {
   removeQuotes,
   trimStringObject,
 } from '../../core/commons/func';
+import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
   selector: 'app-notification',
@@ -27,7 +28,8 @@ export class NotificationComponent {
 
   constructor(
     private messageService: MessageService,
-    private service: PageService
+    private service: PageService,
+    private loadingService: LoadingService
   ) {}
 
   dataDialog: any = {
@@ -115,14 +117,19 @@ export class NotificationComponent {
   }
 
   apiGetAll() {
+    this.loadingService.show();
     this.service.getAllUser({}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.listUser = result.data;
-          this.loading = false;
+          setTimeout(() => {
+            this.loadingService.hide();
+            this.listUser = result.data;
+            this.loading = false;
+          }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
