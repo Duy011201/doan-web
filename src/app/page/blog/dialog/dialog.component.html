@@ -6,18 +6,20 @@
     <div class="flex flex-column gap-4">
       <div class="flex flex-column gap-2">
         <label for="name" class="font-semibold">Tiêu đề<span class="pl-2 text-red-600">*</span></label>
-        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.title" />
+        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.title" (change)="onChangeTitle($event)" />
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="email" class="font-semibold">Từ khóa<span class="pl-2 text-red-600">*</span></label>
-        <input pInputText id="email" class="flex-auto" [(ngModel)]="data.keyword" />
+        <input [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" pInputText id="email" class="flex-auto"
+          [(ngModel)]="data.keyword" />
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="status" class="font-semibold">Trạng thái<span class="pl-2 text-red-600">*</span></label>
-        <p-dropdown id="status" [options]="LIST_STATUS" [(ngModel)]="selectStatus" placeholder="Chọn trạng thái"
-          optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+        <p-dropdown id="status" [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" [options]="LIST_STATUS"
+          [(ngModel)]="selectStatus" placeholder="Chọn trạng thái" optionLabel="NAME" [showClear]="true"
+          [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
 

@@ -102,6 +102,7 @@ export const SETTING = {
     INVALID_FIELD_FORMAT: 'Định dạng lĩnh vực không hợp lệ',
     INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương từ không hợp lệ',
     INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương đến không hợp lệ',
+    INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT: 'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',
   },
   PRODUCT_STATUS: {
     DRAFT: 'DRAFT',

@@ -37,7 +37,7 @@
 
       <div class="col-6">
         <div class="flex flex-column gap-2">
-          <label for="language" class="font-semibold">Lĩnh vực</label>
+          <label for="language" class="font-semibold">Lĩnh vực<span class="pl-2 text-red-600">*</span></label>
           <p-dropdown id="language" [options]="LIST_FIELD" [(ngModel)]="selectField" placeholder="Chọn lĩnh vực"
             optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }"></p-dropdown>
         </div>
@@ -45,7 +45,7 @@
 
       <div class="col-6">
         <div class="flex flex-column gap-2">
-          <label for="province" class="font-semibold">Tỉnh</label>
+          <label for="province" class="font-semibold">Tỉnh<span class="pl-2 text-red-600">*</span></label>
           <p-dropdown id="province" [options]="LIST_PROVINCE" [(ngModel)]="selectProvince" placeholder="Chọn tỉnh"
             optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
           </p-dropdown>

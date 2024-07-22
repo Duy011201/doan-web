@@ -51,8 +51,6 @@ export class DialogBlogComponent implements OnInit {
 
     if (isEmpty(this.data.title)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TITLE_FORMAT;
-    } else if (isEmpty(this.selectStatus)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_STATUS;
     } else if (isEmpty(this.data.content)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_CONTENT_FORMAT;
     }
@@ -67,6 +65,18 @@ export class DialogBlogComponent implements OnInit {
     }
 
     return true;
+  }
+
+  onChangeTitle(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    let title = inputElement.value;
+    if (typeof title === 'string') {
+      this.data.keyword = title
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/\s+/g, '-');
+    }
   }
 
   public async onCreateBlog(): Promise<void> {

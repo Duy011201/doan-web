@@ -35,13 +35,16 @@ export class BlogComponent implements OnInit {
   listBlog: any = [];
   visible: boolean = false;
   loading: boolean = true;
+  selectedStatusBlog = { CODE: '', NAME: '' };
   pathEnvironment = environment.API_URL;
 
   ngOnInit() {
-    this.apiGetAll();
+    this.apiGetAll({});
   }
 
   clear(table: Table) {
+    this.selectedStatusBlog = { CODE: '', NAME: '' };
+    this.apiGetAll({});
     table.clear();
   }
 
@@ -87,7 +90,7 @@ export class BlogComponent implements OnInit {
 
   handleVisibleChange(visible: boolean) {
     this.visible = visible;
-    this.apiGetAll();
+    this.apiGetAll({});
   }
 
   truncateString(str: string, maxLength: number): string {
@@ -112,7 +115,7 @@ export class BlogComponent implements OnInit {
               summary: 'Success',
               detail: result.message,
             });
-            this.apiGetAll();
+            this.apiGetAll({});
           }
         },
         (error: any) => {
@@ -134,7 +137,7 @@ export class BlogComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
-          this.apiGetAll();
+          this.apiGetAll({});
         }
       },
       (error: any) => {
@@ -147,9 +150,9 @@ export class BlogComponent implements OnInit {
     );
   }
 
-  apiGetAll() {
+  apiGetAll(payload: any) {
     this.loadingService.show();
-    this.service.getAllBlog({}).subscribe(
+    this.service.getAllBlog(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {

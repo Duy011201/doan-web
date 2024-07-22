@@ -91,6 +91,8 @@ export class DialogRecruitmentComponent implements OnInit {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SALARY_FROM_FORMAT;
     } else if (isEmpty(this.data.salaryTo)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SALARY_TO_FORMAT;
+    } else if (this.data.salaryFrom < this.data.salaryTo) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SALARY_TO_FORMAT;
     }
 
     if (!isEmpty(errorMessage)) {

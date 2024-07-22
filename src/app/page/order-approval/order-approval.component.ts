@@ -48,6 +48,8 @@ export class OrderApprovalComponent implements OnInit {
   }
 
   clear(table: Table) {
+    this.selectedStatusProduct = { CODE: '', NAME: '' };
+    this.apiGetAll({});
     table.clear();
   }
 

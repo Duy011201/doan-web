@@ -49,6 +49,8 @@ export class RecruitmentComponent implements OnInit {
   }
 
   clear(table: Table) {
+    this.selectedStatusRecruitment = { CODE: '', NAME: '' };
+    this.apiGetAll({});
     table.clear();
   }
 

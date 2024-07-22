@@ -10,10 +10,12 @@
       [globalFilterFields]="['title', 'keyword', 'username', 'createdAt', 'status']" styleClass="p-datatable-sm">
       <ng-template pTemplate="caption">
         <div class="flex gap-3">
-          <button pButton label="Add" class="p-button-outlined" icon="fa-solid fa-plus"
-            (click)="onShowDialog(SYSTEM_ACTION.CREATE, {})"></button>
+          <p-dropdown [(ngModel)]="selectedStatusBlog" [options]="LIST_BLOG_STATUS" optionLabel="NAME"
+            (click)="apiGetAll({status: selectedStatusBlog.CODE})" placeholder="Select status"></p-dropdown>
           <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
             (click)="clear(table)"></button>
+          <button pButton label="Add" class="p-button-outlined" icon="fa-solid fa-plus"
+            (click)="onShowDialog(SYSTEM_ACTION.CREATE, {})"></button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
