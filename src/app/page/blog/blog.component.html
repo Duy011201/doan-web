@@ -58,25 +58,29 @@
       <ng-template pTemplate="body" let-item>
         <tr>
           <td>
-            <span class="vertical-align-middle">{{ item.title }}</span>
+            <span class="vertical-align-middle">{{ item.title ? truncateString(item.title, 35) : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.keyword }}</span>
+            <span class="vertical-align-middle">{{ item.keyword ? truncateString(item.keyword, 35) : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.email || item.username || '...' }}</span>
+            <span class="vertical-align-middle">{{ item.email || '...' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle
-              {{ item.status === BLOG_STATUS[0].CODE ? 'text-red-500' : 'text-green-500'}}"> {{ item.status |
-              DynamicPipe: BLOG_STATUS }}
+              {{ item.status === BLOG_STATUS.PENDING ? 'text-red-500' : 'text-green-500'}}"> {{ item.status |
+              DynamicPipe: LIST_BLOG_STATUS }}
             </span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
+              <i *ngIf="item.status === BLOG_STATUS.PENDING" class="text-xl icon fa-solid fa-repeat"
+                (click)="apiStatus(item, BLOG_STATUS.APPROVED)"></i>
+              <i *ngIf="item.status === BLOG_STATUS.APPROVED" class="text-xl icon fa-solid fa-bullhorn"
+                (click)="apiStatus(item, BLOG_STATUS.PUBLISHED)"></i>
               <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
                 (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
               <i class="text-xl icon fa-solid fa-pen-to-square" pTooltip="Chỉnh sửa bài viết"

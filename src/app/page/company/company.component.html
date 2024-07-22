@@ -60,7 +60,7 @@
           <td class="flex align-items-center gap-3">
             <p-avatar image="{{ pathEnvironment + '/' + item.logo }}" styleClass="mr-2" size="large"
               shape="circle"></p-avatar>
-            <span class="vertical-align-middle">{{ item.name ? item.name : '...' }}</span>
+            <span class="vertical-align-middle">{{ item.name ? truncateString(item.name, 35) : '...' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.email }}</span>

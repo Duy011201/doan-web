@@ -38,6 +38,11 @@
           </th>
           <th class="w-10rem">
             <div class="flex align-items-center">
+              Ngày tạo
+            </div>
+          </th>
+          <th class="w-10rem">
+            <div class="flex align-items-center">
               Trạng thái
             </div>
           </th>
@@ -68,6 +73,9 @@
             <span class="vertical-align-middle">{{ item.price | number:'1.0-0'}} VNĐ</span>
           </td>
           <td>
+            <span class="vertical-align-middle">{{ item.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
+          </td>
+          <td>
             <span class="vertical-align-middle text-red-500"> {{ item.status | DynamicPipe: PRODUCT_STATUS }}
             </span>
           </td>
@@ -81,7 +89,7 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td class="text-center" colspan="7">No blogs found.</td>
+          <td class="text-center" colspan="7">No order found.</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="loadingbody" let-columns="columns">

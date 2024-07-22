@@ -6,6 +6,7 @@ import { PageService } from '../page.service';
 import { environment } from '../../core/environments/develop.environment';
 import { CONSTANT } from '../../core/configs/constant.config';
 import { LoadingService } from '../../core/services/loading.service';
+import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 
 @Component({
   selector: 'app-blog',
@@ -14,7 +15,8 @@ import { LoadingService } from '../../core/services/loading.service';
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent implements OnInit {
-  BLOG_STATUS: any = CONSTANT.BLOG_STATUS;
+  LIST_BLOG_STATUS: any = CONSTANT.BLOG_STATUS;
+  BLOG_STATUS: any = SETTING.BLOG_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   constructor(
@@ -88,26 +90,39 @@ export class BlogComponent implements OnInit {
     this.apiGetAll();
   }
 
-  apiStatus(blog: any) {
-    this.service.lockCompany({ blogID: blog.blogID }).subscribe(
-      (result: any) => {
-        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+  truncateString(str: string, maxLength: number): string {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + '...';
+    }
+    return str;
+  }
+
+  apiStatus(item: any, status: string) {
+    this.service
+      .statusBlog({
+        blogID: item.blogID,
+        status: status,
+        updatedBy: removeQuotes(getFromLocalStorage('userID')),
+      })
+      .subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: result.message,
+            });
+            this.apiGetAll();
+          }
+        },
+        (error: any) => {
           this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: result.message,
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.massage || error.error.message,
           });
-          this.apiGetAll();
         }
-      },
-      (error: any) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error.error.massage || error.error.message,
-        });
-      }
-    );
+      );
   }
 
   apiDelete(blog: any) {

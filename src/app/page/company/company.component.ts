@@ -108,6 +108,13 @@ export class CompanyComponent implements OnInit {
     this.apiGetAll();
   }
 
+  truncateString(str: string, maxLength: number): string {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + '...';
+    }
+    return str;
+  }
+
   apiLock(company: any) {
     this.service.lockCompany({ companyID: company.companyID }).subscribe(
       (result: any) => {
