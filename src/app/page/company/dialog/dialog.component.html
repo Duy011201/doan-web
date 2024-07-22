@@ -47,7 +47,8 @@
     </div>
 
     <div class="col-5 flex flex-column gap-4">
-      <div>
+      <div class="flex flex-column gap-2">
+        <label for="" class="font-semibold">Ảnh bìa<span class="pl-2 text-red-600">*</span></label>
         <img width="200" height="200" src="{{ pathEnvironment + '/' + data.logo }}" alt="favicon" />
         <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
           <input type="file" (change)="onFileSelected($event)" accept="image/*">

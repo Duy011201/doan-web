@@ -27,6 +27,9 @@ export class DialogBlogComponent implements OnInit {
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
 
   selectStatus: any = {};
+  listFile: any = [];
+
+  pathEnvironment = environment.API_URL;
 
   constructor(
     private messageService: MessageService,
@@ -67,6 +70,36 @@ export class DialogBlogComponent implements OnInit {
     return true;
   }
 
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.listFile.push(event.target.files[i]);
+      }
+    }
+  }
+
+  private uploadFile(payload: any, files: any[]): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      this.service.upload(payload, files).subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            resolve(result.data);
+          } else {
+            reject(new Error('Upload failed'));
+          }
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error?.message || error.message,
+          });
+          reject(error);
+        }
+      );
+    });
+  }
+
   onChangeTitle(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     let title = inputElement.value;
@@ -82,6 +115,12 @@ export class DialogBlogComponent implements OnInit {
   public async onCreateBlog(): Promise<void> {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
 
+    let listFile = [];
+
+    if (this.listFile.length > 0) {
+      listFile = await this.uploadFile({ userID: createdBy }, this.listFile);
+    }
+
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
 
@@ -89,6 +128,7 @@ export class DialogBlogComponent implements OnInit {
         title: this.data.title || '',
         keyword: this.data.keyword || '',
         content: this.data.content || '',
+        image: listFile[0]?.filePath || this.data.image || '',
         createdBy: createdBy,
       };
       this.apiCreate(payload);
@@ -98,6 +138,12 @@ export class DialogBlogComponent implements OnInit {
   public async onUpdateBlog(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
 
+    let listFile = [];
+
+    if (this.listFile.length > 0) {
+      listFile = await this.uploadFile({ userID: updatedBy }, this.listFile);
+    }
+
     if (this.validInput()) {
       this.data = trimStringObject(this.data);
       const payload = {
@@ -106,6 +152,7 @@ export class DialogBlogComponent implements OnInit {
         keyword: this.data.keyword || '',
         content: this.data.content || '',
         status: this.selectStatus.CODE || this.data.status,
+        image: listFile[0]?.filePath || this.data.image || '',
         updatedBy: updatedBy,
       };
 

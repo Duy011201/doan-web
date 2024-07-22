@@ -28,6 +28,14 @@
         <quill-editor id="introduce" [(ngModel)]="data.content" [style]="{'height':'200px'}"
           placeholder="Nhập nội dung tại đây..."></quill-editor>
       </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="" class="font-semibold">Ảnh bìa<span class="pl-2 text-red-600">*</span></label>
+        <img width="200" height="200" src="{{ pathEnvironment + '/' + data.image }}" alt="favicon" />
+        <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+      </div>
     </div>
   </div>
   <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW" class="flex justify-content-end gap-2 mt-3">
