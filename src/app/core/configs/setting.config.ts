@@ -11,6 +11,7 @@ export const SETTING = {
     HEADER_JOB: 'job',
     HEADER_COMPANY: 'company',
     HEADER_TABLE_PRICE: 'table-price',
+    HEADER_ORDER: 'manager-order',
 
     // TODO: Url for related auth pages
     AUTH_REGISTER: 'register',
@@ -27,7 +28,8 @@ export const SETTING = {
     MANAGER_ORDER_APPROVAL: 'manager-order-approval',
     MANAGER_CART: 'manager-cart',
     MANAGER_HISTORY: 'manager-history',
-    HEADER_ORDER: 'manager-order',
+    MANAGER_RECRUITMENT: 'manager-recruitment',
+
   },
   SYSTEM_ROLE: {
     SUPER_ADMIN: 'SUPER_ADMIN',
@@ -91,10 +93,24 @@ export const SETTING = {
     INVALID_SERVICE_PACK_PRICE: 'Định dạng giá gói dịch vụ không hợp lệ',
     INVALID_SERVICE_PACK_PROMOTION: 'Định dạng khuyến mãi không hợp lệ',
     INVALID_SERVICE_PACK_EXPIRATION_DATE: 'Định dạng ngày hết hạn không hợp lệ',
+
+    INVALID_KEYWORD_FORMAT: 'Định dạng từ khóa không hợp lệ',
+    INVALID_DESCRIPTION_FORMAT: 'Định dạng mô tả không hợp lệ',
+    INVALID_ADDRESS_FORMAT: 'Định dạng địa chỉ không hợp lệ',
+    INVALID_REQUIRED_FORMAT: 'Định dạng yêu cầu không hợp lệ',
+    INVALID_PROVINCE_FORMAT: 'Định dạng tỉnh không hợp lệ',
+    INVALID_FIELD_FORMAT: 'Định dạng lĩnh vực không hợp lệ',
+    INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương từ không hợp lệ',
+    INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương đến không hợp lệ',
   },
   PRODUCT_STATUS: {
     DRAFT: 'DRAFT',
     PENDING: 'PENDING',
     PAID: 'PAID',
+  },
+  RECRUITMENT: {
+    PENDING: 'PENDING',
+    APPROVED: 'APPROVED',
+    PUBLISHED: 'PUBLISHED',
   },
 };

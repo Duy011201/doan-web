@@ -288,4 +288,54 @@ export class PageService {
         })
       );
   }
+
+  public getAllRecruitment(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_RECRUITMENT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public updateRecruitment(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.UPDATE_RECRUITMENT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public createRecruitment(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_RECRUITMENT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public deleteRecruitment(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_RECRUITMENT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public statusRecruitment(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.STATUS_RECRUITMENT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

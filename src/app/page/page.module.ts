@@ -19,6 +19,8 @@ import { HistoryComponent } from './history/history.component';
 import { OrderComponent } from './order/order.component';
 import { OrderApprovalComponent } from './order-approval/order-approval.component';
 import { SharedModule } from '../share/share.module';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { DialogRecruitmentComponent } from './recruitment/dialog/dialog.component';
 
 @NgModule({
   imports: [PageRoutesModule, SharedModule],
@@ -40,6 +42,8 @@ import { SharedModule } from '../share/share.module';
     HistoryComponent,
     OrderComponent,
     OrderApprovalComponent,
+    RecruitmentComponent,
+    DialogRecruitmentComponent
   ],
   providers: [PageService],
 })

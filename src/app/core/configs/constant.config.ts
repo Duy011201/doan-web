@@ -223,7 +223,7 @@ export const CONSTANT = {
     { CODE: 'EMPLOYER', NAME: 'Nhà tuyển dụng' },
   ],
   BLOG_STATUS: [
-    { CODE: 'PENDING', NAME: 'Đang chờ xử lý' },
+    { CODE: 'PENDING', NAME: 'Đang chờ duyệt' },
     { CODE: 'APPROVED', NAME: 'Đã phê duyệt' },
     { CODE: 'PUBLISHED', NAME: 'Đã xuất bản' },
   ],
@@ -231,5 +231,10 @@ export const CONSTANT = {
     { CODE: 'DRAFT', NAME: 'Chưa thanh toán' },
     { CODE: 'PENDING', NAME: 'Chờ duyệt' },
     { CODE: 'PAID', NAME: 'Đã thanh toán' },
+  ],
+  RECRUITMENT: [
+    { CODE: 'PENDING', NAME: 'Đang chờ duyệt' },
+    { CODE: 'APPROVED', NAME: 'Đã phê duyệt' },
+    { CODE: 'PUBLISHED', NAME: 'Đã xuất bản' },
   ],
 };

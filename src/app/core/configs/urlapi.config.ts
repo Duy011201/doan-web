@@ -51,4 +51,11 @@ export enum UrlApi {
 
   // history
   GET_ALL_HISTORY = `api/history/get-all`,
+
+  // recruitment
+  CREATE_RECRUITMENT = `api/recruitment/create`,
+  UPDATE_RECRUITMENT = `api/recruitment/update`,
+  DELETE_RECRUITMENT = `api/recruitment/delete`,
+  GET_ALL_RECRUITMENT = `api/recruitment/get-all`,
+  STATUS_RECRUITMENT = `api/recruitment/status`,
 }

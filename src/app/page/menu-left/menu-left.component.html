@@ -48,7 +48,9 @@
     <span>Quản lý bài viết</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_PAGE + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT) }">
     <i class="fa-solid fa-bullhorn text-xl"></i>
     <span>Quản lý tin tuyển dụng</span>
   </div>
