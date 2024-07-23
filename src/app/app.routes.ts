@@ -3,6 +3,8 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { HomeComponent } from './page/home/home.component';
 import { SETTING } from './core/configs/setting.config';
 import { TablePriceComponent } from './page/table-price/table-price.component';
+import { BlogNewComponent } from './page/blog-new/blog-new.component';
+import { BlogNewDetailComponent } from './page/blog-new-detail/blog-new-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
@@ -24,6 +26,16 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.HEADER_TABLE_PRICE,
     component: TablePriceComponent,
+    data: { showHeader: true, showFooter: true },
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_BLOG_NEW,
+    component: BlogNewComponent,
+    data: { showHeader: true, showFooter: true },
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_BLOG_NEW_DETAIL,
+    component: BlogNewDetailComponent,
     data: { showHeader: true, showFooter: true },
   },
   {

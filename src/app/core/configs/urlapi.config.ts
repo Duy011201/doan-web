@@ -29,6 +29,8 @@ export enum UrlApi {
   DELETE_BLOG = `api/blog/delete`,
   GET_ALL_BLOG = `api/blog/get-all`,
   STATUS_BLOG = `api/blog/status`,
+  VIEW_BLOG = `api/blog/view`,
+  GET_BY_ID_BLOG = `api/blog/get-by-id`,
 
   // upload
   STORE_UPLOAD = 'api/store/upload',

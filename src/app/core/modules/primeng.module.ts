@@ -43,6 +43,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BlockUIModule } from 'primeng/blockui';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @NgModule({
   declarations: [],
@@ -90,6 +92,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     BlockUIModule,
     EditorModule,
     InputNumberModule,
+    IconFieldModule,
+    InputIconModule,
   ],
   exports: [
     CarouselModule,
@@ -135,6 +139,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     BlockUIModule,
     EditorModule,
     InputNumberModule,
+    IconFieldModule,
+    InputIconModule,
   ],
   providers: [MessageService],
 })

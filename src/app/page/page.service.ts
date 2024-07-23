@@ -149,6 +149,16 @@ export class PageService {
       );
   }
 
+  public getByIDBlog(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_BY_ID_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public updateBlog(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.UPDATE_BLOG}`, body)
@@ -182,6 +192,16 @@ export class PageService {
   public statusBlog(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.STATUS_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public viewBlog(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.VIEW_BLOG}`, body)
       .pipe(
         map((res) => {
           return res;

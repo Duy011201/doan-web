@@ -1,0 +1,56 @@
+<app-loading></app-loading>
+<section class="pl-8 pr-8">
+
+  <h2 class="text-center">Bảng tin tức</h2>
+
+
+  <div class="grid">
+    <div class="col-8">
+
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-search" />
+        <input type="text" pInputText placeholder="Nhập từ khóa" [(ngModel)]="keyword" (change)="onSearchKeyword()"
+          style="width: 100%;" />
+      </p-iconField>
+
+      <div class="grid mt-3">
+        <div *ngFor="let item of listBlog">
+          <div class="col-12" *ngIf="listBlogView.length < 21">
+            <div class="wrap-item-left border-round-md p-2" (click)="apiView(item)"
+              [routerLink]="['/blog-new', item.blogID]">
+              <div class="overflow-hidden" style="width: 263px; height: 250px;">
+                <img src="{{ pathEnvironment + '/' + item.image }}" />
+              </div>
+              <div>
+                <span class="block mt-3 text-gray-500">{{item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
+                <span class="block mt-3 hover:underline" [title]="item.title">{{item.title ? truncateString(item.title,
+                  20) : '...' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="text-xl font-semibold">Tin nổi bật</div>
+
+      <div *ngFor="let item of listBlogView">
+        <div *ngIf="listBlogView.length < 7" class="wrap-item-right flex gap-2 border-round-md p-2"
+          (click)="apiView(item)" [routerLink]="['/blog-new', item.blogID]">
+          <div class="overflow-hidden" style="width: 120px; height: 80px;">
+            <img src="{{ pathEnvironment + '/' + item.image }}" />
+          </div>
+          <div>
+            <span class="block text-gray-500">{{item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
+            <span class="block mt-3 hover:underline" [title]="item.title">{{item.title ? truncateString(item.title, 20)
+              : '...' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</section>

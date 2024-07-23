@@ -2,24 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PageService } from '../page.service';
 import { SETTING } from '../../core/configs/setting.config';
-import { RequestApiService } from '../../core/services/request-api.service';
-import { FormsModule } from '@angular/forms';
-import { MessagesModule } from 'primeng/messages';
-import { ToastModule } from 'primeng/toast';
-import { PrimengModule } from '../../core/modules/primeng.module';
 import { environment } from '../../core/environments/develop.environment';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
+import { SharedModule } from '../../share/share.module';
 
 @Component({
   selector: 'app-table-price',
   standalone: true,
-  imports: [PrimengModule, FormsModule, ToastModule, MessagesModule],
-  providers: [
-    PageService,
-    MessageService,
-    ConfirmationService,
-    RequestApiService,
-  ],
+  imports: [SharedModule],
+  providers: [PageService, MessageService, ConfirmationService],
   templateUrl: './table-price.component.html',
   styleUrl: './table-price.component.scss',
 })

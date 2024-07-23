@@ -7,7 +7,8 @@ export const SETTING = {
 
     // TODO: Url for related home pages
     HEADER_HOME: 'home',
-    HEADER_BLOG: 'blog',
+    HEADER_BLOG_NEW: 'blog-new',
+    HEADER_BLOG_NEW_DETAIL: 'blog-new/:id',
     HEADER_JOB: 'job',
     HEADER_COMPANY: 'company',
     HEADER_TABLE_PRICE: 'table-price',
