@@ -64,7 +64,14 @@
         <label for="dob" class="font-semibold">Ảnh đại diện<span class="pl-2 text-red-600">*</span></label>
         <img width="200" height="200" src="{{ pathEnvironment + '/' + data.avatar }}" alt="favicon" />
         <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
-          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+          <input type="file" (change)="onFileSelected($event, 'image')" accept="image/*">
+        </div>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="dob" class="font-semibold">CV<span class="pl-2 text-red-600">*</span></label>
+        <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
+          <input type="file" (change)="onFileSelected($event, 'profile')" accept="application/pdf">
         </div>
       </div>
 

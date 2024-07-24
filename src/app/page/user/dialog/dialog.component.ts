@@ -35,7 +35,8 @@ export class DialogUserComponent implements OnInit {
   selectStatus: any = {};
   selectCompany: any = {};
 
-  listFile: any = [];
+  listFileImage: any = [];
+  listFileProfile: any = [];
   listCompany: any = [];
   listRole: any = [];
 
@@ -79,10 +80,11 @@ export class DialogUserComponent implements OnInit {
     );
   }
 
-  onFileSelected(event: any) {
+  onFileSelected(event: any, type: string) {
     if (event.target.files && event.target.files.length > 0) {
       for (let i = 0; i < event.target.files.length; i++) {
-        this.listFile.push(event.target.files[i]);
+        if(type === 'image') this.listFileImage.push(event.target.files[i]);
+        if(type === 'profile') this.listFileProfile.push(event.target.files[i]);
       }
     }
   }
@@ -92,7 +94,8 @@ export class DialogUserComponent implements OnInit {
       this.service.upload(payload, files).subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-            this.listFile = [];
+            this.listFileImage = [];
+            this.listFileProfile = [];
             resolve(result.data);
           } else {
             reject(new Error('Upload failed'));
@@ -136,9 +139,14 @@ export class DialogUserComponent implements OnInit {
   public async onCreateUser(): Promise<void> {
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
 
-    let fileSelect = [];
-    if (this.listFile.length > 0) {
-      fileSelect = await this.uploadFile({ userID: createdBy }, this.listFile);
+    let fileImage = [];
+    let fileProfile = [];
+    if (this.listFileImage.length > 0) {
+      fileImage = await this.uploadFile({ userID: createdBy }, this.listFileImage);
+    }
+
+    if (this.listFileProfile.length > 0) {
+      fileProfile = await this.uploadFile({ userID: createdBy }, this.listFileProfile);
     }
 
     if (this.validInput()) {
@@ -150,7 +158,8 @@ export class DialogUserComponent implements OnInit {
         education: this.selectEducation?.CODE || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: fileSelect[0]?.filePath || this.data.avatar || '',
+        avatar: fileImage[0]?.filePath || this.data.avatar || '',
+        profile: fileProfile[0]?.filePath || this.data.profile || '',
         email: this.data.email,
         role: this.selectRole.CODE,
         createdBy: createdBy,
@@ -162,9 +171,14 @@ export class DialogUserComponent implements OnInit {
   public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
 
-    let fileSelect = [];
-    if (this.listFile.length > 0) {
-      fileSelect = await this.uploadFile({ userID: updatedBy }, this.listFile);
+    let fileImage = [];
+    let fileProfile = [];
+    if (this.listFileImage.length > 0) {
+      fileImage = await this.uploadFile({ userID: updatedBy }, this.listFileImage);
+    }
+
+    if (this.listFileProfile.length > 0) {
+      fileProfile = await this.uploadFile({ userID: updatedBy }, this.listFileProfile);
     }
 
     if (this.validInput()) {
@@ -177,7 +191,8 @@ export class DialogUserComponent implements OnInit {
         education: this.selectEducation?.CODE || '',
         certificate: this.data.certificate || '',
         phone: this.data.phone || '',
-        avatar: fileSelect[0]?.filePath || this.data.avatar || '',
+        avatar: fileImage[0]?.filePath || this.data.avatar || '',
+        profile: fileProfile[0]?.filePath || this.data.profile || '',
         email: this.data.email,
         roleID: this.selectRole.roleID || this.data.roleID,
         status: this.selectStatus.CODE || this.data.status,
