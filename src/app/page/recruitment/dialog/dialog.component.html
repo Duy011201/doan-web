@@ -52,6 +52,15 @@
         </div>
       </div>
 
+      <div class="col-12">
+        <div class="flex flex-column gap-2">
+          <label for="address" class="font-semibold">Thời gian tuyển dụng (ngày)<span
+              class="pl-2 text-red-600">*</span></label>
+          <p-inputNumber class="flex-auto" [(ngModel)]="data.timeExpiration" mode="decimal" inputId="withoutgrouping"
+            [useGrouping]="false" [style]="{ width: '100%' }" />
+        </div>
+      </div>
+
       <div class="col-6">
         <div class="flex flex-column gap-2">
           <label for="address" class="font-semibold">Mức lương từ<span class="pl-2 text-red-600">*</span></label>
