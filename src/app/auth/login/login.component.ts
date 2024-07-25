@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
 import {
+  getFromLocalStorage,
   isEmail,
   isEmpty,
-  isPassword,
+  isPassword, removeQuotes,
   saveToLocalStorage,
 } from '../../core/commons/func';
 import { SETTING } from '../../core/configs/setting.config';
@@ -19,7 +20,8 @@ import { LoadingService } from '../../core/services/loading.service';
 export class LoginComponent {
   public email: string = '';
   public password: string = '';
-  public SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
+  SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
+  SYSTEM_ROLE = SETTING.SYSTEM_ROLE;
 
   constructor(
     private messageService: MessageService,
@@ -72,9 +74,25 @@ export class LoginComponent {
             saveToLocalStorage('userID', result.data['userID']);
             saveToLocalStorage('token', result.data['token']);
             saveToLocalStorage('role', result.data['role']);
-            this.onNextPage(
-              this.SYSTEM_PAGE.RELATED_PAGE + '/' + this.SYSTEM_PAGE.DASHBOARD
-            );
+
+            if (removeQuotes(getFromLocalStorage('role')) === this.SYSTEM_ROLE.ADMIN) {
+              this.onNextPage(
+                this.SYSTEM_PAGE.RELATED_ADMIN + '/' + this.SYSTEM_PAGE.DASHBOARD
+              );
+            }
+
+            if (removeQuotes(getFromLocalStorage('role')) === this.SYSTEM_ROLE.EMPLOYER) {
+              this.onNextPage(
+                this.SYSTEM_PAGE.RELATED_EMPLOYER + '/' + this.SYSTEM_PAGE.DASHBOARD
+              );
+            }
+
+            if (removeQuotes(getFromLocalStorage('role')) === this.SYSTEM_ROLE.CANDIDATE) {
+              this.onNextPage(
+                this.SYSTEM_PAGE.RELATED_CANDIDATE + '/' + this.SYSTEM_PAGE.DASHBOARD
+              );
+            }
+
           }, 500);
         }
       },

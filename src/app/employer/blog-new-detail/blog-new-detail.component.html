@@ -1,0 +1,44 @@
+<app-loading></app-loading>
+<section class="pl-8 pr-8">
+
+  <h2 class="text-center">Tin tức</h2>
+
+  <div class="grid">
+    <div class="col-8">
+      <div class="overflow-hidden">
+        <img class="w-full h-30rem" src="{{ pathEnvironment + '/' + itemBlog.image }}" />
+      </div>
+
+      <h3 [title]="itemBlog.title">{{itemBlog.title ? truncateString(itemBlog.title, 50) : '...' }}</h3>
+
+      <div style="border: 1px solid var(--primary-app-box-shadow)"></div>
+
+      <span class="block mt-3 text-gray-500">{{itemBlog.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span><i
+        class="fa-solid fa-eye text-xs text-gray-500"> {{itemBlog.view}}</i>
+
+      <div class="mt-5" [innerHTML]="itemBlog.content"></div>
+    </div>
+
+    <div class="col-4">
+      <div class="text-xl font-semibold">Tin nổi bật</div>
+
+      <div *ngFor="let item of listBlogView">
+        <div *ngIf="listBlogView.length < 11" class="wrap-item flex gap-2 border-round-md p-2" (click)="apiView(item)"
+          [routerLink]="['/blog-new', item.blogID]">
+          <div class="overflow-hidden" style="width: 120px; height: 80px;">
+            <img src="{{ pathEnvironment + '/' + item.image }}" />
+          </div>
+          <div class="">
+            <span class="block text-gray-500">{{item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span><i
+              class="fa-solid fa-eye text-xs text-gray-500"> {{item.view}}</i>
+            <span class="block mt-3 hover:underline" [title]="item.title">{{item.title ? truncateString(item.title, 30)
+              : '...' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</section>

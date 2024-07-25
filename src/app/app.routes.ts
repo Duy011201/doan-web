@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
-import { HomeComponent } from './page/home/home.component';
+import { HomeComponent } from './admin/home/home.component';
 import { SETTING } from './core/configs/setting.config';
-import { TablePriceComponent } from './page/table-price/table-price.component';
-import { BlogNewComponent } from './page/blog-new/blog-new.component';
-import { BlogNewDetailComponent } from './page/blog-new-detail/blog-new-detail.component';
+import { TablePriceComponent } from './admin/table-price/table-price.component';
+import { BlogNewComponent } from './admin/blog-new/blog-new.component';
+import { BlogNewDetailComponent } from './admin/blog-new-detail/blog-new-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
@@ -19,8 +19,13 @@ export const routes: Routes = [
     data: { showHeader: false, showFooter: false },
   },
   {
-    path: SETTING.SYSTEM_PAGE.RELATED_PAGE,
-    loadChildren: () => import('./page/page.module').then((m) => m.PageModule),
+    path: SETTING.SYSTEM_PAGE.RELATED_ADMIN,
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+    data: { showHeader: true, showFooter: true },
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.RELATED_EMPLOYER,
+    loadChildren: () => import('./employer/employer.module').then((m) => m.EmployerModule),
     data: { showHeader: true, showFooter: true },
   },
   {

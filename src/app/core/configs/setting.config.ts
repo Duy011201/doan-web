@@ -2,7 +2,10 @@ export const SETTING = {
   SYSTEM_PAGE: {
     // TODO: Url for related system pages
     RELATED_PAGE: 'page',
+    RELATED_ADMIN: 'admin',
     RELATED_AUTH: 'auth',
+    RELATED_EMPLOYER: 'employer',
+    RELATED_CANDIDATE: 'candidate',
     RELATED_404: '**',
 
     // TODO: Url for related home pages
@@ -33,7 +36,7 @@ export const SETTING = {
 
   },
   SYSTEM_ROLE: {
-    SUPER_ADMIN: 'SUPER_ADMIN',
+    // SUPER_ADMIN: 'SUPER_ADMIN',
     ADMIN: 'ADMIN',
     CANDIDATE: 'CANDIDATE',
     EMPLOYER: 'EMPLOYER',
@@ -101,6 +104,7 @@ export const SETTING = {
     INVALID_REQUIRED_FORMAT: 'Định dạng yêu cầu không hợp lệ',
     INVALID_PROVINCE_FORMAT: 'Định dạng tỉnh không hợp lệ',
     INVALID_FIELD_FORMAT: 'Định dạng lĩnh vực không hợp lệ',
+    INVALID_TIME_EXPIRATION_FORMAT: 'Định dạng thời gian tuyển dụng không hợp lệ',
     INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương từ không hợp lệ',
     INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương đến không hợp lệ',
     INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT: 'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',

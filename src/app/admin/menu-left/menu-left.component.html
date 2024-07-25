@@ -1,0 +1,84 @@
+<div class="flex flex-column gap-2">
+  <div class="w-17rem h-10rem p-3 border-round border-1 box-shadow-app card-profile hover:shadow-1">
+
+    <div class="flex gap-3 align-items-center">
+      <div class="sc-1e10a484-7 jSWjIJ">
+        <svg width="70" height="70" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="90" height="90" rx="45" fill="#E6EFFF"></rect>
+          <path
+            d="M55.9759 54.1993C62.3237 54.1993 67.8409 48.5041 67.8409 41.0884C67.8409 33.7618 62.3237 28.3335 55.9759 28.3335C49.6281 28.3335 44.1109 33.8804 44.1109 41.1477C44.1109 48.5041 49.5984 54.1993 55.9759 54.1993ZM37.3181 81.6668H74.5743C79.261 81.6668 80.9221 80.332 80.9221 77.7217C80.9221 70.0688 71.3411 59.5089 55.9462 59.5089C40.581 59.5089 31 70.0688 31 77.7217C31 80.332 32.6611 81.6668 37.3181 81.6668Z"
+            fill="#CCDEFF"></path>
+        </svg>
+      </div>
+      <p class="text-white">Nguyen Admin</p>
+    </div>
+
+    <div class="pt-2 pb-2 pl-3 pr-3 bg-white border-round">
+      <span class="block text-sm">Cho phép tìm kiếm hồ sơ</span>
+      <span class="block mt-2 text-xs txt-sub-title"
+        (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)">Thiết Lập Hồ Sơ</span>
+    </div>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD) }">
+    <i class="fa-solid fa-address-card text-xl"></i>
+    <span>Hồ sơ của tôi</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER) }">
+    <i class="fa-solid fa-user text-xl"></i>
+    <span>Quản lý người dùng</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY) }">
+    <i class="fa-solid fa-building text-xl"></i>
+    <span>Quản lý công ty</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG) }">
+    <i class="fa-solid fa-newspaper text-xl"></i>
+    <span>Quản lý bài viết</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT) }">
+    <i class="fa-solid fa-bullhorn text-xl"></i>
+    <span>Quản lý tin tuyển dụng</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL) }">
+    <i class="fa-solid fa-cart-shopping text-xl"></i>
+    <span>Quản lý đơn hàng</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK) }">
+    <i class="fa-solid fa-cube text-xl"></i>
+    <span>Quản lý gói dịch vụ</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION) }">
+    <i class="fa-solid fa-bell text-xl"></i>
+    <span>Quản lý thông báo người dùng</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+    <i class="fa-solid fa-chart-line text-xl"></i>
+    <span>Báo cáo thống kê</span>
+  </div>
+
+</div>

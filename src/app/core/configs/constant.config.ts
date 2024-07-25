@@ -217,7 +217,7 @@ export const CONSTANT = {
     { CODE: 'LOCK', NAME: 'Khóa' },
   ],
   SYSTEM_ROLE: [
-    { CODE: 'SUPER_ADMIN', NAME: 'SUPER_ADMIN' },
+    // { CODE: 'SUPER_ADMIN', NAME: 'SUPER_ADMIN' },
     { CODE: 'ADMIN', NAME: 'ADMIN' },
     { CODE: 'CANDIDATE', NAME: 'Ứng viên' },
     { CODE: 'EMPLOYER', NAME: 'Nhà tuyển dụng' },

@@ -1,18 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
-import { MessagesModule } from 'primeng/messages';
-import { LoadingComponent } from '../component/loading/loading.component';
-import { PrimengModule } from '../core/modules/primeng.module';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { RequestApiService } from '../core/services/request-api.service';
-import { QuillModule } from 'ngx-quill';
-import { HttpClientModule } from '@angular/common/http';
-import { LoadingService } from '../core/services/loading.service';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ToastModule} from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {LoadingComponent} from '../component/loading/loading.component';
+import {PrimengModule} from '../core/modules/primeng.module';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {RequestApiService} from '../core/services/request-api.service';
+import {QuillModule} from 'ngx-quill';
+import {HttpClientModule} from '@angular/common/http';
+import {LoadingService} from '../core/services/loading.service';
+import {DynamicPipe} from "../core/pipes/dynamic-pipe";
 
 @NgModule({
-  declarations: [LoadingComponent],
+  declarations: [LoadingComponent, DynamicPipe],
   imports: [
     CommonModule,
     PrimengModule,
@@ -33,6 +34,7 @@ import { LoadingService } from '../core/services/loading.service';
     LoadingComponent,
     ReactiveFormsModule,
     HttpClientModule,
+    DynamicPipe
   ],
   providers: [
     RequestApiService,
@@ -42,5 +44,6 @@ import { LoadingService } from '../core/services/loading.service';
   ],
 })
 export class SharedModule {
-  constructor() {}
+  constructor() {
+  }
 }
