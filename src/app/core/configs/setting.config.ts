@@ -20,6 +20,7 @@ export const SETTING = {
     // TODO: Url for related auth pages
     AUTH_REGISTER: 'register',
     AUTH_LOGIN: 'login',
+    AUTH_LOGOUT: 'logout',
     AUTH_FORGOT_PASSWORD: 'forgot-password',
 
     // TODO: Url for related pages
@@ -33,7 +34,6 @@ export const SETTING = {
     MANAGER_CART: 'manager-cart',
     MANAGER_HISTORY: 'manager-history',
     MANAGER_RECRUITMENT: 'manager-recruitment',
-
   },
   SYSTEM_ROLE: {
     // SUPER_ADMIN: 'SUPER_ADMIN',
@@ -104,10 +104,12 @@ export const SETTING = {
     INVALID_REQUIRED_FORMAT: 'Định dạng yêu cầu không hợp lệ',
     INVALID_PROVINCE_FORMAT: 'Định dạng tỉnh không hợp lệ',
     INVALID_FIELD_FORMAT: 'Định dạng lĩnh vực không hợp lệ',
-    INVALID_TIME_EXPIRATION_FORMAT: 'Định dạng thời gian tuyển dụng không hợp lệ',
+    INVALID_TIME_EXPIRATION_FORMAT:
+      'Định dạng thời gian tuyển dụng không hợp lệ',
     INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương từ không hợp lệ',
     INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương đến không hợp lệ',
-    INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT: 'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',
+    INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT:
+      'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',
   },
   PRODUCT_STATUS: {
     DRAFT: 'DRAFT',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SETTING } from '../../core/configs/setting.config';
 import { CommonModule } from '@angular/common';
-import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
+import { getFromLocalStorage, removeQuotes } from '../../core/commons/func';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +14,29 @@ import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
 export class HeaderComponent implements OnInit {
   SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
   SYSTEM_ROLE = SETTING.SYSTEM_ROLE;
-  isEmployer = removeQuotes(getFromLocalStorage('role'))
+  isEmployer = '';
+  isLogin = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    const role = getFromLocalStorage('role');
+    this.isEmployer = role ? removeQuotes(role) : '';
 
-  ngOnInit(): void {
+    const token = getFromLocalStorage('token');
+    this.isLogin = token ? removeQuotes(token) : '';
   }
+
+  ngOnInit(): void {}
 
   public onNextPage(key: string): void {
     this.router.navigate([key]);
+  }
+
+  public logout(): void {
+    localStorage.clear();
+    this.onNextPage(
+      this.SYSTEM_PAGE.RELATED_AUTH + '/' + this.SYSTEM_PAGE.AUTH_LOGIN
+    );
+    // this.router.navigate(['/login']);
   }
 
   public isRouteActive(routePath: string): boolean {
