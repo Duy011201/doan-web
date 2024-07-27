@@ -91,6 +91,8 @@
           </td>
           <td>
             <div class="flex gap-2">
+              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
+                (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
               <i *ngIf="item.status === RECRUITMENT_STATUS.PENDING" class="text-xl icon fa-solid fa-repeat"
                 (click)="apiStatus(item, RECRUITMENT_STATUS.APPROVED)"></i>
               <i *ngIf="item.status === RECRUITMENT_STATUS.APPROVED" class="text-xl icon fa-solid fa-bullhorn"

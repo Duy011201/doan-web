@@ -28,7 +28,7 @@
       <div class="col-6">
         <div class="flex flex-column gap-2">
           <label for="status" class="font-semibold">Trạng thái<span class="pl-2 text-red-600">*</span></label>
-          <p-dropdown [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" id="status" [options]="LIST_RECRUITMENT"
+          <p-dropdown [disabled]="true" id="status" [options]="LIST_RECRUITMENT"
             [(ngModel)]="selectStatus" placeholder="Chọn trạng thái" optionLabel="NAME" [showClear]="true"
             [style]="{ width: '100%' }">
           </p-dropdown>

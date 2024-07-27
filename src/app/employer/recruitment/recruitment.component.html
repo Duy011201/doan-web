@@ -93,9 +93,11 @@
           </td>
           <td>
             <div class="flex gap-2">
-              <i *ngIf="item.status !== RECRUITMENT_STATUS.PUBLISHED" class="text-xl icon fa-solid fa-pen-to-square" pTooltip="Chỉnh sửa"
-                (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
-              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa gói dịch vụ"
+              <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
+                (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
+              <i *ngIf="item.status !== RECRUITMENT_STATUS.PUBLISHED" class="text-xl icon fa-solid fa-pen-to-square"
+                pTooltip="Chỉnh sửa" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
+              <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa tin tuyển dụng"
                 (click)="confirmDelete($event, item)"></i>
             </div>
           </td>
@@ -118,6 +120,7 @@
 
   <p-toast></p-toast>
   <p-confirmDialog></p-confirmDialog>
-  <app-employer-recruitment-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
+  <app-employer-recruitment-dialog [visible]="visible" [data]="dataDialog"
+    (visibleChange)="handleVisibleChange($event)">
   </app-employer-recruitment-dialog>
 </div>
