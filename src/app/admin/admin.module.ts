@@ -16,6 +16,7 @@ import { OrderApprovalComponent } from './order-approval/order-approval.componen
 import { SharedModule } from '../share/share.module';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DialogRecruitmentComponent } from './recruitment/dialog/dialog.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [AdminRoutesModule, SharedModule],
@@ -33,7 +34,8 @@ import { DialogRecruitmentComponent } from './recruitment/dialog/dialog.componen
     DialogServiceDialogComponent,
     OrderApprovalComponent,
     RecruitmentComponent,
-    DialogRecruitmentComponent
+    DialogRecruitmentComponent,
+    ChangePasswordComponent
   ],
   providers: [AdminService],
 })

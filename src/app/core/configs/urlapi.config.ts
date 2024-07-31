@@ -8,20 +8,21 @@ export enum UrlApi {
   // role
   ADMIN_GET_ALL_ROLE = `api/role/get-all`,
 
-  // user
+  // company
   CREATE_COMPANY = `api/company/create`,
   UPDATE_COMPANY = `api/company/update`,
   DELETE_COMPANY = `api/company/delete`,
   GET_ALL_COMPANY = `api/company/get-all`,
   LOCK_COMPANY = `api/company/lock`,
 
-  // company
+  // user
   ADMIN_CREATE_USER = `api/admin/user/create`,
   ADMIN_UPDATE_USER = `api/admin/user/update`,
   ADMIN_DELETE_USER = `api/admin/user/delete`,
   ADMIN_RESET_PASSWORD_USER = `api/admin/user/reset-password`,
   ADMIN_GET_ALL_USER = `api/admin/user/get-all`,
   ADMIN_LOCK_USER = `api/admin/user/lock`,
+  ADMIN_CHANGE_PASSWORD = `api/admin/user/change-password`,
 
   // blog
   CREATE_BLOG = `api/blog/create`,

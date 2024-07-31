@@ -79,6 +79,16 @@ export class EmployerService {
       );
   }
 
+  public changePasswordUser(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_CHANGE_PASSWORD}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public upload(body: object, files: any) {
     return this._requestApiService
       .postApiHeaderFile(`${UrlApi.STORE_UPLOAD}`, body, files)

@@ -69,6 +69,16 @@ export class AdminService {
       );
   }
 
+  public changePasswordUser(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_CHANGE_PASSWORD}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public lockUser(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.ADMIN_LOCK_USER}`, body)

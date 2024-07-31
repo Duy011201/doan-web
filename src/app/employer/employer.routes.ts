@@ -7,7 +7,6 @@ import {BlogComponent} from "./blog/blog.component";
 import {NotificationComponent} from "./notification/notification.component";
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
-import { OrderComponent } from './order/order.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 
 export const routes: Routes = [
@@ -31,10 +30,6 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_HISTORY,
     component: HistoryComponent,
-  },
-  {
-    path: SETTING.SYSTEM_PAGE.HEADER_ORDER,
-    component: OrderComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_RECRUITMENT,

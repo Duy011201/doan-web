@@ -9,10 +9,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { CartComponent } from './cart/cart.component';
 import { DialogCartComponent } from './cart/dialog/dialog.component';
 import { HistoryComponent } from './history/history.component';
-import { OrderComponent } from './order/order.component';
 import { SharedModule } from '../share/share.module';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DialogRecruitmentComponent } from './recruitment/dialog/dialog.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [EmployerRoutesModule, SharedModule],
@@ -25,9 +25,9 @@ import { DialogRecruitmentComponent } from './recruitment/dialog/dialog.componen
     CartComponent,
     DialogCartComponent,
     HistoryComponent,
-    OrderComponent,
     RecruitmentComponent,
-    DialogRecruitmentComponent
+    DialogRecruitmentComponent,
+    ChangePasswordComponent,
   ],
   providers: [EmployerService],
 })

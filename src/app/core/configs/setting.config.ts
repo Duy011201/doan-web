@@ -34,6 +34,7 @@ export const SETTING = {
     MANAGER_CART: 'manager-cart',
     MANAGER_HISTORY: 'manager-history',
     MANAGER_RECRUITMENT: 'manager-recruitment',
+    MANAGER_CHANGE_PASSWORD: 'manager-change-password',
   },
   SYSTEM_ROLE: {
     // SUPER_ADMIN: 'SUPER_ADMIN',
