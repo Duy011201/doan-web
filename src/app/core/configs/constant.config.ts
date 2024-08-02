@@ -237,4 +237,8 @@ export const CONSTANT = {
     { CODE: 'APPROVED', NAME: 'Đã phê duyệt' },
     { CODE: 'PUBLISHED', NAME: 'Đã xuất bản' },
   ],
+  TIME_FORM: [
+    { CODE: 'PART_TIME', NAME: 'Bán thời gian' },
+    { CODE: 'FULL_TIME', NAME: 'Toàn thời gian' },
+  ],
 };

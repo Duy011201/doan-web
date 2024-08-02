@@ -6,13 +6,13 @@
     <div class="flex flex-column gap-4">
       <div class="flex flex-column gap-2">
         <label for="name" class="font-semibold">Tiêu đề<span class="pl-2 text-red-600">*</span></label>
-        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.title" (change)="onChangeTitle($event)" />
+        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.title" (change)="onChangeTitle($event)" placeholder="Nhập tiêu đề" />
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="email" class="font-semibold">Từ khóa<span class="pl-2 text-red-600">*</span></label>
         <input [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" pInputText id="email" class="flex-auto"
-          [(ngModel)]="data.keyword" />
+          [(ngModel)]="data.keyword" placeholder="Nhập từ khóa" />
       </div>
 
       <div class="flex flex-column gap-2">

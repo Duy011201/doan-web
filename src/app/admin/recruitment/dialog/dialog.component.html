@@ -96,7 +96,5 @@
   </div>
   <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW" class="flex justify-content-end gap-2 mt-3">
     <p-button label="Cancel" severity="secondary" (click)="onHideDialog()"></p-button>
-    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.CREATE" label="Create" (click)="onCreate()"></p-button>
-    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.UPDATE" label="Save" (click)="onUpdate()"></p-button>
   </div>
 </p-dialog>

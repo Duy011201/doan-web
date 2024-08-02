@@ -5,30 +5,30 @@
   <div class="grid col" [style.pointer-events]="data.actionDialog === SYSTEM_ACTION.VIEW ? 'none' : 'auto'">
     <div class="col-12 flex flex-column gap-2">
       <label for="name" class="font-semibold">Tên gói dịch vụ<span class="pl-2 text-red-600">*</span></label>
-      <input pInputText id="name" class="flex-auto" [(ngModel)]="data.servicePackName" />
+      <input pInputText id="name" class="flex-auto" [(ngModel)]="data.servicePackName" placeholder="Nhập tên gói dịch vụ" />
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="address" class="font-semibold">Khuyến mãi<span class="pl-2 text-red-600">*</span></label>
+      <label for="address" class="font-semibold">Khuyến mãi (%)<span class="pl-2 text-red-600">*</span></label>
       <p-inputNumber inputId="integeronly" class="flex-auto" [style]="{ width: '100%' }" [(ngModel)]="data.promotion"
-        [min]="0" [max]="100" />
+        [min]="0" [max]="100" placeholder="Nhập khuyến mãi"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="website" class="font-semibold">Giá cước<span class="pl-2 text-red-600">*</span></label>
+      <label for="website" class="font-semibold">Giá gói (VNĐ)<span class="pl-2 text-red-600">*</span></label>
       <p-inputNumber inputId="integeronly" class="flex-auto w-full" [style]="{ width: '100%' }"
-        [(ngModel)]="data.price" />
+        [(ngModel)]="data.price" placeholder="Nhập giá gói"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="website" class="font-semibold">Thời gian hết hạn<span class="pl-2 text-red-600">*</span></label>
+      <label for="website" class="font-semibold">Thời gian hết hạn (ngày)<span class="pl-2 text-red-600">*</span></label>
       <p-inputNumber inputId="integeronly" class="flex-auto w-full" [style]="{ width: '100%' }"
-        [(ngModel)]="data.expirationDate" [min]="1" [max]="100" />
+        [(ngModel)]="data.expirationDate" [min]="1" [max]="100" placeholder="Nhập thời gian hết hạn"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
       <label for="website" class="font-semibold">Mô tả<span class="pl-2 text-red-600">*</span></label>
-      <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="data.content"></textarea>
+      <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="data.content" placeholder="Nhập mô tả"></textarea>
     </div>
 
     <div class="col-12 flex flex-column gap-2">

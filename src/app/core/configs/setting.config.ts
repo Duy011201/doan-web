@@ -105,12 +105,12 @@ export const SETTING = {
     INVALID_REQUIRED_FORMAT: 'Định dạng yêu cầu không hợp lệ',
     INVALID_PROVINCE_FORMAT: 'Định dạng tỉnh không hợp lệ',
     INVALID_FIELD_FORMAT: 'Định dạng lĩnh vực không hợp lệ',
-    INVALID_TIME_EXPIRATION_FORMAT:
-      'Định dạng thời gian tuyển dụng không hợp lệ',
-    INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương từ không hợp lệ',
-    INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương đến không hợp lệ',
-    INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT:
-      'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',
+    INVALID_TIME_FORM_FORMAT: 'Định dạng hình thức làm việc không hợp lệ',
+    INVALID_TIME_START: 'Định dạng thời gian bắt đầu không hợp lệ',
+    INVALID_TIME_END: 'Định dạng thời gian kết thúc không hợp lệ',
+    INVALID_SALARY_FROM_FORMAT: 'Định dạng mức lương bắt đầu không hợp lệ',
+    INVALID_SALARY_TO_FORMAT: 'Định dạng mức lương kết thúc không hợp lệ',
+    INVALID_SALARY_FROM_LESS_SALARY_TO_FORMAT: 'Định dạng mức lương từ nhỏ hơn mức lương đến không hợp lệ',
   },
   PRODUCT_STATUS: {
     DRAFT: 'DRAFT',

@@ -11,6 +11,7 @@ import {
   trimStringObject,
 } from '../../../core/commons/func';
 import { environment } from '../../../core/environments/develop.environment';
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-recruitment-dialog',
@@ -26,11 +27,12 @@ export class DialogRecruitmentComponent implements OnInit {
   LIST_RECRUITMENT: any = CONSTANT.RECRUITMENT;
   LIST_PROVINCE: any = CONSTANT.COMPANY_PROVINCE;
   LIST_FIELD: any = CONSTANT.COMPANY_FIELD;
+  LIST_TIME_FORM: any = CONSTANT.TIME_FORM;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
   selectProvince: any = {};
   selectField: any = {};
   selectStatus: any = {};
-  listRecruitment: any = [];
+  selectTimeForm: any = {};
 
   pathEnvironment = environment.API_URL;
 
@@ -56,6 +58,18 @@ export class DialogRecruitmentComponent implements OnInit {
     this.selectField = this.LIST_FIELD.find(
       (item: any) => item.CODE === this.data.field
     );
+    this.selectTimeForm = this.LIST_TIME_FORM.find(
+      (item: any) => item.CODE === this.data.timeForm
+    );
+    if (this.data) {
+      if (this.data.timeStart) {
+        this.data.timeStart = dayjs(this.data.timeStart).toDate();
+      }
+
+      if (this.data.timeEnd) {
+        this.data.timeEnd = dayjs(this.data.timeEnd).toDate();
+      }
+    }
   }
 
   onChangeTitle(event: Event) {
@@ -73,6 +87,14 @@ export class DialogRecruitmentComponent implements OnInit {
   private validInput(): boolean {
     let errorMessage = '';
 
+    if (this.data.timeStart) {
+      this.data.timeStart = dayjs(this.data.timeStart).utc().format('YYYY-MM-DDTHH:mm:ss.SSS')
+    }
+
+    if (this.data.timeEnd) {
+      this.data.timeEnd = dayjs(this.data.timeEnd).utc().format('YYYY-MM-DDTHH:mm:ss.SSS')
+    }
+
     if (isEmpty(this.data.title)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TITLE_FORMAT;
     } else if (isEmpty(this.data.keyword)) {
@@ -87,8 +109,12 @@ export class DialogRecruitmentComponent implements OnInit {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PROVINCE_FORMAT;
     } else if (isEmpty(this.selectField)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_FIELD_FORMAT;
-    } else if (isEmpty(this.data.timeExpiration)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_EXPIRATION_FORMAT;
+    } else if (isEmpty(this.selectTimeForm)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_FORM_FORMAT;
+    } else if (isEmpty(this.data.timeStart)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_START;
+    } else if (isEmpty(this.data.timeEnd)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_END;
     } else if (isEmpty(this.data.salaryFrom)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SALARY_FROM_FORMAT;
     } else if (isEmpty(this.data.salaryTo)) {
@@ -107,97 +133,5 @@ export class DialogRecruitmentComponent implements OnInit {
     }
 
     return true;
-  }
-
-  public async onCreate(): Promise<void> {
-    const createdBy = removeQuotes(getFromLocalStorage('userID'));
-
-    if (this.validInput()) {
-      this.data = trimStringObject(this.data);
-      const payload = {
-        userID: removeQuotes(getFromLocalStorage('userID')),
-        keyword: this.data.keyword,
-        title: this.data.title,
-        address: this.data.address,
-        description: this.data.description,
-        required: this.data.required,
-        province: this.selectProvince?.CODE || this.data.province,
-        field: this.selectField?.CODE || this.data.field,
-        timeExpiration: this.data.timeExpiration,
-        salaryFrom: this.data.salaryFrom,
-        salaryTo: this.data.salaryTo,
-        createdBy: createdBy,
-      };
-      this.apiCreate(payload);
-    }
-  }
-
-  public async onUpdate(): Promise<void> {
-    const updatedBy = removeQuotes(getFromLocalStorage('userID'));
-
-    if (this.validInput()) {
-      this.data = trimStringObject(this.data);
-      const payload = {
-        recruitmentID: this.data.recruitmentID,
-        userID: removeQuotes(getFromLocalStorage('userID')),
-        keyword: this.data.keyword,
-        title: this.data.title,
-        address: this.data.address,
-        description: this.data.description,
-        required: this.data.required,
-        province: this.selectProvince?.CODE || this.data.province,
-        field: this.selectField?.CODE || this.data.field,
-        status: this.selectStatus?.CODE || this.data.status,
-        timeExpiration: this.data.timeExpiration,
-        salaryFrom: this.data.salaryFrom,
-        salaryTo: this.data.salaryTo,
-        updatedBy: updatedBy,
-      };
-      this.apiUpdate(payload);
-    }
-  }
-
-  apiCreate(payload: any) {
-    this.service.createRecruitment(payload).subscribe(
-      (result: any) => {
-        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: result.message,
-          });
-          this.onHideDialog();
-        }
-      },
-      (error: any) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error.error.massage || error.error.message,
-        });
-      }
-    );
-  }
-
-  apiUpdate(payload: any) {
-    this.service.updateRecruitment(payload).subscribe(
-      (result: any) => {
-        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: result.message,
-          });
-          this.onHideDialog();
-        }
-      },
-      (error: any) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error.error.massage || error.error.message,
-        });
-      }
-    );
   }
 }

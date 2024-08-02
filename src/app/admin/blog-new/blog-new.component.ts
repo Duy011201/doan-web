@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { AdminService } from '../admin.service';
-import { SETTING } from '../../core/configs/setting.config';
-import { environment } from '../../core/environments/develop.environment';
-import { LoadingService } from '../../core/services/loading.service';
-import { SharedModule } from '../../share/share.module';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {AdminService} from '../admin.service';
+import {SETTING} from '../../core/configs/setting.config';
+import {environment} from '../../core/environments/develop.environment';
+import {LoadingService} from '../../core/services/loading.service';
+import {SharedModule} from '../../share/share.module';
 
 @Component({
   selector: 'app-blog-new',
@@ -29,7 +29,8 @@ export class BlogNewComponent implements OnInit {
     private messageService: MessageService,
     private service: AdminService,
     private loadingService: LoadingService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.apiGetAll(this.payload);
@@ -76,12 +77,19 @@ export class BlogNewComponent implements OnInit {
   onSearchKeyword() {
     let payload = this.payload;
     payload.keyword = this.keyword;
+    if (typeof this.keyword === 'string') {
+      payload.keyword = this.keyword
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/\s+/g, '-');
+    }
     this.apiGetAll(payload);
   }
 
   apiGetAllView() {
     this.loadingService.show();
-    this.service.getAllBlog({ status: this.BLOG_STATUS.PUBLISHED }).subscribe(
+    this.service.getAllBlog({status: this.BLOG_STATUS.PUBLISHED}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {

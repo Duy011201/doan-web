@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { SETTING } from '../../../core/configs/setting.config';
-import { CONSTANT } from '../../../core/configs/constant.config';
-import { EmployerService } from '../../employer.service';
-import {
-  getFromLocalStorage,
-  isEmpty,
-  removeQuotes,
-  trimStringObject,
-} from '../../../core/commons/func';
-import { environment } from '../../../core/environments/develop.environment';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {SETTING} from '../../../core/configs/setting.config';
+import {CONSTANT} from '../../../core/configs/constant.config';
+import {EmployerService} from '../../employer.service';
+import {getFromLocalStorage, isEmpty, removeQuotes, trimStringObject,} from '../../../core/commons/func';
+import {environment} from '../../../core/environments/develop.environment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 @Component({
   selector: 'app-employer-recruitment-dialog',
@@ -25,20 +26,23 @@ export class DialogRecruitmentComponent implements OnInit {
   LIST_RECRUITMENT: any = CONSTANT.RECRUITMENT;
   LIST_PROVINCE: any = CONSTANT.COMPANY_PROVINCE;
   LIST_FIELD: any = CONSTANT.COMPANY_FIELD;
+  LIST_TIME_FORM: any = CONSTANT.TIME_FORM;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
   selectProvince: any = {};
   selectField: any = {};
   selectStatus: any = {};
-  listRecruitment: any = [];
+  selectTimeForm: any = {};
 
   pathEnvironment = environment.API_URL;
 
   constructor(
     private messageService: MessageService,
     private service: EmployerService
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onHideDialog() {
     this.visible = false;
@@ -55,22 +59,40 @@ export class DialogRecruitmentComponent implements OnInit {
     this.selectField = this.LIST_FIELD.find(
       (item: any) => item.CODE === this.data.field
     );
+    this.selectTimeForm = this.LIST_TIME_FORM.find(
+      (item: any) => item.CODE === this.data.timeForm
+    );
+    if (this.data) {
+      if (this.data.timeStart) {
+        this.data.timeStart = dayjs(this.data.timeStart).toDate();
+      }
+
+      if (this.data.timeEnd) {
+        this.data.timeEnd = dayjs(this.data.timeEnd).toDate();
+      }
+    }
   }
 
   onChangeTitle(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     let title = inputElement.value;
-    if (typeof title === 'string') {
-      this.data.keyword = title
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/đ/g, 'd')
-        .replace(/\s+/g, '-');
-    }
+    this.data.keyword = title
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd')
+      .replace(/\s+/g, '-');
   }
 
   private validInput(): boolean {
     let errorMessage = '';
+
+    if (this.data.timeStart) {
+      this.data.timeStart = dayjs(this.data.timeStart).utc().format('YYYY-MM-DDTHH:mm:ss.SSS')
+    }
+
+    if (this.data.timeEnd) {
+      this.data.timeEnd = dayjs(this.data.timeEnd).utc().format('YYYY-MM-DDTHH:mm:ss.SSS')
+    }
 
     if (isEmpty(this.data.title)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TITLE_FORMAT;
@@ -84,10 +106,14 @@ export class DialogRecruitmentComponent implements OnInit {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_REQUIRED_FORMAT;
     } else if (isEmpty(this.selectProvince)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_PROVINCE_FORMAT;
-    } else if (isEmpty(this.data.timeExpiration)) {
-      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_EXPIRATION_FORMAT;
     } else if (isEmpty(this.selectField)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_FIELD_FORMAT;
+    } else if (isEmpty(this.selectTimeForm)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_FORM_FORMAT;
+    } else if (isEmpty(this.data.timeStart)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_START;
+    } else if (isEmpty(this.data.timeEnd)) {
+      errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_TIME_END;
     } else if (isEmpty(this.data.salaryFrom)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SALARY_FROM_FORMAT;
     } else if (isEmpty(this.data.salaryTo)) {
@@ -122,7 +148,9 @@ export class DialogRecruitmentComponent implements OnInit {
         required: this.data.required,
         province: this.selectProvince?.CODE || this.data.province,
         field: this.selectField?.CODE || this.data.field,
-        timeExpiration: this.data.timeExpiration,
+        timeForm: this.selectTimeForm?.CODE || this.data.timeForm,
+        timeStart: this.data.timeStart,
+        timeEnd: this.data.timeEnd,
         salaryFrom: this.data.salaryFrom,
         salaryTo: this.data.salaryTo,
         createdBy: createdBy,
@@ -147,7 +175,9 @@ export class DialogRecruitmentComponent implements OnInit {
         province: this.selectProvince?.CODE || this.data.province,
         field: this.selectField?.CODE || this.data.field,
         status: this.selectStatus?.CODE || this.data.status,
-        timeExpiration: this.data.timeExpiration,
+        timeForm: this.selectTimeForm?.CODE || this.data.timeForm,
+        timeStart: this.data.timeStart,
+        timeEnd: this.data.timeEnd,
         salaryFrom: this.data.salaryFrom,
         salaryTo: this.data.salaryTo,
         updatedBy: updatedBy,

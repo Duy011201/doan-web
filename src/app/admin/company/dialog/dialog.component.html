@@ -1,47 +1,48 @@
 <p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible"
-  [style]="{ width: '50rem' }" (onHide)="onHideDialog()">
+          [style]="{ width: '50rem' }" (onHide)="onHideDialog()">
   <span class="p-text-secondary block mb-5">{{ data.subHeaderDialog }} </span>
 
   <div class="grid col" [style.pointer-events]="data.actionDialog === SYSTEM_ACTION.VIEW ? 'none' : 'auto'">
     <div class="col-7 flex flex-column gap-4">
       <div class="flex flex-column gap-2">
         <label for="name" class="font-semibold">Tên công ty<span class="pl-2 text-red-600">*</span></label>
-        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.name" />
+        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.name" placeholder="Nhập tên công ty"/>
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="email" class="font-semibold">Email</label>
-        <input pInputText id="email" class="flex-auto" [(ngModel)]="data.email" />
+        <input pInputText id="email" class="flex-auto" [(ngModel)]="data.email" placeholder="Nhập email"/>
       </div>
 
       <div class="flex flex-wrap justify-content-between">
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
           <label for="corporateTaxCode" class="font-semibold">MST<span class="pl-2 text-red-600">*</span></label>
-          <input pInputText id="corporateTaxCode" class="flex-auto" [(ngModel)]="data.corporateTaxCode" />
+          <input pInputText id="corporateTaxCode" class="flex-auto" [(ngModel)]="data.corporateTaxCode"
+                 placeholder="Nhập mã số thuế"/>
         </div>
 
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
           <label for="phone" class="font-semibold">Phone</label>
-          <input pInputText id="phone" class="flex-auto" [(ngModel)]="data.phone" />
+          <input pInputText id="phone" class="flex-auto" [(ngModel)]="data.phone" placeholder="Nhập số điện thoại"/>
         </div>
       </div>
 
       <div class="flex flex-wrap justify-content-between">
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
           <label for="address" class="font-semibold">Địa chỉ</label>
-          <input pInputText id="address" class="flex-auto" [(ngModel)]="data.address" />
+          <input pInputText id="address" class="flex-auto" [(ngModel)]="data.address" placeholder="Nhập địa chỉ"/>
         </div>
 
         <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
           <label for="website" class="font-semibold">Website</label>
-          <input pInputText id="website" class="flex-auto" [(ngModel)]="data.website" />
+          <input pInputText id="website" class="flex-auto" [(ngModel)]="data.website"/>
         </div>
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="status" class="font-semibold">Trạng thái<span class="pl-2 text-red-600">*</span></label>
         <p-dropdown id="status" [options]="LIST_STATUS" [(ngModel)]="selectStatus" placeholder="Chọn trạng thái"
-          optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+                    optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
     </div>
@@ -49,7 +50,7 @@
     <div class="col-5 flex flex-column gap-4">
       <div class="flex flex-column gap-2">
         <label for="" class="font-semibold">Ảnh bìa<span class="pl-2 text-red-600">*</span></label>
-        <img width="200" height="200" src="{{ pathEnvironment + '/' + data.logo }}" alt="favicon" />
+        <img width="200" height="200" src="{{ pathEnvironment + '/' + data.logo }}" alt="favicon"/>
         <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
           <input type="file" (change)="onFileSelected($event)" accept="image/*">
         </div>
@@ -58,20 +59,20 @@
       <div class="flex flex-column gap-2">
         <label for="language" class="font-semibold">Lĩnh vực</label>
         <p-dropdown id="language" [options]="LIST_FIELD" [(ngModel)]="selectField" placeholder="Chọn lĩnh vực"
-          optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }"></p-dropdown>
+                    optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }"></p-dropdown>
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="province" class="font-semibold">Tỉnh</label>
         <p-dropdown id="province" [options]="LIST_PROVINCE" [(ngModel)]="selectProvince" placeholder="Chọn tỉnh"
-          optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+                    optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
 
       <div class="flex flex-column gap-2">
         <label for="scale" class="font-semibold">Nhân viên</label>
         <p-dropdown id="scale" [options]="LIST_SCALE" [(ngModel)]="selectScale" placeholder="Chọn số nhân viên"
-          optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+                    optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
     </div>
@@ -79,7 +80,7 @@
     <div class="col-12 flex flex-column gap-2" [style]="{'height':'300px'}">
       <label for="introduce" class="font-semibold">Giới thiệu</label>
       <quill-editor id="introduce" [(ngModel)]="data.introduce" [style]="{'height':'200px'}"
-        placeholder="Nhập nội dung tại đây..."></quill-editor>
+                    placeholder="Nhập nội dung tại đây..."></quill-editor>
     </div>
   </div>
   <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW" class="flex justify-content-end gap-2 mt-3">

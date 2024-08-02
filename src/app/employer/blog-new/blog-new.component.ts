@@ -76,6 +76,13 @@ export class BlogNewComponent implements OnInit {
   onSearchKeyword() {
     let payload = this.payload;
     payload.keyword = this.keyword;
+    if (typeof this.keyword === 'string') {
+      payload.keyword = this.keyword
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/\s+/g, '-');
+    }
     this.apiGetAll(payload);
   }
 
