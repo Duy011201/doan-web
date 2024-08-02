@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AdminService } from './admin.service';
 import { AdminRoutesModule } from './admin.routes';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenuLeftComponent } from './menu-left/menu-left.component';
 import { UserComponent } from './user/user.component';
 import { CompanyComponent } from './company/company.component';
@@ -21,7 +20,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 @NgModule({
   imports: [AdminRoutesModule, SharedModule],
   declarations: [
-    DashboardComponent,
     MenuLeftComponent,
     UserComponent,
     DialogUserComponent,

@@ -7,6 +7,7 @@ import { environment } from '../../core/environments/develop.environment';
 import { EmployerService } from '../employer.service';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { LoadingService } from '../../core/services/loading.service';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,9 @@ import { LoadingService } from '../../core/services/loading.service';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
-  PRODUCT_STATUS = CONSTANT.PRODUCT_STATUS;
+  PRODUCT_STATUS = SETTING.PRODUCT_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
+  LIST_PRODUCT_STATUS = CONSTANT.PRODUCT_STATUS;
 
   constructor(
     private messageService: MessageService,
@@ -34,13 +36,29 @@ export class CartComponent implements OnInit {
   };
   visible: boolean = false;
   pathEnvironment = environment.API_URL;
+  selectedStatusProduct: any = {
+    CODE: '',
+    NAME: '',
+  };
 
   ngOnInit() {
-    this.apiGetAll();
+    this.apiGetAll({});
   }
 
   clear(table: Table) {
     table.clear();
+    this.apiGetAll({});
+    this.selectedStatusProduct = {
+      CODE: '',
+      NAME: '',
+    };
+  }
+
+  truncateString(str: string, maxLength: number): string {
+    if (str.length > maxLength) {
+      return str.substring(0, maxLength) + '...';
+    }
+    return str;
   }
 
   confirmDelete(event: Event, blog: any) {
@@ -70,7 +88,7 @@ export class CartComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
-          this.apiGetAll();
+          this.apiGetAll({});
         }
       },
       (error: any) => {
@@ -83,37 +101,41 @@ export class CartComponent implements OnInit {
     );
   }
 
-  apiGetAll() {
+  apiGetAll(payload: any) {
+    payload.userID = removeQuotes(getFromLocalStorage('userID'));
     this.loadingService.show();
-    this.service
-      .getAllProduct({
-        userID: removeQuotes(getFromLocalStorage('userID')),
-        status: this.PRODUCT_STATUS[0].CODE,
-      })
-      .subscribe(
-        (result: any) => {
-          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-            setTimeout(() => {
-              this.loadingService.hide();
-              this.listProduct = result.data;
-              this.loading = false;
-            }, 500);
-          }
-        },
-        (error: any) => {
-          this.loadingService.hide();
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.massage || error.error.message,
-          });
+    this.service.getAllProduct(payload).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          setTimeout(() => {
+            this.listProduct = result.data;
+            this.listProduct = result.data.filter((item: any) => {
+              if (item.totalExpiration > 0) {
+                let updatedAtDate = dayjs(item.updatedAt);
+                let differenceInDays = dayjs().diff(updatedAtDate, 'day');
+                item.totalExpiration -= differenceInDays;
+              }
+              return item;
+            });
+            this.loadingService.hide();
+            this.loading = false;
+          }, 500);
         }
-      );
+      },
+      (error: any) => {
+        this.loadingService.hide();
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
   }
 
   handleVisibleChange(visible: boolean) {
     this.visible = visible;
-    this.apiGetAll();
+    this.apiGetAll({});
   }
 
   onShowDialog(action: string, data: any): void {

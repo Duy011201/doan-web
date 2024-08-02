@@ -21,13 +21,6 @@
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD) }">
-    <i class="fa-solid fa-address-card text-xl"></i>
-    <span>Hồ sơ của tôi</span>
-  </div>
-
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
     (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER)"
     [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER) }">
     <i class="fa-solid fa-user text-xl"></i>

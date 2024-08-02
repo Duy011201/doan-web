@@ -58,7 +58,9 @@
     <span>Báo cáo thống kê</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1">
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD) }">
     <i class="fa-solid fa-key text-xl"></i>
     <span>Đổi mật khẩu</span>
   </div>

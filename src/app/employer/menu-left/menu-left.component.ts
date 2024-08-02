@@ -3,7 +3,7 @@ import { SETTING } from '../../core/configs/setting.config';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-menu-left',
+  selector: 'app-employer-menu-left',
   standalone: false,
   templateUrl: './menu-left.component.html',
   styleUrl: './menu-left.component.scss',
