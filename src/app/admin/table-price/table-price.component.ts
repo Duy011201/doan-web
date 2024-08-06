@@ -7,7 +7,7 @@ import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { SharedModule } from '../../share/share.module';
 
 @Component({
-  selector: 'app-table-price',
+  selector: 'app-admin-table-price',
   standalone: true,
   imports: [SharedModule],
   providers: [AdminService, MessageService, ConfirmationService],

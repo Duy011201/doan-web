@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-order-approval',
+  selector: 'app-admin-order-approval',
   standalone: false,
   templateUrl: './order-approval.component.html',
   styleUrl: './order-approval.component.scss',

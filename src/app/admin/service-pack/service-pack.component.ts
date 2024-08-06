@@ -7,7 +7,7 @@ import { AdminService } from '../admin.service';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-service-pack',
+  selector: 'app-admin-service-pack',
   standalone: false,
   templateUrl: './service-pack.component.html',
   styleUrl: './service-pack.component.scss',

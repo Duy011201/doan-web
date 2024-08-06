@@ -10,7 +10,7 @@ import { LoadingService } from '../../core/services/loading.service';
 import dayjs from 'dayjs';
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-employer-cart',
   standalone: false,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',

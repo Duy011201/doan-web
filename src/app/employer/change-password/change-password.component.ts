@@ -15,7 +15,7 @@ import {
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'app-employer-change-password',
   standalone: false,
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss',

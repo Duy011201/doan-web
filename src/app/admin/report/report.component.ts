@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-report',
+  selector: 'app-admin-report',
   standalone: true,
   imports: [],
   templateUrl: './report.component.html',

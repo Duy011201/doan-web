@@ -10,7 +10,7 @@ import {
 } from '../../../core/commons/func';
 
 @Component({
-  selector: 'app-cart-dialog',
+  selector: 'app-employer-cart-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',

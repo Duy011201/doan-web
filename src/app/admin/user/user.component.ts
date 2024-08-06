@@ -9,7 +9,7 @@ import { LoadingService } from '../../core/services/loading.service';
 import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-admin-user',
   standalone: false,
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',

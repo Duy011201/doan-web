@@ -8,7 +8,7 @@ import { CONSTANT } from '../../core/configs/constant.config';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-company',
+  selector: 'app-admin-company',
   standalone: false,
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss',

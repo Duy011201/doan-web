@@ -11,7 +11,7 @@ import { LoadingService } from '../../core/services/loading.service';
 import * as _ from "lodash";
 
 @Component({
-  selector: 'app-recruitment',
+  selector: 'app-employer-recruitment',
   standalone: false,
   templateUrl: './recruitment.component.html',
   styleUrl: './recruitment.component.scss',

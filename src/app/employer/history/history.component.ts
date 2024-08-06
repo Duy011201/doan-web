@@ -9,7 +9,7 @@ import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-history',
+  selector: 'app-employer-history',
   standalone: false,
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss',

@@ -14,7 +14,7 @@ import { environment } from '../../../core/environments/develop.environment';
 import dayjs from "dayjs";
 
 @Component({
-  selector: 'app-recruitment-dialog',
+  selector: 'app-admin-recruitment-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',

@@ -10,7 +10,7 @@ import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-blog',
+  selector: 'app-employer-blog',
   standalone: false,
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',

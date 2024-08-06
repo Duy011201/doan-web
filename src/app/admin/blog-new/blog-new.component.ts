@@ -7,7 +7,7 @@ import {LoadingService} from '../../core/services/loading.service';
 import {SharedModule} from '../../share/share.module';
 
 @Component({
-  selector: 'app-blog-new',
+  selector: 'app-admin-blog-new',
   standalone: true,
   imports: [SharedModule],
   providers: [AdminService, MessageService, LoadingService],

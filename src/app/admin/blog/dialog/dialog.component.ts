@@ -12,7 +12,7 @@ import {
 import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-blog-dialog',
+  selector: 'app-admin-blog-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',

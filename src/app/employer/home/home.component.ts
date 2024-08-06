@@ -4,7 +4,7 @@ import { PrimengModule } from '../../core/modules/primeng.module';
 import { CONSTANT } from '../../core/configs/constant.config';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-employer-home',
   standalone: true,
   imports: [NgxChartsModule, PrimengModule],
   templateUrl: './home.component.html',

@@ -15,7 +15,7 @@ import {
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-notification',
+  selector: 'app-admin-notification',
   standalone: false,
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss',

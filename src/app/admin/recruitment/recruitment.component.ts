@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-recruitment',
+  selector: 'app-admin-recruitment',
   standalone: false,
   templateUrl: './recruitment.component.html',
   styleUrl: './recruitment.component.scss',
