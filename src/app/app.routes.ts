@@ -29,6 +29,11 @@ export const routes: Routes = [
     data: { showHeader: true, showFooter: true },
   },
   {
+    path: SETTING.SYSTEM_PAGE.RELATED_CANDIDATE,
+    loadChildren: () => import('./candidate/candidate.module').then((m) => m.CandidateModule),
+    data: { showHeader: true, showFooter: true },
+  },
+  {
     path: SETTING.SYSTEM_PAGE.HEADER_TABLE_PRICE,
     component: TablePriceComponent,
     data: { showHeader: true, showFooter: true },

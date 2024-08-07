@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { AdminService } from '../admin.service';
+import { CandidateService } from '../candidate.service';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { SharedModule } from '../../share/share.module';
 
 @Component({
-  selector: 'app-admin-table-price',
+  selector: 'app-employer-table-price',
   standalone: true,
   imports: [SharedModule],
-  providers: [AdminService, MessageService, ConfirmationService],
+  providers: [CandidateService, MessageService, ConfirmationService],
   templateUrl: './table-price.component.html',
   styleUrl: './table-price.component.scss',
 })
@@ -20,7 +20,7 @@ export class TablePriceComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private service: AdminService
+    private service: CandidateService
   ) {}
 
   ngOnInit(): void {
