@@ -91,7 +91,7 @@ export class RecruitmentProcessComponent implements OnInit {
 
   apiDelete(item: any) {
     this.service
-      .deleteRecruitment({recruitmentID: item.recruitmentID})
+      .deleteRecruitmentProcess({recruitmentProcessID: item.recruitmentProcessID})
       .subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
