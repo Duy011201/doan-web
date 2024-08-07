@@ -71,6 +71,7 @@
 
       <div class="flex flex-column gap-2">
         <label for="dob" class="font-semibold">CV<span class="pl-2 text-red-600">*</span></label>
+        <span>{{ data.profile }}</span>
         <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
           <input type="file" (change)="onFileSelected($event, 'profile')" accept="application/pdf">
         </div>

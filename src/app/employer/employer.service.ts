@@ -368,4 +368,54 @@ export class EmployerService {
         })
       );
   }
+
+  public getRecruitmentProcessEmployer(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_RECRUITMENT_PROCESS_EMPLOYER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public getRecruitmentProcessCandidate(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_ALL_RECRUITMENT_PROCESS_CANDIDATE}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public deleteRecruitmentProcess(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.DELETE_RECRUITMENT_PROCESS}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public getFile(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.STORE_GET_FILE}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public downloadFile(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.STORE_DOWNLOAD_FILE}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

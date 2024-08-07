@@ -8,6 +8,7 @@ import {NotificationComponent} from "./notification/notification.component";
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
+import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-process.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -34,6 +35,10 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_RECRUITMENT,
     component: RecruitmentComponent,
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.MANAGER_PROCESS,
+    component: RecruitmentProcessComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_404,

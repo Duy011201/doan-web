@@ -36,6 +36,7 @@ export enum UrlApi {
   // upload
   STORE_UPLOAD = 'api/store/upload',
   STORE_GET_FILE = 'api/store/files',
+  STORE_DOWNLOAD_FILE = 'api/store/download',
 
   // send notification email
   SEND_NOTIFICATION_EMAIL = 'api/notification/send-content-email',
@@ -61,4 +62,9 @@ export enum UrlApi {
   DELETE_RECRUITMENT = `api/recruitment/delete`,
   GET_ALL_RECRUITMENT = `api/recruitment/get-all`,
   STATUS_RECRUITMENT = `api/recruitment/status`,
+
+  // recruitment process
+  DELETE_RECRUITMENT_PROCESS = `api/recruitment-process/delete`,
+  GET_ALL_RECRUITMENT_PROCESS_EMPLOYER = `api/recruitment-process/get-all-employer`,
+  GET_ALL_RECRUITMENT_PROCESS_CANDIDATE = `api/recruitment-process/get-all-candidate`,
 }

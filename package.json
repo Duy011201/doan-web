@@ -21,6 +21,7 @@
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@swimlane/ngx-charts": "^20.5.0",
     "lodash": "^4.17.21",
+    "ng2-pdf-viewer": "^10.2.2",
     "ngx-quill": "^25.3.2",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
