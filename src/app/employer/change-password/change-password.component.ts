@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { SETTING } from '../../core/configs/setting.config';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { EmployerService } from '../employer.service';
 import { environment } from '../../core/environments/develop.environment';
-import { Table } from 'primeng/table';
-import { CONSTANT } from '../../core/configs/constant.config';
 import {
   getFromLocalStorage,
-  isEmail,
   isEmpty,
   removeQuotes,
-  trimStringObject,
 } from '../../core/commons/func';
 import { LoadingService } from '../../core/services/loading.service';
 
