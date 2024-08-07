@@ -65,6 +65,7 @@ export enum UrlApi {
 
   // recruitment process
   DELETE_RECRUITMENT_PROCESS = `api/recruitment-process/delete`,
+  SAVE_PROFILE = `api/recruitment-process/save-profile`,
   GET_ALL_RECRUITMENT_PROCESS_EMPLOYER = `api/recruitment-process/get-all-employer`,
   GET_ALL_RECRUITMENT_PROCESS_CANDIDATE = `api/recruitment-process/get-all-candidate`,
 }

@@ -13,6 +13,8 @@
         <div class="flex gap-3">
           <p-dropdown [(ngModel)]="selectedRecruitment" [options]="listRecruitment" optionLabel="title"
             (click)="onSearch()" placeholder="Select recruitment"></p-dropdown>
+          <button pButton label="Save" class="p-button-outlined" icon="fa-solid fa-bookmark"
+                  (click)="onSave()"></button>
           <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
             (click)="clear(table)"></button>
         </div>
@@ -66,6 +68,10 @@
             <div class="flex gap-2">
               <i *ngIf="item.profile" class="text-xl icon fa-solid fa-file-arrow-down" pTooltip="Tải file"
                 (click)="apiGetFile([{fileName: item.profile}])"></i>
+              <i *ngIf="item.saveProfile === 'false'" class="text-xl icon fa-regular fa-bookmark" pTooltip="Lưu file"
+                 (click)="apiSaveProfile('true', item.recruitmentProcessID)"></i>
+              <i *ngIf="item.saveProfile === 'true'" class="text-xl icon fa-solid fa-bookmark" pTooltip="Bỏ lưu file"
+                 (click)="apiSaveProfile('false', item.recruitmentProcessID)"></i>
               <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa ứng viên"
                 (click)="confirmDelete($event, item)"></i>
             </div>

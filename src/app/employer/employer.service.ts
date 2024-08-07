@@ -399,6 +399,16 @@ export class EmployerService {
       );
   }
 
+  public saveProfileRecruitmentProcess(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.SAVE_PROFILE}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public getFile(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.STORE_GET_FILE}`, body)

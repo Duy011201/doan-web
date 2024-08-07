@@ -65,6 +65,12 @@ export class RecruitmentProcessComponent implements OnInit {
     this.apiGetRecruitmentProcessAll(payload)
   }
 
+  onSave() {
+    let payload = _.clone(this.payload);
+    payload.saveProfile = 'true';
+    this.apiGetRecruitmentProcessAll(payload)
+  }
+
   confirmDelete(event: Event, item: any) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
@@ -86,6 +92,30 @@ export class RecruitmentProcessComponent implements OnInit {
   apiDelete(item: any) {
     this.service
       .deleteRecruitment({recruitmentID: item.recruitmentID})
+      .subscribe(
+        (result: any) => {
+          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: result.message,
+            });
+            this.apiGetRecruitmentProcessAll(this.payload);
+          }
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.massage || error.error.message,
+          });
+        }
+      );
+  }
+
+  apiSaveProfile(status: string, recruitmentProcessID: string) {
+    this.service
+      .saveProfileRecruitmentProcess({saveProfile: status,recruitmentProcessID: recruitmentProcessID })
       .subscribe(
         (result: any) => {
           if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
