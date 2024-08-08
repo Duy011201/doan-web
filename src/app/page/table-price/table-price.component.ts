@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { EmployerService } from '../employer.service';
+import { AdminService } from '../../admin/admin.service';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { SharedModule } from '../../share/share.module';
 
 @Component({
-  selector: 'app-employer-table-price',
+  selector: 'app-admin-table-price',
   standalone: true,
   imports: [SharedModule],
-  providers: [EmployerService, MessageService, ConfirmationService],
+  providers: [AdminService, MessageService, ConfirmationService],
   templateUrl: './table-price.component.html',
   styleUrl: './table-price.component.scss',
 })
@@ -20,11 +20,19 @@ export class TablePriceComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private service: EmployerService
+    private service: AdminService
   ) {}
 
   ngOnInit(): void {
     this.apiGetAll();
+  }
+
+  onWaringMessage() {
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Warn',
+      detail: 'Bạn không phải là tuyển dụng!',
+    });
   }
 
   public async onCreateProduct(service: any): Promise<void> {

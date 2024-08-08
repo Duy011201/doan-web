@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { EmployerService } from '../employer.service';
+import { AdminService } from '../../admin/admin.service';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { ActivatedRoute } from '@angular/router';
@@ -8,10 +8,10 @@ import { SharedModule } from '../../share/share.module';
 import { LoadingService } from '../../core/services/loading.service';
 
 @Component({
-  selector: 'app-employer-blog-new',
+  selector: 'app-admin-blog-new',
   standalone: true,
   imports: [SharedModule],
-  providers: [EmployerService, MessageService],
+  providers: [AdminService, MessageService],
   templateUrl: './blog-new-detail.component.html',
   styleUrl: './blog-new-detail.component.scss',
 })
@@ -23,7 +23,7 @@ export class BlogNewDetailComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private service: EmployerService,
+    private service: AdminService,
     private route: ActivatedRoute,
     private loadingService: LoadingService
   ) {}

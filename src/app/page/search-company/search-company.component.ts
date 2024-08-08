@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { CandidateService } from '../candidate.service';
+import { EmployerService } from '../../employer/employer.service';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { LoadingService } from '../../core/services/loading.service';
 import { SharedModule } from '../../share/share.module';
 
 @Component({
-  selector: 'app-employer-blog-new',
+  selector: 'app-employer-search-company',
   standalone: true,
   imports: [SharedModule],
-  providers: [CandidateService, MessageService, LoadingService],
-  templateUrl: './blog-new.component.html',
-  styleUrl: './blog-new.component.scss',
+  providers: [EmployerService, MessageService, LoadingService],
+  templateUrl: './search-company.component.html',
+  styleUrl: './search-company.component.scss',
 })
-export class BlogNewComponent implements OnInit {
+export class SearchCompanyComponent implements OnInit {
   listBlog: any = [];
   listBlogView: any = [];
   pathEnvironment = environment.API_URL;
@@ -27,7 +27,7 @@ export class BlogNewComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private service: CandidateService,
+    private service: EmployerService,
     private loadingService: LoadingService
   ) {}
 

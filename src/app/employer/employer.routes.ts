@@ -10,6 +10,7 @@ import { HistoryComponent } from './history/history.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-process.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {SearchCompanyComponent} from "../page/search-company/search-company.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_BLOG,
     component: BlogComponent,
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_COMPANY,
+    component: SearchCompanyComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_NOTIFICATION,

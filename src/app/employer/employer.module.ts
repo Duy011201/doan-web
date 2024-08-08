@@ -32,7 +32,7 @@ import {DialogCompanyComponent} from "./dashboard/dialog/dialog.component";
     DialogRecruitmentComponent,
     ChangePasswordComponent,
     RecruitmentProcessComponent,
-    DialogCompanyComponent
+    DialogCompanyComponent,
   ],
   providers: [EmployerService],
 })

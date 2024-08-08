@@ -1,38 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { AdminService } from '../admin.service';
-import { SETTING } from '../../core/configs/setting.config';
-import { environment } from '../../core/environments/develop.environment';
-import { ActivatedRoute } from '@angular/router';
-import { SharedModule } from '../../share/share.module';
-import { LoadingService } from '../../core/services/loading.service';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {AdminService} from '../../admin/admin.service';
+import {SETTING} from '../../core/configs/setting.config';
+import {environment} from '../../core/environments/develop.environment';
+import {LoadingService} from '../../core/services/loading.service';
+import {SharedModule} from '../../share/share.module';
 
 @Component({
   selector: 'app-admin-blog-new',
   standalone: true,
   imports: [SharedModule],
-  providers: [AdminService, MessageService],
-  templateUrl: './blog-new-detail.component.html',
-  styleUrl: './blog-new-detail.component.scss',
+  providers: [AdminService, MessageService, LoadingService],
+  templateUrl: './blog-new.component.html',
+  styleUrl: './blog-new.component.scss',
 })
-export class BlogNewDetailComponent implements OnInit {
-  itemBlog: any = {};
+export class BlogNewComponent implements OnInit {
+  listBlog: any = [];
   listBlogView: any = [];
   pathEnvironment = environment.API_URL;
   BLOG_STATUS: any = SETTING.BLOG_STATUS;
+  SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
+  payload: any = {
+    status: this.BLOG_STATUS.PUBLISHED,
+  };
+  keyword: string = '';
 
   constructor(
     private messageService: MessageService,
     private service: AdminService,
-    private route: ActivatedRoute,
     private loadingService: LoadingService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.apiGetByID({ blogID: params['id'] });
-    });
-    this.apiGetAll();
+    this.apiGetAll(this.payload);
+    this.apiGetAllView();
   }
 
   truncateString(str: string, maxLength: number): string {
@@ -72,9 +74,22 @@ export class BlogNewDetailComponent implements OnInit {
     }
   }
 
-  apiGetAll() {
+  onSearchKeyword() {
+    let payload = this.payload;
+    payload.keyword = this.keyword;
+    if (typeof this.keyword === 'string') {
+      payload.keyword = this.keyword
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/\s+/g, '-');
+    }
+    this.apiGetAll(payload);
+  }
+
+  apiGetAllView() {
     this.loadingService.show();
-    this.service.getAllBlog({ status: this.BLOG_STATUS.PUBLISHED }).subscribe(
+    this.service.getAllBlog({status: this.BLOG_STATUS.PUBLISHED}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
@@ -84,6 +99,7 @@ export class BlogNewDetailComponent implements OnInit {
         }
       },
       (error: any) => {
+        this.loadingService.hide();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -93,18 +109,19 @@ export class BlogNewDetailComponent implements OnInit {
     );
   }
 
-  apiGetByID(payload: any) {
+  apiGetAll(payload: any) {
     this.loadingService.show();
-    this.service.getByIDBlog(payload).subscribe(
+    this.service.getAllBlog(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
             this.loadingService.hide();
-            this.itemBlog = result.data[0];
+            this.listBlog = result.data;
           }, 500);
         }
       },
       (error: any) => {
+        this.loadingService.show();
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

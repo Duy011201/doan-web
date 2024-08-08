@@ -16,21 +16,21 @@
     </div>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
     (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.DASHBOARD)"
     [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.DASHBOARD) }">
     <i class="fa-solid fa-address-card text-xl"></i>
     <span>Hồ sơ của tôi</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
        (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_PROCESS)"
        [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_PROCESS) }">
     <i class="fa-solid fa-gear text-xl"></i>
     <span>Quản lý tuyển dụng</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
     (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD)"
     [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD) }">
     <i class="fa-solid fa-key text-xl"></i>

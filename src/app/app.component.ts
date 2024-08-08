@@ -8,7 +8,7 @@ import {
 import { filter, map } from 'rxjs/operators';
 import { isEmpty } from './core/commons/func';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './admin/home/home.component';
+import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 

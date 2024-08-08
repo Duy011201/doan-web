@@ -13,7 +13,7 @@ export const SETTING = {
     HEADER_BLOG_NEW: 'blog-new',
     HEADER_BLOG_NEW_DETAIL: 'blog-new/:id',
     HEADER_JOB: 'job',
-    HEADER_COMPANY: 'company',
+    HEADER_COMPANY: 'search-company',
     HEADER_TABLE_PRICE: 'table-price',
     HEADER_ORDER: 'manager-order',
 
