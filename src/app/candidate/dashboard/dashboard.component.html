@@ -1,0 +1,65 @@
+<app-loading></app-loading>
+<div class="p-3 flex gap-3" style="background-color: var(--primary-app-background);">
+  <app-employer-menu-left></app-employer-menu-left>
+
+   <div class="grid col">
+    <div class="col-7 flex flex-column gap-4">
+      <div class="flex flex-column gap-2">
+        <label for="username" class="font-semibold">Username</label>
+        <input pInputText id="username" class="flex-auto" [(ngModel)]="dataUser.username"/>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="email" class="font-semibold">Email<span class="pl-2 text-red-600">*</span></label>
+        <input pInputText id="email" class="flex-auto" [(ngModel)]="dataUser.email"/>
+      </div>
+
+      <div class="flex flex-wrap justify-content-between">
+        <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
+          <label for="phone" class="font-semibold">Phone</label>
+          <input pInputText id="phone" class="flex-auto" [(ngModel)]="dataUser.phone"/>
+        </div>
+
+        <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
+          <label for="certificate" class="font-semibold">Chứng chỉ</label>
+          <input pInputText id="certificate" class="flex-auto" [(ngModel)]="dataUser.certificate"/>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-content-between">
+        <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
+          <label for="education" class="font-semibold">Cấp giáo dục</label>
+          <p-dropdown id="education" [options]="LIST_EDUCATION" [(ngModel)]="selectEducation"
+                      placeholder="Chọn cấp giáo dục" optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }">
+          </p-dropdown>
+        </div>
+        <div class="flex flex-column gap-2" [style]="{ width: '48%' }">
+          <label for="language" class="font-semibold">Ngôn ngữ</label>
+          <p-dropdown id="language" [options]="LIST_LANGUAGES" [(ngModel)]="selectLanguage" placeholder="Chọn ngôn ngữ"
+                      optionLabel="NAME" [showClear]="true" [style]="{ width: '100%' }"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5 flex flex-column gap-4">
+      <div class="flex flex-column gap-2">
+        <label for="dob" class="font-semibold">Ảnh đại diện<span class="pl-2 text-red-600">*</span></label>
+        <img width="200" height="200" src="{{ pathEnvironment + '/' + dataUser.avatar }}" alt="favicon"/>
+        <div *ngIf="dataUser.actionDialog !== SYSTEM_ACTION.VIEW">
+          <input type="file" (change)="onFileSelected($event, 'image')" accept="image/*">
+        </div>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="dob" class="font-semibold">CV<span class="pl-2 text-red-600">*</span></label>
+        <span>{{ dataUser.profile }}</span>
+        <div *ngIf="dataUser.actionDialog !== SYSTEM_ACTION.VIEW">
+          <input type="file" (change)="onFileSelected($event, 'profile')" accept="application/pdf">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex justify-content-center gap-2 mt-3">
+  <p-button label="Save" (click)="onUpdateUser()"></p-button>
+</div>
