@@ -1,0 +1,46 @@
+<p-dialog class="prevent-select" [header]="data.headerDialog" [modal]="true" [(visible)]="visible"
+  [style]="{ width: '50rem' }" (onHide)="onHideDialog()">
+  <span class="p-text-secondary block mb-5">{{ data.subHeaderDialog }} </span>
+
+  <div [style.pointer-events]="data.actionDialog === SYSTEM_ACTION.VIEW ? 'none' : 'auto'">
+    <div class="flex flex-column gap-4">
+      <div class="flex flex-column gap-2">
+        <label for="name" class="font-semibold">Tiêu đề<span class="pl-2 text-red-600">*</span></label>
+        <input pInputText id="name" class="flex-auto" [(ngModel)]="data.title" (change)="onChangeTitle($event)" placeholder="Nhập tiêu đề" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="email" class="font-semibold">Từ khóa<span class="pl-2 text-red-600">*</span></label>
+        <input [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" pInputText id="email" class="flex-auto"
+          [(ngModel)]="data.keyword" placeholder="Nhập từ khóa" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="status" class="font-semibold">Trạng thái<span class="pl-2 text-red-600">*</span></label>
+        <p-dropdown id="status" [disabled]="data.actionDialog === SYSTEM_ACTION.CREATE" [options]="LIST_STATUS"
+          [(ngModel)]="selectStatus" placeholder="Chọn trạng thái" optionLabel="NAME" [showClear]="true"
+          [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+
+      <div class="flex flex-column gap-2" [style]="{'height':'300px'}">
+        <label for="introduce" class="font-semibold">Nội dung<span class="pl-2 text-red-600">*</span></label>
+        <quill-editor id="introduce" [(ngModel)]="data.content" [style]="{'height':'200px'}"
+          placeholder="Nhập nội dung tại đây..."></quill-editor>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="" class="font-semibold">Ảnh bìa<span class="pl-2 text-red-600">*</span></label>
+        <img width="200" height="200" src="{{ pathEnvironment + '/' + data.image }}" alt="favicon" />
+        <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW" class="flex justify-content-end gap-2 mt-3">
+    <p-button label="Cancel" severity="secondary" (click)="onHideDialog()"></p-button>
+    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.CREATE" label="Create" (click)="onCreateBlog()"></p-button>
+    <p-button *ngIf="data.actionDialog === SYSTEM_ACTION.UPDATE" label="Save" (click)="onUpdateBlog()"></p-button>
+  </div>
+</p-dialog>

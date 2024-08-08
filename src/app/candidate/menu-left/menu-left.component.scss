@@ -1,0 +1,26 @@
+.card-profile {
+  background-color: var(--secondary-app-color);
+}
+
+.txt-sub-title {
+  color: var(--primary-app-color);
+}
+
+.card-item {
+  border: 1px solid var(--secondary-app-color);
+
+  i {
+    color: var(--secondary-app-color);
+  }
+
+}
+
+.card-item:hover,
+.active {
+  i {
+    color: white;
+  }
+
+  color: white;
+  background-color: var(--secondary-app-color);
+}

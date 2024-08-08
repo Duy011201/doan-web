@@ -1,0 +1,40 @@
+<div class="flex flex-column gap-2">
+  <div class="w-17rem h-10rem p-3 border-round border-1 box-shadow-app card-profile hover:shadow-1">
+
+    <div class="flex gap-3 align-items-center mb-2">
+      <div>
+        <p-avatar image="{{ pathEnvironment + '/' + avatar }}" styleClass="mr-2" size="xlarge"
+                  shape="circle"></p-avatar>
+      </div>
+      <p class="text-white" style="word-break: break-all">{{email}}</p>
+    </div>
+
+    <div class="pt-2 pb-2 pl-3 pr-3 bg-white border-round">
+      <span class="block text-sm">Hồ sơ của tôi</span>
+      <span class="block mt-2 text-xs txt-sub-title"
+        (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.DASHBOARD)">Thiết Lập Hồ Sơ</span>
+    </div>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.DASHBOARD)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.DASHBOARD) }">
+    <i class="fa-solid fa-address-card text-xl"></i>
+    <span>Hồ sơ của tôi</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_PROCESS)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_PROCESS) }">
+    <i class="fa-solid fa-gear text-xl"></i>
+    <span>Quản lý tuyển dụng</span>
+  </div>
+
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1"
+    (click)="onNextPage(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD)"
+    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_CANDIDATE + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD) }">
+    <i class="fa-solid fa-key text-xl"></i>
+    <span>Đổi mật khẩu</span>
+  </div>
+
+</div>

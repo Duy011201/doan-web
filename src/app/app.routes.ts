@@ -31,7 +31,7 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.RELATED_CANDIDATE,
     loadChildren: () => import('./candidate/candidate.module').then((m) => m.CandidateModule),
-    data: { showHeader: true, showFooter: true },
+    data: { showHeader: false, showFooter: false },
   },
   {
     path: SETTING.SYSTEM_PAGE.HEADER_TABLE_PRICE,

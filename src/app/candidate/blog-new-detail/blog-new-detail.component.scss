@@ -1,0 +1,15 @@
+.wrap-item {
+  img {
+    transition: all .6s;
+    width: 120px;
+    height: 80px;
+  }
+  &:hover {
+    img {
+      scale: 1.2;
+    }
+
+    box-shadow: var(--primary-app-box-shadow) 0px 8px 24px;
+  }
+}
+
