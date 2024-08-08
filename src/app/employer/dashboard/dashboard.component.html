@@ -1,7 +1,153 @@
+<app-loading></app-loading>
 <div class="p-3 flex gap-3" style="background-color: var(--primary-app-background);">
   <app-employer-menu-left></app-employer-menu-left>
 
-  <div>
-    bbb
+  <div class="grid w-full">
+    <div class="col-6 px-2">
+      <div class="bg-content p-2 border-round" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+        <h3>Trạng thái tin tuyển dụng</h3>
+        <div class="grid col border-round gap-2">
+          <div class="col-6 border-round-xl p-2" style="background-color: #f5f5f5" [style]="{ width: '49%' }">
+            <span class="block text-yellow-500 text-2xl">{{statusRecruitment.pending}}</span>
+            Pending
+          </div>
+          <div class="col-6 border-round-xl p-2" style="background-color: #f5f5f5" [style]="{ width: '49%' }">
+            <span class="block text-blue-500 text-2xl">{{statusRecruitment.approved}}</span>
+            Approved
+          </div>
+          <div class="col-6 border-round-xl p-2" style="background-color: #f5f5f5" [style]="{ width: '49%' }">
+            <span class="block text-green-500 text-2xl">{{statusRecruitment.published}}</span>
+            Published
+          </div>
+          <div class="col-6 border-round-xl p-2" style="background-color: #f5f5f5" [style]="{ width: '49%' }">
+            <span class="block text-red-500 text-2xl">0</span>
+            Expiry in 7 days
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-content p-2 border-round mt-3" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+        <h3>Trạng thái gói dịch vụ</h3>
+        <div class="grid col border-round gap-2" *ngFor="let item of listProduct">
+          <div class="col-12 border-round-xl p-2" style="background-color: #f5f5f5">
+            <span class="block">{{item.servicePackName}}</span>
+            <span
+              class="block mt-1 {{item.totalExpiration !== 0 ? 'text-green-500' : 'text-red-500'}}">{{item.totalExpiration}}
+              Ngày</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="flex flex-column gap-2">
+        <div class="bg-content p-2 border-round" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="col-12">
+            <h3>Thông tin cá nhân</h3>
+          </div>
+
+          <div class="col-12">
+            <div class="flex flex-column gap-2">
+              <label class="font-semibold">Ảnh bìa<span class="pl-2 text-red-600">*</span></label>
+              <img width="200" height="190" src="{{ pathEnvironment + '/' + dataUser.avatar }}" alt="favicon"/>
+              <div>
+                <input type="file" (change)="onFileSelected($event)" accept="image/*">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="flex flex-column gap-2">
+              <label for="name" class="font-semibold">Username<span class="pl-2 text-red-600">*</span></label>
+              <input pInputText id="name" class="flex-auto" [(ngModel)]="dataUser.username"
+                     placeholder="Nhập tên người dùng"/>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="flex flex-column gap-2">
+              <label for="email" class="font-semibold">Email</label>
+              <input pInputText id="email" class="flex-auto" [(ngModel)]="dataUser.email" placeholder="Nhập email"/>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="flex flex-column gap-2">
+              <label for="phone" class="font-semibold">Số điện thoại<span class="pl-2 text-red-600">*</span></label>
+              <input pInputText id="phone" class="flex-auto" [(ngModel)]="dataUser.phone"
+                     placeholder="Nhập số điện thoại"/>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <p-button label="Cập nhật" (click)="onUpdateUser()"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="flex flex-column gap-2">
+        <div class="bg-content p-2 border-round" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="col-12">
+            <h3>Thông tin công ty</h3>
+          </div>
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="name" class="font-semibold">Tên công ty<span class="pl-2 text-red-600">*</span></label>
+              <input pInputText id="name" class="flex-auto" [(ngModel)]="dataCompany.name"
+                     placeholder="Nhập tên công ty"/>
+            </div>
+          </div>
+
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="email" class="font-semibold">Email</label>
+              <input pInputText id="email" class="flex-auto" [(ngModel)]="dataCompany.email" placeholder="Nhập email"/>
+            </div>
+          </div>
+
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="corporateTaxCode" class="font-semibold">MST<span class="pl-2 text-red-600">*</span></label>
+              <input pInputText id="corporateTaxCode" class="flex-auto" [(ngModel)]="dataCompany.corporateTaxCode"
+                     placeholder="Nhập mã số thuế"/>
+            </div>
+          </div>
+
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="phone" class="font-semibold">Số điện thoại</label>
+              <input pInputText id="phone" class="flex-auto" [(ngModel)]="dataCompany.phone"
+                     placeholder="Nhập số điện thoại"/>
+            </div>
+          </div>
+
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="address" class="font-semibold">Địa chỉ</label>
+              <input pInputText id="address" class="flex-auto" [(ngModel)]="dataCompany.address"
+                     placeholder="Nhập địa chỉ"/>
+            </div>
+          </div>
+
+          <div class="col-12" [style.pointer-events]="'none'">
+            <div class="flex flex-column gap-2">
+              <label for="website" class="font-semibold">Địa chỉ</label>
+              <input pInputText id="website" class="flex-auto" [(ngModel)]="dataCompany.website"
+                     placeholder="Nhập địa chỉ website"/>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <p-button label="Thông tin chi tiết" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, dataCompany)"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+  <app-employer-company-dialog [visible]="visible" [data]="dataDialog" (visibleChange)="handleVisibleChange($event)">
+  </app-employer-company-dialog>
 </div>
+

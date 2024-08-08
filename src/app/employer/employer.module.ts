@@ -15,6 +15,7 @@ import {DialogRecruitmentComponent} from './recruitment/dialog/dialog.component'
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-process.component";
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {DialogCompanyComponent} from "./dashboard/dialog/dialog.component";
 
 @NgModule({
   imports: [EmployerRoutesModule, SharedModule, PdfViewerModule],
@@ -31,6 +32,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     DialogRecruitmentComponent,
     ChangePasswordComponent,
     RecruitmentProcessComponent,
+    DialogCompanyComponent
   ],
   providers: [EmployerService],
 })

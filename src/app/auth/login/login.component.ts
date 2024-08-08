@@ -76,6 +76,7 @@ export class LoginComponent {
             saveToLocalStorage('role', result.data['role']);
             saveToLocalStorage('email', result.data['email']);
             saveToLocalStorage('avatar', result.data['avatar']);
+            saveToLocalStorage('companyID', result.data['companyID']);
 
             if (removeQuotes(getFromLocalStorage('role')) === this.SYSTEM_ROLE.ADMIN) {
               this.onNextPage(

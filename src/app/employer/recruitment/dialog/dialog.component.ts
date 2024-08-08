@@ -33,6 +33,7 @@ export class DialogRecruitmentComponent implements OnInit {
   selectStatus: any = {};
   selectTimeForm: any = {};
 
+  currentDate = new Date();
   pathEnvironment = environment.API_URL;
 
   constructor(
@@ -62,6 +63,11 @@ export class DialogRecruitmentComponent implements OnInit {
     this.selectTimeForm = this.LIST_TIME_FORM.find(
       (item: any) => item.CODE === this.data.timeForm
     );
+
+    if (this.data.actionDialog === this.SYSTEM_ACTION.CREATE) {
+      this.data.timeStart = dayjs(this.currentDate).toDate();
+    }
+
     if (this.data) {
       if (this.data.timeStart) {
         this.data.timeStart = dayjs(this.data.timeStart).toDate();

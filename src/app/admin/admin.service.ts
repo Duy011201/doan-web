@@ -29,6 +29,16 @@ export class AdminService {
       );
   }
 
+  public getByIDUser(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.ADMIN_GET_BY_ID_USER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public updateUser(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.ADMIN_UPDATE_USER}`, body)
@@ -102,6 +112,16 @@ export class AdminService {
   public getAllCompany(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.GET_ALL_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public getByIDCompany(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_BY_ID_COMPANY}`, body)
       .pipe(
         map((res) => {
           return res;

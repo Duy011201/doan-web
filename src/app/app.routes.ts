@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.RELATED_EMPLOYER,
     loadChildren: () => import('./employer/employer.module').then((m) => m.EmployerModule),
-    data: { showHeader: true, showFooter: true },
+    data: { showHeader: false, showFooter: false },
   },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_CANDIDATE,

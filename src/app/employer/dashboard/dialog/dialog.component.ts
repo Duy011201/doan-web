@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { SETTING } from '../../../core/configs/setting.config';
 import { CONSTANT } from '../../../core/configs/constant.config';
-import { AdminService } from '../../admin.service';
+import { EmployerService } from '../../employer.service';
 import {
   getFromLocalStorage,
   isEmpty,
@@ -12,7 +12,7 @@ import {
 import { environment } from '../../../core/environments/develop.environment';
 
 @Component({
-  selector: 'app-admin-company-dialog',
+  selector: 'app-employer-company-dialog',
   standalone: false,
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
@@ -39,7 +39,7 @@ export class DialogCompanyComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private service: AdminService
+    private service: EmployerService
   ) {}
 
   ngOnInit() {

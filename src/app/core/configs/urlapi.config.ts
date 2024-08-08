@@ -13,6 +13,7 @@ export enum UrlApi {
   UPDATE_COMPANY = `api/company/update`,
   DELETE_COMPANY = `api/company/delete`,
   GET_ALL_COMPANY = `api/company/get-all`,
+  GET_BY_ID_COMPANY = `api/company/get-by-id`,
   LOCK_COMPANY = `api/company/lock`,
 
   // user
@@ -21,6 +22,7 @@ export enum UrlApi {
   ADMIN_DELETE_USER = `api/admin/user/delete`,
   ADMIN_RESET_PASSWORD_USER = `api/admin/user/reset-password`,
   ADMIN_GET_ALL_USER = `api/admin/user/get-all`,
+  ADMIN_GET_BY_ID_USER = `api/admin/user/get-by-id`,
   ADMIN_LOCK_USER = `api/admin/user/lock`,
   ADMIN_CHANGE_PASSWORD = `api/admin/user/change-password`,
 
