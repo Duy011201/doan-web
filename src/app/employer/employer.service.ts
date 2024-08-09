@@ -119,6 +119,16 @@ export class EmployerService {
       );
   }
 
+  public getAllCompanyHeader(body: object) {
+    return this._requestApiService
+      .postApi(`${UrlApi.GET_ALL_HEADER_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public getByIDCompany(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.GET_BY_ID_COMPANY}`, body)

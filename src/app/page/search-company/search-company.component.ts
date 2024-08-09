@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { EmployerService } from '../../employer/employer.service';
-import { SETTING } from '../../core/configs/setting.config';
-import { environment } from '../../core/environments/develop.environment';
-import { LoadingService } from '../../core/services/loading.service';
-import { SharedModule } from '../../share/share.module';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {EmployerService} from '../../employer/employer.service';
+import {SETTING} from '../../core/configs/setting.config';
+import {environment} from '../../core/environments/develop.environment';
+import {LoadingService} from '../../core/services/loading.service';
+import {SharedModule} from '../../share/share.module';
+import {CONSTANT} from "../../core/configs/constant.config";
+import * as _ from 'lodash';
+import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-employer-search-company',
@@ -15,25 +19,32 @@ import { SharedModule } from '../../share/share.module';
   styleUrl: './search-company.component.scss',
 })
 export class SearchCompanyComponent implements OnInit {
-  listBlog: any = [];
-  listBlogView: any = [];
+  listCompany: any = [];
+  listProduct: any = [];
   pathEnvironment = environment.API_URL;
   BLOG_STATUS: any = SETTING.BLOG_STATUS;
   SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
+  LIST_PROVINCE = CONSTANT.COMPANY_PROVINCE;
+  LIST_FIELD = CONSTANT.COMPANY_FIELD;
+  PRODUCT_STATUS = SETTING.PRODUCT_STATUS;
   payload: any = {
-    status: this.BLOG_STATUS.PUBLISHED,
+    companyName: '',
+    province: '',
+    field: ''
   };
-  keyword: string = '';
+  selectedProvince = {CODE: '', NAME: ''}
+  selectedField = {CODE: '', NAME: ''}
+  isTop: boolean = true
 
   constructor(
     private messageService: MessageService,
     private service: EmployerService,
     private loadingService: LoadingService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.apiGetAll(this.payload);
-    this.apiGetAllView();
+    this.apiGetAllCompany(this.payload);
   }
 
   truncateString(str: string, maxLength: number): string {
@@ -43,57 +54,64 @@ export class SearchCompanyComponent implements OnInit {
     return str;
   }
 
-  apiView(item: any) {
-    this.service
-      .viewBlog({
-        blogID: item.blogID,
-      })
-      .subscribe(
-        (result: any) => {
-          if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          }
-        },
-        (error: any) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.massage || error.error.message,
-          });
-        }
-      );
-  }
-
-  compareViews(a: any, b: any) {
-    if (a.view > b.view) {
-      return -1;
-    } else if (a.view < b.view) {
-      return 1;
+  onChangeTop(isTop: boolean){
+    this.isTop = isTop;
+    if (this.isTop) {
+      this.apiGetAllProduct();
     } else {
-      return 0;
+      this.listProduct = [];
+      this.apiGetAllCompany(this.payload)
     }
   }
 
-  onSearchKeyword() {
-    let payload = this.payload;
-    payload.keyword = this.keyword;
-    if (typeof this.keyword === 'string') {
-      payload.keyword = this.keyword
+  onSearch() {
+    // Xử lý điều kiện tên công ty
+    if (this.payload.companyName) {
+      this.payload.companyName = this.payload.companyName
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .replace(/đ/g, 'd')
         .replace(/\s+/g, '-');
     }
-    this.apiGetAll(payload);
+
+    this.payload.province = this.selectedProvince ? this.selectedProvince.CODE : '';
+    this.payload.field = this.selectedField ? this.selectedField.CODE : '';
+    this.apiGetAllCompany(this.payload);
   }
 
-  apiGetAllView() {
+  clear() {
+    this.apiGetAllCompany({});
+  }
+
+  apiGetAllProduct() {
     this.loadingService.show();
-    this.service.getAllBlog({ status: this.BLOG_STATUS.PUBLISHED }).subscribe(
+    this.service.getAllProduct({
+      status: this.PRODUCT_STATUS.PAID
+    }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
+            this.listProduct = result.data;
+            this.listProduct = result.data.filter((item: any) => {
+              if (item.totalExpiration > 0) {
+                let updatedAtDate = dayjs(item.updatedAt);
+                let differenceInDays = dayjs().diff(updatedAtDate, 'day');
+                item.totalExpiration -= differenceInDays;
+              }
+              return item;
+            });
+
+            this.listCompany = this.listCompany.filter((company: any) => {
+              if (this.listProduct.find((product: any) => product.userID === company.userID && product.expirationDate > 0)) {
+                company.isTop = true;
+              } else {
+                company.isTop = false;
+              }
+              return company;
+            });
+
+            console.log(this.listCompany)
             this.loadingService.hide();
-            this.listBlogView = result.data.sort(this.compareViews);
           }, 500);
         }
       },
@@ -108,14 +126,17 @@ export class SearchCompanyComponent implements OnInit {
     );
   }
 
-  apiGetAll(payload: any) {
+  apiGetAllCompany(payload: any) {
     this.loadingService.show();
-    this.service.getAllBlog(payload).subscribe(
+    this.service.getAllCompanyHeader(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
             this.loadingService.hide();
-            this.listBlog = result.data;
+            this.listCompany = result.data;
+            if (this.isTop) {
+              this.apiGetAllProduct();
+            }
           }, 500);
         }
       },

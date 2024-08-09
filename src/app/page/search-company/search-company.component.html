@@ -1,52 +1,69 @@
 <app-loading></app-loading>
 <section class="pl-8 pr-8">
 
-  <h2 class="text-center">Bảng tin tức</h2>
+  <h2 class="text-center">Danh sách các công ty nổi bật</h2>
 
 
-  <div class="grid">
-    <div class="col-8">
+  <div class="grid py-3">
+    <div class="col-12 px-5 border-round h-17rem"
+         style="background: var(--secondary-app-color);
+         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+      <div class="flex gap-3 text-white">
+        <p class="py-2 {{isTop === true ? 'border-bottom-2' : '' }}" (click)="onChangeTop(true)">Top công ty</p>
+        <p class="py-2 {{isTop !== true ? 'border-bottom-2' : '' }}" (click)="onChangeTop(false)">Danh sách công ty</p>
+      </div>
 
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-search" />
-        <input type="text" pInputText placeholder="Nhập từ khóa" [(ngModel)]="keyword" (change)="onSearchKeyword()"
-          style="width: 100%;" />
-      </p-iconField>
+      <div class="text-white">
+        <p class="text-2xl">Khám phá 100.000+ công ty nổi bật</p>
+        <p>Tra cứu thông tin công ty và tìm kiếm nơi làm việc tốt nhất dành cho bạn</p>
+      </div>
 
-      <div class="grid mt-3">
-        <div *ngFor="let item of listBlog">
-          <div class="col-12" *ngIf="listBlogView.length < 22">
-            <div class="wrap-item-left border-round-md p-2" (click)="apiView(item)"
-              [routerLink]="['/blog-new', item.blogID]">
-              <div class="overflow-hidden" style="width: 263px; height: 250px;">
-                <img src="{{ pathEnvironment + '/' + item.image }}" />
-              </div>
-              <div>
-                <span class="block mt-3 text-gray-500">{{item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span><i
-                  class="fa-solid fa-eye text-xs text-gray-500"> {{item.view}}</i>
-                <span class="block mt-3 hover:underline" [title]="item.title">{{item.title ? truncateString(item.title,
-                  30) : '...' }}</span>
-              </div>
-            </div>
-          </div>
+      <div class="grid">
+        <div class="col-5">
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-search"/>
+            <input type="text" pInputText placeholder="Nhập tên công ty" [(ngModel)]="payload.companyName"
+                   (change)="onSearch()"
+                   style="width: 100%;"/>
+          </p-iconField>
+        </div>
+
+        <div class="col-3">
+          <p-dropdown [style]="{ width: '100%' }" [(ngModel)]="selectedProvince" [options]="LIST_PROVINCE"
+                      optionLabel="NAME" placeholder="Chọn tỉnh" (click)="onSearch()"></p-dropdown>
+        </div>
+
+        <div class="col-3">
+          <p-dropdown [style]="{ width: '100%' }" [(ngModel)]="selectedField" [options]="LIST_FIELD" optionLabel="NAME"
+                      placeholder="Chọn lĩnh vực" (click)="onSearch()"></p-dropdown>
+        </div>
+
+        <div class="col-1">
+          <button pButton label="Clear" icon="pi pi-filter-slash" (click)="clear()"></button>
         </div>
       </div>
     </div>
+    <div class="grid mt-3">
+      <div *ngFor="let item of listCompany">
+        <div class="col" *ngIf="listCompany.length < 22">
+          <div class="wrap-item-left border-round-md p-2" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
+               [routerLink]="['/', item.companyID]">
+            <div class="overflow-hidden" style="width: 263px; height: 250px;">
+              <img src="{{ pathEnvironment + '/' + item.companyLogo}}"/>
+            </div>
 
-    <div class="col-4">
-      <div class="text-xl font-semibold">Tin nổi bật</div>
+            <div class="mt-4 flex gap-2">
+              <span *ngIf="item.isTop" class="text-yellow-500 border-round px-2 py-1"
+                    style="background: #ffefb7">Top</span>
+              <span class="text-gray-500 border-round px-2 py-1"
+                    style="background: var(--primary-app-background)">{{item.recruitmentCount}} việc làm</span>
+            </div>
 
-      <div *ngFor="let item of listBlogView">
-        <div *ngIf="listBlogView.length < 11" class="wrap-item-right flex gap-2 border-round-md p-2"
-          (click)="apiView(item)" [routerLink]="['/blog-new', item.blogID]">
-          <div class="overflow-hidden" style="width: 120px; height: 80px;">
-            <img src="{{ pathEnvironment + '/' + item.image }}" />
-          </div>
-          <div>
-            <span class="block text-gray-500">{{item.updatedAt | date:'HH:mm:ss dd/MM/yyyy' }}</span><i
-              class="fa-solid fa-eye text-xs text-gray-500"> {{item.view}}</i>
-            <span class="block mt-3 hover:underline" [title]="item.title">{{item.title ? truncateString(item.title, 30)
-              : '...' }}</span>
+            <div>
+              <span class="block mt-3 hover:underline font-semibold"
+                    [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,
+                30) : '...' }}</span>
+            </div>
           </div>
         </div>
       </div>

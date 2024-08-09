@@ -13,6 +13,7 @@ export enum UrlApi {
   UPDATE_COMPANY = `api/company/update`,
   DELETE_COMPANY = `api/company/delete`,
   GET_ALL_COMPANY = `api/company/get-all`,
+  GET_ALL_HEADER_COMPANY = `api/company/get-all-header`,
   GET_BY_ID_COMPANY = `api/company/get-by-id`,
   LOCK_COMPANY = `api/company/lock`,
 
