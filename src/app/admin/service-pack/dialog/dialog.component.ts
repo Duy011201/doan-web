@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { SETTING } from '../../../core/configs/setting.config';
-import { CONSTANT } from '../../../core/configs/constant.config';
 import { AdminService } from '../../admin.service';
 import {
   getFromLocalStorage,
-  isEmail,
   isEmpty,
   removeQuotes,
   trimStringObject,
@@ -39,7 +37,11 @@ export class DialogServiceDialogComponent implements OnInit {
     this.visibleChange.emit(this.visible);
   }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    if (this.data.actionDialog === this.SYSTEM_ACTION.CREATE) {
+      this.data.promotion = 0
+    }
+  }
 
   private validInput(): boolean {
     let errorMessage = '';
@@ -48,7 +50,7 @@ export class DialogServiceDialogComponent implements OnInit {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_NAME;
     } else if (isEmpty(this.data.price)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
-    } else if (isEmpty(this.data.promotion)) {
+    } else if (typeof this.data.promotion !== 'number' || this.data.promotion < 0 || this.data.promotion > 100) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PROMOTION;
     } else if (isEmpty(this.data.expirationDate)) {
       errorMessage =
