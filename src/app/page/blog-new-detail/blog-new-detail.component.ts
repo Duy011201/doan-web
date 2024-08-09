@@ -74,7 +74,7 @@ export class BlogNewDetailComponent implements OnInit {
 
   apiGetAll() {
     this.loadingService.show();
-    this.service.getAllBlog({ status: this.BLOG_STATUS.PUBLISHED }).subscribe(
+    this.service.getAllBlogHeader({ status: this.BLOG_STATUS.PUBLISHED }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {

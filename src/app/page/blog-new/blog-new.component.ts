@@ -75,7 +75,7 @@ export class BlogNewComponent implements OnInit {
   }
 
   onSearchKeyword() {
-    let payload = this.payload;
+    let payload: any = this.payload;
     payload.keyword = this.keyword;
     if (typeof this.keyword === 'string') {
       payload.keyword = this.keyword
@@ -89,7 +89,7 @@ export class BlogNewComponent implements OnInit {
 
   apiGetAllView() {
     this.loadingService.show();
-    this.service.getAllBlog({status: this.BLOG_STATUS.PUBLISHED}).subscribe(
+    this.service.getAllBlogHeader({status: this.BLOG_STATUS.PUBLISHED}).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
@@ -111,7 +111,7 @@ export class BlogNewComponent implements OnInit {
 
   apiGetAll(payload: any) {
     this.loadingService.show();
-    this.service.getAllBlog(payload).subscribe(
+    this.service.getAllBlogHeader(payload).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {

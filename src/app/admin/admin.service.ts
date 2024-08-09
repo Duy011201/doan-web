@@ -179,9 +179,19 @@ export class AdminService {
       );
   }
 
+  public getAllBlogHeader(body: object) {
+    return this._requestApiService
+      .postApi(`${UrlApi.GET_ALL_BLOG}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public getByIDBlog(body: object) {
     return this._requestApiService
-      .postApiHeader(`${UrlApi.GET_BY_ID_BLOG}`, body)
+      .postApi(`${UrlApi.GET_BY_ID_BLOG}`, body)
       .pipe(
         map((res) => {
           return res;
@@ -231,7 +241,7 @@ export class AdminService {
 
   public viewBlog(body: object) {
     return this._requestApiService
-      .postApiHeader(`${UrlApi.VIEW_BLOG}`, body)
+      .postApi(`${UrlApi.VIEW_BLOG}`, body)
       .pipe(
         map((res) => {
           return res;

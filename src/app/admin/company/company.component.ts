@@ -19,7 +19,6 @@ export class CompanyComponent implements OnInit {
   LIST_PROVINCE = CONSTANT.COMPANY_PROVINCE;
   LIST_SYSTEM_STATUS = CONSTANT.SYSTEM_STATUS;
   LIST_FIELD = CONSTANT.COMPANY_FIELD;
-  LIST_SCALE = CONSTANT.COMPANY_SCALE;
 
   constructor(
     private messageService: MessageService,
