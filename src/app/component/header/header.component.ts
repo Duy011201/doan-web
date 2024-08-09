@@ -14,12 +14,12 @@ import { getFromLocalStorage, removeQuotes } from '../../core/commons/func';
 export class HeaderComponent implements OnInit {
   SYSTEM_PAGE = SETTING.SYSTEM_PAGE;
   SYSTEM_ROLE = SETTING.SYSTEM_ROLE;
-  isEmployer = '';
+  isRole = '';
   isLogin = '';
 
   constructor(private router: Router) {
     const role = getFromLocalStorage('role');
-    this.isEmployer = role ? removeQuotes(role) : '';
+    this.isRole = role ? removeQuotes(role) : '';
 
     const token = getFromLocalStorage('token');
     this.isLogin = token ? removeQuotes(token) : '';
