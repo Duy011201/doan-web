@@ -10,12 +10,18 @@ export class RequestApiService {
   }
 
   private static getAuthHeaders(): HttpHeaders {
-    const token = removeQuotes(getFromLocalStorage('token'));
+    const token = getFromLocalStorage('token');
+    if (token !== null) {
       return new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${removeQuotes(getFromLocalStorage('token'))}`
       });
+    }
+    return new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
   }
 
   postApi(url: string, body?: object): Observable<any> {
@@ -28,15 +34,21 @@ export class RequestApiService {
 
   postApiHeader(apiUrl: string, body: any): Observable<any> {
     const headers = RequestApiService.getAuthHeaders();
-    body.token = removeQuotes(getFromLocalStorage('token'));
+    const token = getFromLocalStorage('token');
+    if (token !== null) {
+      body.token = removeQuotes(getFromLocalStorage('token'));
+    }
     return this.http.post(`${environment.API_URL}/${apiUrl}`, body, {headers});
   }
 
   private static getAuthHeadersFile(): HttpHeaders {
     const token = removeQuotes(getFromLocalStorage('token'));
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    if (token !== null) {
+      return new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+    }
+    return new HttpHeaders({});
   }
 
   postApiHeaderFile(apiUrl: string, body: any, files?: File[]): Observable<any> {
@@ -61,6 +73,6 @@ export class RequestApiService {
       console.error('No files provided or files is not an array');
     }
 
-    return this.http.post(`${environment.API_URL}/${apiUrl}`, formData, { headers });
+    return this.http.post(`${environment.API_URL}/${apiUrl}`, formData, {headers});
   }
 }

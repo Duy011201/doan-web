@@ -6,11 +6,14 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { isEmpty } from './core/commons/func';
+import {getFromLocalStorage, isEmpty, removeQuotes} from './core/commons/func';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
+import {MessageService} from "primeng/api";
+import {LoadingService} from "./core/services/loading.service";
+import {SharedModule} from "./share/share.module";
 
 @Component({
   selector: 'app-root',
@@ -24,6 +27,7 @@ import { FooterComponent } from './component/footer/footer.component';
     FooterComponent,
     CommonModule,
   ],
+  providers: [MessageService, LoadingService],
 })
 export class AppComponent implements OnInit {
   /*
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit {
   /*
    * Get value from router
    */
-  constructor(private router: Router) {
+  constructor(private router: Router, private messageService: MessageService,) {
     this.router.events
       .pipe(
         filter((event) => event instanceof ActivationEnd),

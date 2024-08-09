@@ -5,6 +5,7 @@ import { SETTING } from './core/configs/setting.config';
 import { TablePriceComponent } from './page/table-price/table-price.component';
 import { BlogNewComponent } from './page/blog-new/blog-new.component';
 import { BlogNewDetailComponent } from './page/blog-new-detail/blog-new-detail.component';
+import {SearchCompanyComponent} from "./page/search-company/search-company.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full' },
@@ -36,6 +37,11 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.HEADER_TABLE_PRICE,
     component: TablePriceComponent,
+    data: { showHeader: true, showFooter: true },
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_SEARCH_COMPANY,
+    component: SearchCompanyComponent,
     data: { showHeader: true, showFooter: true },
   },
   {
