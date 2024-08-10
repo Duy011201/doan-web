@@ -47,16 +47,9 @@
       <div *ngFor="let item of listCompany">
         <div class="col" *ngIf="listCompany.length < 22">
           <div class="wrap-item-left border-round-md p-2" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
-               [routerLink]="['/', item.companyID]">
+               [routerLink]="['/search-company', item.companyID]">
             <div class="overflow-hidden" style="width: 263px; height: 250px;">
               <img src="{{ pathEnvironment + '/' + item.companyLogo}}"/>
-            </div>
-
-            <div class="mt-4 flex gap-2">
-              <span *ngIf="item.isTop" class="text-yellow-500 border-round px-2 py-1"
-                    style="background: #ffefb7">Top</span>
-              <span class="text-gray-500 border-round px-2 py-1"
-                    style="background: var(--primary-app-background)">{{item.recruitmentCount}} việc làm</span>
             </div>
 
             <div>
@@ -64,6 +57,20 @@
                     [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,
                 30) : '...' }}</span>
             </div>
+
+            <div class="mt-2 flex gap-2">
+              <span *ngIf="item.isTop" class="text-yellow-500 border-round px-2 py-1"
+                    style="background: #ffefb7">Top</span>
+              <span class="text-gray-500 border-round px-2 py-1"
+                    style="background: var(--primary-app-background)">{{item.recruitmentCount}} việc làm</span>
+            </div>
+
+            <div>
+              <span class="block mt-2 hover:underline"
+                    [title]="item.companyAddress">Trụ sở chính: {{item.companyAddress ? truncateString(item.companyAddress,
+                30) : '...' }}</span>
+            </div>
+
           </div>
         </div>
       </div>

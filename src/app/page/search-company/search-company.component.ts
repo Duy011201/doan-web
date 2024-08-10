@@ -102,15 +102,15 @@ export class SearchCompanyComponent implements OnInit {
             });
 
             this.listCompany = this.listCompany.filter((company: any) => {
-              if (this.listProduct.find((product: any) => product.userID === company.userID && product.expirationDate > 0)) {
+              if (this.listProduct.find((product: any) => product.userID === company.userID
+                && product.servicePackName === 'Công ty nổi bật'
+                && product.expirationDate > 0)) {
                 company.isTop = true;
               } else {
                 company.isTop = false;
               }
               return company;
             });
-
-            console.log(this.listCompany)
             this.loadingService.hide();
           }, 500);
         }
