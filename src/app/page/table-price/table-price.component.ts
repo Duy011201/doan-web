@@ -5,6 +5,7 @@ import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
 import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
 import { SharedModule } from '../../share/share.module';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-table-price',
@@ -17,25 +18,35 @@ import { SharedModule } from '../../share/share.module';
 export class TablePriceComponent implements OnInit {
   listService: any = [];
   pathEnvironment = environment.API_URL;
+  SYSTEM_ROLE = SETTING.SYSTEM_ROLE;
+  isRole = '';
+  isLogin = '';
 
   constructor(
     private messageService: MessageService,
     private service: AdminService
-  ) {}
+  ) {
+    const role = getFromLocalStorage('role');
+    this.isRole = role ? removeQuotes(role) : '';
+
+    const token = getFromLocalStorage('token');
+    this.isLogin = token ? removeQuotes(token) : '';
+  }
 
   ngOnInit(): void {
     this.apiGetAll();
   }
 
-  onWaringMessage() {
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Warn',
-      detail: 'Bạn không phải là tuyển dụng!',
-    });
-  }
-
   public async onCreateProduct(service: any): Promise<void> {
+    if (this.isRole !== this.SYSTEM_ROLE.EMPLOYER) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warn',
+        detail: 'Bạn không phải là nhà tuyển dụng!',
+      });
+      return;
+    }
+
     const createdBy = removeQuotes(getFromLocalStorage('userID'));
     const payload = {
       userID: createdBy,
