@@ -12,9 +12,10 @@ export const SETTING = {
     HEADER_HOME: 'home',
     HEADER_BLOG_NEW: 'blog-new',
     HEADER_BLOG_NEW_DETAIL: 'blog-new/:id',
-    HEADER_JOB: 'job',
     HEADER_SEARCH_COMPANY: 'search-company',
     HEADER_SEARCH_COMPANY_DETAIL: 'search-company/:id',
+    HEADER_SEARCH_RECRUITMENT: 'search-recruitment',
+    HEADER_SEARCH_RECRUITMENT_DETAIL: 'search-recruitment/:id',
     HEADER_TABLE_PRICE: 'table-price',
     HEADER_ORDER: 'manager-order',
 

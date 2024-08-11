@@ -1,0 +1,87 @@
+<app-loading></app-loading>
+<section class="pl-8 pr-8">
+
+  <h2 class="text-center">Danh sách tin tuyển dụng nổi bật</h2>
+
+
+  <div class="grid py-3">
+    <div class="col-12 px-5 border-round h-12rem"
+         style="background: var(--secondary-app-color);
+         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+      <div class="text-white">
+        <p class="text-2xl">Khám phá 500.000+ tin tuyển dụng</p>
+        <p>Tra cứu thông tin việc làm tốt nhất dành cho bạn</p>
+      </div>
+
+      <div class="grid">
+        <div class="col-5">
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-search"/>
+            <input type="text" pInputText placeholder="Nhập từ khóa" [(ngModel)]="payload.keyword"
+                   (change)="onSearch()"
+                   style="width: 100%;"/>
+          </p-iconField>
+        </div>
+
+        <div class="col-3">
+          <p-dropdown [style]="{ width: '100%' }" [(ngModel)]="selectedProvince" [options]="LIST_PROVINCE"
+                      optionLabel="NAME" placeholder="Chọn tỉnh" (click)="onSearch()"></p-dropdown>
+        </div>
+
+        <div class="col-3">
+          <p-dropdown [style]="{ width: '100%' }" [(ngModel)]="selectedField" [options]="LIST_FIELD" optionLabel="NAME"
+                      placeholder="Chọn lĩnh vực" (click)="onSearch()"></p-dropdown>
+        </div>
+
+        <div class="col-1">
+          <button pButton label="Clear" icon="pi pi-filter-slash" (click)="clear()"></button>
+        </div>
+      </div>
+    </div>
+    <div class="grid mt-3">
+      <div *ngFor="let item of listRecruitment">
+        <div class="col-12 border-round item" style="min-width: 450px"
+             *ngIf="listRecruitment.length < 28" [routerLink]="['/search-recruitment', item.recruitmentID]">
+
+          <div class="border-round" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+            <div class="grid">
+              <div class="col-4">
+                <div class="flex align-items-center justify-content-center h-full p-2">
+                  <p-avatar *ngIf="item.companyLogo" image="{{ pathEnvironment + '/' + item.companyLogo }}"
+                            size="xlarge" class="w-min"></p-avatar>
+                  <p-avatar *ngIf="!item.companyLogo" label="C" size="xlarge" class="w-min"></p-avatar>
+                </div>
+              </div>
+
+              <div class="col-8 flex flex-column gap-3 p-2 h-full">
+                <span class="block hover:underline font-semibold"
+                      [title]="item.title">{{item.title ? truncateString(item.title,
+                  30) : '...' }}</span>
+
+                <span class="block hover:underline"
+                      [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,
+                  30) : '...' }}</span>
+
+                <div class="flex gap-2">
+                  <span *ngIf="item?.CONG_TY_NOI_BAT" class="text-white border-round px-2 py-1"
+                        style="background: #001744">Top</span>
+                  <span *ngIf="item?.HIEU_UNG_GAP"
+                        class="text-white border-round border-1 px-2 py-1 border-red-500 bg-red-500">GẤP</span>
+                  <span *ngIf="item?.HIEU_UNG_HOT" class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
+                        style="background: var(--primary-app-background)">HOT</span>
+                  <span class="text-gray-500 border-round px-2 py-1 white-space-nowrap"
+                        style="background: var(--primary-app-background)">{{item.province | DynamicPipe: LIST_PROVINCE}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</section>

@@ -7,6 +7,7 @@ import {BlogNewComponent} from './page/blog-new/blog-new.component';
 import {BlogNewDetailComponent} from './page/blog-new-detail/blog-new-detail.component';
 import {SearchCompanyComponent} from "./page/search-company/search-company.component";
 import {SearchCompanyDetailComponent} from "./page/search-company-detail/search-company-detail.component";
+import {SearchRecruitmentComponent} from "./page/search-recruitment/search-recruitment.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -47,6 +48,16 @@ export const routes: Routes = [
   },
   {
     path: SETTING.SYSTEM_PAGE.HEADER_SEARCH_COMPANY_DETAIL,
+    component: SearchCompanyDetailComponent,
+    data: {showHeader: true, showFooter: true},
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_SEARCH_RECRUITMENT,
+    component: SearchRecruitmentComponent,
+    data: {showHeader: true, showFooter: true},
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.HEADER_SEARCH_RECRUITMENT_DETAIL,
     component: SearchCompanyDetailComponent,
     data: {showHeader: true, showFooter: true},
   },
