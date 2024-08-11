@@ -79,7 +79,14 @@ export class SearchCompanyComponent implements OnInit {
   }
 
   clear() {
-    this.apiGetAllCompany({});
+    this.payload = {
+      companyName: '',
+      province: '',
+      field: ''
+    };
+    this.selectedProvince = {CODE: '', NAME: ''}
+    this.selectedField = {CODE: '', NAME: ''}
+    this.apiGetAllCompany(this.payload);
   }
 
   apiGetAllProduct() {
