@@ -1,0 +1,157 @@
+<app-loading></app-loading>
+<section style="padding-left: 200px; padding-right: 200px">
+
+  <div class="py-3 flex flex-column gap-3">
+    <div class="border-round-xl py-3 h-8rem"
+         style="background: var(--secondary-app-color);
+         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+
+      <div class="flex align-items-center justify-content-evenly h-full gap-5">
+        <div>
+          <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}" shape="circle"></p-avatar>
+        </div>
+
+        <div>
+          <p class="text-white">{{dataCompany.name}}</p>
+
+          <div class="flex gap-7">
+            <div *ngIf="isTop">
+              <span class="text-yellow-500 border-round px-2 py-1"
+                    style="background: #ffefb7">Top</span>
+            </div>
+
+            <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.website">
+              <i class="fa-solid fa-link"></i>
+              <p>{{dataCompany.website}}</p>
+            </div>
+
+            <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.scale">
+              <i class="fa-regular fa-building"></i>
+              <p class="text-white">{{dataCompany.scale}}+</p>
+            </div>
+
+            <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.address">
+              <i class="fa-solid fa-location-dot"></i>
+              <p class="text-white">{{dataCompany.address}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-white">
+          <p-button label="Theo dõi" icon="fa-solid fa-plus" (click)="apiFollow()"></p-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col-8">
+        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round-top-xl h-3rem flex align-items-center px-3"
+               style="background: var(--secondary-app-color);box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+            <span class="text-white font-bold text-lg">Tuyển dụng</span>
+          </div>
+          <div class="border-round-bottom-xl h-30rem p-3">
+            <div class="grid">
+              <div class="col-7">
+                <p-iconField iconPosition="left">
+                  <p-inputIcon styleClass="pi pi-search"/>
+                  <input type="text" pInputText placeholder="Nhập từ khóa" [(ngModel)]="payload.keyword"
+                         (change)="onSearch()"
+                         style="width: 100%;"/>
+                </p-iconField>
+              </div>
+
+              <div class="col-5">
+                <p-dropdown [style]="{ width: '100%' }" [(ngModel)]="selectedProvince" [options]="LIST_PROVINCE"
+                            optionLabel="NAME" placeholder="Chọn tỉnh" (click)="onSearch()"></p-dropdown>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="col-12">
+                <div *ngFor="let item of listRecruitment">
+                  <div class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}" *ngIf="listRecruitment.length < 10">
+
+                    <div class="col">
+                      <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}"></p-avatar>
+                    </div>
+
+                    <div class="col">
+                      <div class="flex flex-column align-content-center justify-content-center h-full gap-3">
+                        <div class="flex gap-2">
+                          <span *ngIf="item?.HIEU_UNG_HOT" class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
+                                style="background: var(--primary-app-background)">
+                              HOT
+                          </span>
+                          <span *ngIf="item?.HIEU_UNG_GAP" class="text-white border-round border-1 px-2 py-1 border-red-500 bg-red-500">
+                              GẤP
+                          </span>
+                          <span class="text-gray-500 border-round px-2 py-1"
+                              style="background: var(--primary-app-background)">
+                              {{item.province | DynamicPipe: LIST_PROVINCE}}
+                          </span>
+                        </div>
+
+                        <span class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
+                              [title]="item.title">{{item.title ? truncateString(item.title,
+                          30) : '...' }}</span>
+                        <span class="block text-gray-500"
+                              [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,
+                          30) : '...' }}</span>
+                      </div>
+                    </div>
+
+                    <div class="col flex justify-content-center align-items-center">
+                      <p-button label="Ứng tuyển" (click)="createRecruitmentProcess(item)"></p-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round-top-xl h-3rem flex align-items-center px-3"
+               style="background: var(--secondary-app-color);">
+            <span class="text-white font-bold text-lg">Giới thiệu công ty</span>
+          </div>
+          <div class="border-round-bottom-xl h-3rem">
+            <div class="py-2 bg-content p-3" [innerHTML]="dataCompany.introduce"></div>
+          </div>
+        </div>
+
+        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round-top-xl h-3rem flex align-items-center px-3 mt-5"
+               style="background: var(--secondary-app-color);">
+            <span class="text-white font-bold text-lg">Chia sẻ công ty tới bạn bè</span>
+          </div>
+          <div class="py-2 bg-content p-3 border-round-bottom-xl h-8rem">
+            <span class="mb-2 block">Sao chép đường dẫn</span>
+            <p-inputGroup>
+              <input pInputText class="flex-auto" [(ngModel)]="isLink"/>
+              <p-inputGroupAddon>
+                <i class="fa-regular fa-copy"></i>
+              </p-inputGroupAddon>
+            </p-inputGroup>
+            <div class="text-xs">
+              <p class="">
+                <i class="fa-brands fa-facebook text-3xl hover:text-blue-500"></i>
+                <i class="fa-brands fa-facebook-messenger text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-instagram text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-youtube text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-linkedin text-3xl ml-2 hover:text-blue-500"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</section>

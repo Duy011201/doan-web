@@ -14,6 +14,7 @@ export const SETTING = {
     HEADER_BLOG_NEW_DETAIL: 'blog-new/:id',
     HEADER_JOB: 'job',
     HEADER_SEARCH_COMPANY: 'search-company',
+    HEADER_SEARCH_COMPANY_DETAIL: 'search-company/:id',
     HEADER_TABLE_PRICE: 'table-price',
     HEADER_ORDER: 'manager-order',
 
@@ -122,5 +123,13 @@ export const SETTING = {
     PENDING: 'PENDING',
     APPROVED: 'APPROVED',
     PUBLISHED: 'PUBLISHED',
+  },
+  SERVICE_PACK: {
+    HIEU_UNG_DO_DAM: 'Hiệu ứng đỏ đậm',
+    CONG_TY_NOI_BAT: 'Công ty nổi bật',
+    HIEU_UNG_HOT: 'Hiệu ứng hot',
+    TIN_CO_BAN: 'Tin cơ bản',
+    HIEU_UNG_GAP: 'Hiệu ứng gấp',
+    HIEU_UNG_DONG_KHUNG: 'Hiệu ứng đóng khung',
   },
 };

@@ -1,0 +1,16 @@
+::ng-deep {
+  .p-avatar {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .p-button {
+    padding: 8px 10px;
+  }
+}
+
+.item {
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+}

@@ -15,6 +15,7 @@ export enum UrlApi {
   GET_ALL_COMPANY = `api/company/get-all`,
   GET_ALL_HEADER_COMPANY = `api/company/get-all-header`,
   GET_BY_ID_COMPANY = `api/company/get-by-id`,
+  FOLLOW_COMPANY = `api/company/follow`,
   LOCK_COMPANY = `api/company/lock`,
 
   // user
@@ -64,9 +65,11 @@ export enum UrlApi {
   UPDATE_RECRUITMENT = `api/recruitment/update`,
   DELETE_RECRUITMENT = `api/recruitment/delete`,
   GET_ALL_RECRUITMENT = `api/recruitment/get-all`,
+  GET_ALL_RECRUITMENT_HEADER = `api/recruitment/get-all-header`,
   STATUS_RECRUITMENT = `api/recruitment/status`,
 
   // recruitment process
+  CREATE_RECRUITMENT_PROCESS = `api/recruitment-process/create`,
   DELETE_RECRUITMENT_PROCESS = `api/recruitment-process/delete`,
   SAVE_PROFILE = `api/recruitment-process/save-profile`,
   GET_ALL_RECRUITMENT_PROCESS_EMPLOYER = `api/recruitment-process/get-all-employer`,

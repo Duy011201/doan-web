@@ -169,6 +169,16 @@ export class EmployerService {
       );
   }
 
+  public followCompany(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.FOLLOW_COMPANY}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public lockCompany(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.LOCK_COMPANY}`, body)
@@ -359,6 +369,16 @@ export class EmployerService {
       );
   }
 
+  public getAllRecruitmentHeader(body: object) {
+    return this._requestApiService
+      .postApi(`${UrlApi.GET_ALL_RECRUITMENT_HEADER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public updateRecruitment(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.UPDATE_RECRUITMENT}`, body)
@@ -422,6 +442,16 @@ export class EmployerService {
   public deleteRecruitmentProcess(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.DELETE_RECRUITMENT_PROCESS}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public createRecruitmentProcess(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.CREATE_RECRUITMENT_PROCESS}`, body)
       .pipe(
         map((res) => {
           return res;

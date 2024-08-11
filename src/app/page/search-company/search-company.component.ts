@@ -6,8 +6,6 @@ import {environment} from '../../core/environments/develop.environment';
 import {LoadingService} from '../../core/services/loading.service';
 import {SharedModule} from '../../share/share.module';
 import {CONSTANT} from "../../core/configs/constant.config";
-import * as _ from 'lodash';
-import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
 import dayjs from "dayjs";
 
 @Component({
@@ -27,6 +25,7 @@ export class SearchCompanyComponent implements OnInit {
   LIST_PROVINCE = CONSTANT.COMPANY_PROVINCE;
   LIST_FIELD = CONSTANT.COMPANY_FIELD;
   PRODUCT_STATUS = SETTING.PRODUCT_STATUS;
+  SERVICE_PACK = SETTING.SERVICE_PACK
   payload: any = {
     companyName: '',
     province: '',
@@ -103,7 +102,7 @@ export class SearchCompanyComponent implements OnInit {
 
             this.listCompany = this.listCompany.filter((company: any) => {
               if (this.listProduct.find((product: any) => product.userID === company.userID
-                && product.servicePackName === 'Công ty nổi bật'
+                && product.servicePackName === this.SERVICE_PACK.CONG_TY_NOI_BAT
                 && product.expirationDate > 0)) {
                 company.isTop = true;
               } else {
