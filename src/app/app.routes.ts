@@ -8,6 +8,7 @@ import {BlogNewDetailComponent} from './page/blog-new-detail/blog-new-detail.com
 import {SearchCompanyComponent} from "./page/search-company/search-company.component";
 import {SearchCompanyDetailComponent} from "./page/search-company-detail/search-company-detail.component";
 import {SearchRecruitmentComponent} from "./page/search-recruitment/search-recruitment.component";
+import {SearchRecruitmentDetailComponent} from "./page/search-recruitment-detail/search-recruitment-detail.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -58,7 +59,7 @@ export const routes: Routes = [
   },
   {
     path: SETTING.SYSTEM_PAGE.HEADER_SEARCH_RECRUITMENT_DETAIL,
-    component: SearchCompanyDetailComponent,
+    component: SearchRecruitmentDetailComponent,
     data: {showHeader: true, showFooter: true},
   },
   {

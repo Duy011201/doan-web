@@ -1,0 +1,161 @@
+<app-loading></app-loading>
+<section style="padding-left: 200px; padding-right: 200px">
+
+  <div class="py-3 flex flex-column gap-3">
+    <div class="border-round-xl py-3 h-8rem"
+         style="background: var(--secondary-app-color);
+         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+
+      <div class="grid">
+        <div class="col-10">
+          <div class="grid">
+            <div class="col-12">
+              <div class="px-5">
+                <span class="text-white text-2xl font-semibold">{{dataRecruitment.title}}</span>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="flex gap-8 px-5">
+                <div class="flex gap-3 align-items-center justify-content-center">
+                  <i class="fa-solid fa-dollar-sign text-3xl text-white"></i>
+                  <div class="text-white flex flex-column">
+                    <span class="text-gray-300">Mức lương</span>
+                    <span>{{dataRecruitment.salaryFrom}} triệu - {{dataRecruitment.salaryTo}} triệu</span>
+                  </div>
+                </div>
+
+                <div *ngIf="dataRecruitment.companyAddress" class="flex gap-3 align-items-center justify-content-center">
+                  <i class="fa-solid fa-location-dot text-3xl text-white"></i>
+                  <div class="text-white flex flex-column">
+                    <span class="text-gray-300">Địa điểm</span>
+                    <span>{{dataRecruitment.companyAddress}}</span>
+                  </div>
+                </div>
+
+                <div *ngIf="dataRecruitment.companyField" class="flex gap-3 align-items-center justify-content-center">
+                  <i class="fa-solid fa-cube text-3xl text-white"></i>
+                  <div class="text-white flex flex-column">
+                    <span class="text-gray-300">Lĩnh vực</span>
+                    <span>{{dataRecruitment.companyField | DynamicPipe: LIST_FIELD}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-2">
+            <div class="flex justify-content-center align-items-center h-full">
+              <p-button label="Ứng tuyển" icon="fa-solid fa-plus" (click)="createRecruitmentProcess(dataRecruitment)"></p-button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col-8">
+        <div class="flex flex-column gap-3">
+          <div class="border-round-xl p-3" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+            <h3 class="pl-2" style="border-left: 4px solid var(--secondary-app-color);">Mô tả</h3>
+            <div class="py-2 bg-content" [innerHTML]="dataRecruitment.description"></div>
+          </div>
+
+          <div class="border-round-xl p-3" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+            <h3 class="pl-2" style="border-left: 4px solid var(--secondary-app-color);">Yêu cầu</h3>
+            <div class="py-2 bg-content" [innerHTML]="dataRecruitment.required"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round-top-xl h-3rem flex align-items-center px-3"
+               style="background: var(--secondary-app-color);">
+            <span class="text-white font-bold text-lg">Giới thiệu công ty</span>
+          </div>
+          <div class="border-round-bottom-xl grid">
+            <div class="col-5">
+              <div class="p-2">
+                <p-avatar *ngIf="dataRecruitment.companyLogo"
+                          image="{{ pathEnvironment + '/' + dataRecruitment.companyLogo }}"
+                          size="xlarge"></p-avatar>
+                <p-avatar *ngIf="!dataRecruitment.companyLogo" label="C" size="xlarge" class="w-min"></p-avatar>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="p-2 flex justify-content-center align-items-center h-full">
+                <span class="block font-semibold hover:underline">{{dataRecruitment.companyName}}</span>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="p-2 flex gap-3">
+                <i class="fa-solid fa-users"></i>
+                <span class="block">Quy mô</span>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="p-2">
+                <span class="block">{{dataRecruitment.companyScale}}</span>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="p-2 flex gap-3">
+                <i class="fa-solid fa-cube"></i>
+                <span class="block">Lĩnh vực</span>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="p-2">
+                <span class="block">{{dataRecruitment.companyField | DynamicPipe: LIST_FIELD}}</span>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="p-2 flex gap-3">
+                <i class="fa-solid fa-location-dot"></i>
+                <span class="block">Địa điểm</span>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="p-2">
+                <span class="block">{{dataRecruitment.companyAddress}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round-top-xl h-3rem flex align-items-center px-3 mt-5"
+               style="background: var(--secondary-app-color);">
+            <span class="text-white font-bold text-lg">Chia sẻ công việc tới bạn bè</span>
+          </div>
+          <div class="py-2 bg-content p-3 border-round-bottom-xl h-8rem">
+            <span class="mb-2 block">Sao chép đường dẫn</span>
+            <p-inputGroup>
+              <input pInputText class="flex-auto" [(ngModel)]="isLink"/>
+              <p-inputGroupAddon>
+                <i class="fa-regular fa-copy"></i>
+              </p-inputGroupAddon>
+            </p-inputGroup>
+            <div class="text-xs">
+              <p class="">
+                <i class="fa-brands fa-facebook text-3xl hover:text-blue-500"></i>
+                <i class="fa-brands fa-facebook-messenger text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-instagram text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-youtube text-3xl ml-2 hover:text-blue-500"></i>
+                <i class="fa-brands fa-linkedin text-3xl ml-2 hover:text-blue-500"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</section>
