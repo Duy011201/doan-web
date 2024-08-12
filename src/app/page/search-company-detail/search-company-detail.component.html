@@ -1,5 +1,5 @@
 <app-loading></app-loading>
-<section style="padding-left: 200px; padding-right: 200px">
+<section class="pl-8 pr-8">
 
   <div class="py-3 flex flex-column gap-3">
     <div class="border-round-xl py-3 h-8rem"
@@ -14,7 +14,7 @@
         <div>
           <p class="text-white">{{dataCompany.name}}</p>
 
-          <div class="flex gap-7">
+          <div class="flex gap-3">
             <div *ngIf="isTop">
               <span class="text-yellow-500 border-round px-2 py-1"
                     style="background: #ffefb7">Top</span>
@@ -70,7 +70,8 @@
             <div class="grid">
               <div class="col-12">
                 <div *ngFor="let item of listRecruitment">
-                  <div class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}" *ngIf="listRecruitment.length < 10">
+                  <div class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}"
+                       *ngIf="listRecruitment.length < 10" [routerLink]="['/search-recruitment', item.recruitmentID]">
 
                     <div class="col">
                       <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}"></p-avatar>
@@ -118,7 +119,7 @@
                style="background: var(--secondary-app-color);">
             <span class="text-white font-bold text-lg">Giới thiệu công ty</span>
           </div>
-          <div class="border-round-bottom-xl h-3rem">
+          <div class="border-round-bottom-xl overflow-hidden max-h-50rem">
             <div class="py-2 bg-content p-3" [innerHTML]="dataCompany.introduce"></div>
           </div>
         </div>

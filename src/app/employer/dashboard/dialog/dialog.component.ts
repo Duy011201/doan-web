@@ -146,7 +146,7 @@ export class DialogCompanyComponent implements OnInit {
         logo: listFile[0]?.filePath || this.data.logo || '',
         scale: this.selectScale?.CODE || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
-        website: this.data.address || '',
+        website: this.data.website || '',
         status: this.selectStatus.CODE || this.data.status,
         createdBy: createdBy,
       };
@@ -179,7 +179,7 @@ export class DialogCompanyComponent implements OnInit {
         logo: listFile[0]?.filePath || this.data.logo || '',
         scale: this.selectScale?.CODE || 0,
         corporateTaxCode: this.data.corporateTaxCode || '',
-        website: this.data.address || '',
+        website: this.data.website || '',
         status: this.selectStatus.CODE || this.data.status,
         updatedBy: updatedBy,
       };
