@@ -212,6 +212,8 @@ export class DialogUserComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFileImage = [];
+          this.listFileProfile = [];
           this.onHideDialog();
         }
       },
@@ -234,6 +236,8 @@ export class DialogUserComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFileImage = [];
+          this.listFileProfile = [];
           this.onHideDialog();
         }
       },

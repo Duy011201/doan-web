@@ -1,1 +1,24 @@
-<p>report works! báo cáo thống kê excel</p>
+<app-loading></app-loading>
+<div class="p-3 flex gap-3" style="background-color: var(--primary-app-background);">
+  <app-employer-menu-left></app-employer-menu-left>
+
+  <div>
+    <h2 class="header-component">Báo cáo thống kê</h2>
+
+    <div class="grid">
+      <div class="col-12">
+        <div class="flex gap-3 mb-4">
+          <p-button label="Số lượng ứng viên" (click)="onSearch('candidate')" />
+          <p-button label="Số lượng tin tuyển dụng" (click)="onSearch('recruitment')"/>
+          <p-button label="Xuất excel" (click)="onExportExcel()"></p-button>
+        </div>
+      </div>
+      <div class="col-10">
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+      </div>
+    </div>
+  </div>
+
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+</div>

@@ -161,6 +161,7 @@ export class DialogServiceDialogComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFile = [];
           this.onHideDialog();
         }
       },
@@ -183,6 +184,7 @@ export class DialogServiceDialogComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFile = [];
           this.onHideDialog();
         }
       },

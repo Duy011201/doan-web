@@ -32,7 +32,6 @@ export class DialogCompanyComponent implements OnInit {
   selectProvince: any = {};
   selectField: any = {};
   selectStatus: any = {};
-  selectCompany: any = {};
   listFile: any = [];
 
   pathEnvironment = environment.API_URL;
@@ -123,37 +122,6 @@ export class DialogCompanyComponent implements OnInit {
     return true;
   }
 
-  public async onCreateUser(): Promise<void> {
-    const createdBy = removeQuotes(getFromLocalStorage('userID'));
-
-    let listFile = [];
-
-    if (this.listFile.length > 0) {
-      listFile = await this.uploadFile({ userID: createdBy }, this.listFile);
-    }
-
-    if (this.validInput()) {
-      this.data = trimStringObject(this.data);
-
-      const payload = {
-        name: this.data.name || '',
-        introduce: this.data.introduce || '',
-        email: this.data.email || '',
-        phone: this.data.phone || '',
-        province: this.selectProvince?.CODE || '',
-        address: this.data.address || '',
-        field: this.selectField?.CODE || '',
-        logo: listFile[0]?.filePath || this.data.logo || '',
-        scale: this.selectScale?.CODE || 0,
-        corporateTaxCode: this.data.corporateTaxCode || '',
-        website: this.data.website || '',
-        status: this.selectStatus.CODE || this.data.status,
-        createdBy: createdBy,
-      };
-      this.apiCreate(payload);
-    }
-  }
-
   public async onUpdateUser(): Promise<void> {
     const updatedBy = removeQuotes(getFromLocalStorage('userID'));
     let listFile = [];
@@ -188,28 +156,6 @@ export class DialogCompanyComponent implements OnInit {
     }
   }
 
-  apiCreate(payload: any) {
-    this.service.createCompany(payload).subscribe(
-      (result: any) => {
-        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: result.message,
-          });
-          this.onHideDialog();
-        }
-      },
-      (error: any) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: error.error.massage || error.error.message,
-        });
-      }
-    );
-  }
-
   apiUpdate(payload: any) {
     this.service.updateCompany(payload).subscribe(
       (result: any) => {
@@ -219,6 +165,7 @@ export class DialogCompanyComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFile = [];
           this.onHideDialog();
         }
       },

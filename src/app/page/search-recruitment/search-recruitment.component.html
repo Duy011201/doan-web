@@ -40,10 +40,11 @@
     </div>
     <div class="grid mt-3">
       <div *ngFor="let item of listRecruitment">
-        <div class="col-12 border-round item" style="min-width: 450px"
+        <div class="col-12 border-round item"
+             style="min-width: 450px"
              *ngIf="listRecruitment.length < 28" [routerLink]="['/search-recruitment', item.recruitmentID]">
 
-          <div class="border-round" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+          <div class="border-round {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
             <div class="grid">
               <div class="col-4">
                 <div class="flex align-items-center justify-content-center h-full p-2">
@@ -53,9 +54,10 @@
                 </div>
               </div>
 
-              <div class="col-8 flex flex-column gap-3 p-2 h-full">
-                <span class="block hover:underline font-semibold"
-                      [title]="item.title">{{item.title ? truncateString(item.title,
+              <div class="col-8 flex flex-column gap-2 p-2 h-full">
+                <span
+                  class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
+                  [title]="item.title">{{item.title ? truncateString(item.title,
                   30) : '...' }}</span>
 
                 <span class="block hover:underline"
@@ -65,10 +67,9 @@
                 <div class="flex gap-2">
                   <span *ngIf="item?.CONG_TY_NOI_BAT" class="text-white border-round px-2 py-1"
                         style="background: #001744">Top</span>
-                  <span *ngIf="item?.HIEU_UNG_GAP"
-                        class="text-white border-round border-1 px-2 py-1 border-red-500 bg-red-500">GẤP</span>
                   <span *ngIf="item?.HIEU_UNG_HOT" class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
-                        style="background: var(--primary-app-background)">HOT</span>
+                        style="background: var(--primary-app-background)">HOT
+                  </span>
                   <span class="text-gray-500 border-round px-2 py-1 white-space-nowrap"
                         style="background: var(--primary-app-background)">{{item.province | DynamicPipe: LIST_PROVINCE}}
                   </span>

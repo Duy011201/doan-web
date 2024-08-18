@@ -51,7 +51,9 @@
     <span>Quản lý thông báo người dùng</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content">
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_EMPLOYER + '/' + SYSTEM_PAGE.MANAGER_REPORT)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_EMPLOYER + '/' + SYSTEM_PAGE.MANAGER_REPORT) }">
     <i class="fa-solid fa-chart-line text-xl"></i>
     <span>Báo cáo thống kê</span>
   </div>

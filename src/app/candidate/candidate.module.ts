@@ -9,14 +9,17 @@ import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-pro
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 @NgModule({
-  imports: [EmployerRoutesModule, SharedModule, PdfViewerModule],
-  declarations: [
-    DashboardComponent,
-    MenuLeftComponent,
-    ChangePasswordComponent,
-    RecruitmentProcessComponent,
-  ],
-  providers: [CandidateService],
+    imports: [EmployerRoutesModule, SharedModule, PdfViewerModule],
+    declarations: [
+        DashboardComponent,
+        MenuLeftComponent,
+        ChangePasswordComponent,
+        RecruitmentProcessComponent,
+    ],
+    providers: [CandidateService],
+    exports: [
+        MenuLeftComponent
+    ]
 })
 export class CandidateModule {
 }

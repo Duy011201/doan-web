@@ -32,7 +32,6 @@ export class DialogCompanyComponent implements OnInit {
   selectProvince: any = {};
   selectField: any = {};
   selectStatus: any = {};
-  selectCompany: any = {};
   listFile: any = [];
 
   pathEnvironment = environment.API_URL;
@@ -197,6 +196,7 @@ export class DialogCompanyComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFile = [];
           this.onHideDialog();
         }
       },
@@ -219,6 +219,7 @@ export class DialogCompanyComponent implements OnInit {
             summary: 'Success',
             detail: result.message,
           });
+          this.listFile = [];
           this.onHideDialog();
         }
       },

@@ -10,6 +10,7 @@ import { HistoryComponent } from './history/history.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-process.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {ReportComponent} from "./report/report.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: SETTING.SYSTEM_PAGE.HEADER_HOME, pathMatch: 'full'},
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path: SETTING.SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD,
     component: ChangePasswordComponent,
+  },
+  {
+    path: SETTING.SYSTEM_PAGE.MANAGER_REPORT,
+    component: ReportComponent,
   },
   {
     path: SETTING.SYSTEM_PAGE.RELATED_404,

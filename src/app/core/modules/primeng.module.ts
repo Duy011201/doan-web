@@ -46,6 +46,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { CalendarModule } from 'primeng/calendar';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [],
@@ -95,7 +96,8 @@ import { CalendarModule } from 'primeng/calendar';
     InputNumberModule,
     IconFieldModule,
     InputIconModule,
-    CalendarModule
+    CalendarModule,
+    ChartModule
   ],
   exports: [
     CarouselModule,
@@ -143,7 +145,8 @@ import { CalendarModule } from 'primeng/calendar';
     InputNumberModule,
     IconFieldModule,
     InputIconModule,
-    CalendarModule
+    CalendarModule,
+    ChartModule
   ],
   providers: [MessageService],
 })

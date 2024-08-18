@@ -38,6 +38,7 @@ export const SETTING = {
     MANAGER_RECRUITMENT: 'manager-recruitment',
     MANAGER_PROCESS: 'manager-process',
     MANAGER_CHANGE_PASSWORD: 'manager-change-password',
+    MANAGER_REPORT: 'manager-report'
   },
   SYSTEM_ROLE: {
     // SUPER_ADMIN: 'SUPER_ADMIN',
@@ -129,8 +130,6 @@ export const SETTING = {
     HIEU_UNG_DO_DAM: 'Hiệu ứng đỏ đậm',
     CONG_TY_NOI_BAT: 'Công ty nổi bật',
     HIEU_UNG_HOT: 'Hiệu ứng hot',
-    TIN_CO_BAN: 'Tin cơ bản',
-    HIEU_UNG_GAP: 'Hiệu ứng gấp',
     HIEU_UNG_DONG_KHUNG: 'Hiệu ứng đóng khung',
   },
 };

@@ -488,4 +488,14 @@ export class EmployerService {
         })
       );
   }
+
+  public getReportEmployer(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_REPORT_EMPLOYER}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

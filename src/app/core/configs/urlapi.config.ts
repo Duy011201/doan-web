@@ -74,4 +74,8 @@ export enum UrlApi {
   SAVE_PROFILE = `api/recruitment-process/save-profile`,
   GET_ALL_RECRUITMENT_PROCESS_EMPLOYER = `api/recruitment-process/get-all-employer`,
   GET_ALL_RECRUITMENT_PROCESS_CANDIDATE = `api/recruitment-process/get-all-candidate`,
+
+  // report
+  GET_REPORT_EMPLOYER = `api/report/get-employer`,
+  GET_REPORT_ADMIN = `api/report/get-admin`,
 }

@@ -12,67 +12,69 @@
     <div class="pt-2 pb-2 pl-3 pr-3 bg-white border-round">
       <span class="block text-sm">Hồ sơ của tôi</span>
       <span class="block mt-2 text-xs txt-sub-title"
-        (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)">Thiết Lập Hồ Sơ</span>
+            (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.DASHBOARD)">Thiết Lập Hồ Sơ</span>
     </div>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_USER) }">
     <i class="fa-solid fa-user text-xl"></i>
     <span>Quản lý người dùng</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_COMPANY) }">
     <i class="fa-solid fa-building text-xl"></i>
     <span>Quản lý công ty</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_BLOG) }">
     <i class="fa-solid fa-newspaper text-xl"></i>
     <span>Quản lý bài viết</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_RECRUITMENT) }">
     <i class="fa-solid fa-bullhorn text-xl"></i>
     <span>Quản lý tin tuyển dụng</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_ORDER_APPROVAL) }">
     <i class="fa-solid fa-cart-shopping text-xl"></i>
     <span>Quản lý gói dịch vụ đăng ký</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_SERVICE_PACK) }">
     <i class="fa-solid fa-cube text-xl"></i>
     <span>Quản lý gói dịch vụ</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_NOTIFICATION) }">
     <i class="fa-solid fa-bell text-xl"></i>
     <span>Quản lý thông báo người dùng</span>
   </div>
 
-  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content">
+  <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_REPORT)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_REPORT) }">
     <i class="fa-solid fa-chart-line text-xl"></i>
     <span>Báo cáo thống kê</span>
   </div>
 
   <div class="w-17rem p-3 border-round flex gap-3 card-item hover:text-white hover:shadow-1 bg-content"
-    (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD)"
-    [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD) }">
+       (click)="onNextPage(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD)"
+       [ngClass]="{ active: isRouteActive(SYSTEM_PAGE.RELATED_ADMIN + '/' + SYSTEM_PAGE.MANAGER_CHANGE_PASSWORD) }">
     <i class="fa-solid fa-key text-xl"></i>
     <span>Đổi mật khẩu</span>
   </div>

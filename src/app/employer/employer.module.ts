@@ -16,6 +16,7 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {RecruitmentProcessComponent} from "./recruitment-process/recruitment-process.component";
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {DialogCompanyComponent} from "./dashboard/dialog/dialog.component";
+import {ReportComponent} from "./report/report.component";
 
 @NgModule({
   imports: [EmployerRoutesModule, SharedModule, PdfViewerModule],
@@ -33,8 +34,12 @@ import {DialogCompanyComponent} from "./dashboard/dialog/dialog.component";
     ChangePasswordComponent,
     RecruitmentProcessComponent,
     DialogCompanyComponent,
+    ReportComponent
   ],
   providers: [EmployerService],
+  exports: [
+    MenuLeftComponent
+  ]
 })
 export class EmployerModule {
 }

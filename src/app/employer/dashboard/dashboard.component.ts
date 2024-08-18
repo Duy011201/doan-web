@@ -35,7 +35,6 @@ export class DashboardComponent {
   visible: boolean = false;
   dataCompany: any = {};
   dataUser: any = {};
-  today = new Date()
   dataDialog: any = {
     actionDialog: '',
     headerDialog: '',
@@ -162,6 +161,7 @@ export class DashboardComponent {
               summary: 'Success',
               detail: result.message,
             });
+            this.listFile = [];
           }, 500);
         }
       },

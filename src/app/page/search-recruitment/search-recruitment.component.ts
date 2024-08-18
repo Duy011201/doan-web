@@ -134,8 +134,6 @@ export class SearchRecruitmentComponent implements OnInit {
                     recruitment.CONG_TY_NOI_BAT = true;
                   } else if (this.SERVICE_PACK.HIEU_UNG_HOT === this.listProduct[i].servicePackName) {
                     recruitment.HIEU_UNG_HOT = true;
-                  } else if (this.SERVICE_PACK.HIEU_UNG_GAP === this.listProduct[i].servicePackName) {
-                    recruitment.HIEU_UNG_GAP = true;
                   } else if (this.SERVICE_PACK.HIEU_UNG_DONG_KHUNG === this.listProduct[i].servicePackName) {
                     recruitment.HIEU_UNG_DONG_KHUNG = true;
                   }
@@ -144,6 +142,8 @@ export class SearchRecruitmentComponent implements OnInit {
               }
               return recruitment;
             });
+
+            console.log(this.listRecruitment)
           }, 500);
         }
       },
