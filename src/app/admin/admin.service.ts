@@ -398,4 +398,14 @@ export class AdminService {
         })
       );
   }
+
+  public getReportAdmin(body: object) {
+    return this._requestApiService
+      .postApiHeader(`${UrlApi.GET_REPORT_ADMIN}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 }

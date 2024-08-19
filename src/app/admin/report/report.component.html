@@ -5,7 +5,17 @@
   <div>
     <h2 class="header-component">Báo cáo thống kê</h2>
 
-
+    <div class="grid">
+      <div class="col-12">
+        <div class="flex gap-3 mb-4">
+          <p-button label="Gói dịch vụ" (click)="onSearch('service_pack')" />
+          <p-button label="Tin tuyển dụng" (click)="onSearch('recruitment')"/>
+        </div>
+      </div>
+      <div class="col-10">
+        <p-chart type="line" [data]="basicData" [options]="basicOptions"/>
+      </div>
+    </div>
   </div>
 
   <p-toast></p-toast>
