@@ -261,6 +261,9 @@ export class DashboardComponent {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
             this.listRecruitment = result.data;
+            const today = dayjs();
+            const sevenDaysFromNow = dayjs().add(7, 'day');
+
             this.listRecruitment.forEach((item: any) => {
               if (item.status === "PENDING") {
                 this.statusRecruitment.pending++;
@@ -270,9 +273,8 @@ export class DashboardComponent {
                 this.statusRecruitment.published++;
               }
 
-              const currentTime = dayjs();
-              const timeEnd = dayjs(item.timeEnd);
-              if (timeEnd.diff(currentTime, 'day') <= 7 && timeEnd.isAfter(currentTime)) {
+              const timeEndDate = dayjs(item.timeEnd);
+              if (timeEndDate.isAfter(today) && timeEndDate.isBefore(sevenDaysFromNow)) {
                 this.statusRecruitment.expiring++;
               }
             });
