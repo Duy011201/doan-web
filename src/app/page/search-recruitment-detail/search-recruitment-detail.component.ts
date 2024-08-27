@@ -7,7 +7,7 @@ import {LoadingService} from '../../core/services/loading.service';
 import {SharedModule} from '../../share/share.module';
 import {CONSTANT} from "../../core/configs/constant.config";
 import * as _ from 'lodash';
-import {getFromLocalStorage, removeQuotes} from "../../core/commons/func";
+import {getFromLocalStorage, isEmpty, removeQuotes} from "../../core/commons/func";
 import dayjs from "dayjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -87,11 +87,20 @@ export class SearchRecruitmentDetailComponent implements OnInit {
   }
 
   createRecruitmentProcess(item: any) {
-    if (this.isRole !== this.SYSTEM_ROLE.CANDIDATE) {
+
+    let errMsg = '';
+
+    if (isEmpty(this.isRole)) {
+      errMsg = 'Bạn cần đăng nhập để thực hiện chức năng này.'
+    } else if (this.isRole !== this.SYSTEM_ROLE.CANDIDATE) {
+      errMsg = 'Bạn không phải là ứng viên.'
+    }
+
+    if (!isEmpty(errMsg)) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: 'Bạn không phải là ứng viên!',
+        detail: errMsg,
       });
       return;
     }

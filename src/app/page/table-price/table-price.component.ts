@@ -3,7 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AdminService } from '../../admin/admin.service';
 import { SETTING } from '../../core/configs/setting.config';
 import { environment } from '../../core/environments/develop.environment';
-import { removeQuotes, getFromLocalStorage } from '../../core/commons/func';
+import { removeQuotes, getFromLocalStorage, isEmpty } from '../../core/commons/func';
 import { SharedModule } from '../../share/share.module';
 import {Router} from "@angular/router";
 
@@ -38,11 +38,19 @@ export class TablePriceComponent implements OnInit {
   }
 
   public async onCreateProduct(service: any): Promise<void> {
-    if (this.isRole !== this.SYSTEM_ROLE.EMPLOYER) {
+    let errMsg = '';
+
+    if (isEmpty(this.isRole)) {
+      errMsg = 'Bạn cần đăng nhập để thực hiện chức năng này.'
+    } else if (this.isRole !== this.SYSTEM_ROLE.EMPLOYER) {
+      errMsg = 'Bạn không phải là nhà tuyển dụng.'
+    }
+
+    if (!isEmpty(errMsg)) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: 'Bạn không phải là nhà tuyển dụng!',
+        detail: errMsg,
       });
       return;
     }

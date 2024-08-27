@@ -1,5 +1,5 @@
 <app-loading></app-loading>
-<section style="padding-left: 200px; padding-right: 200px">
+<section class="pl-8 pr-8">
 
   <h2 class="text-center">Bảng tin tức</h2>
 
@@ -18,7 +18,7 @@
           <div class="col-12" *ngIf="listBlogView.length < 22">
             <div class="wrap-item-left border-round-md p-2" (click)="apiView(item)"
               [routerLink]="['/blog-new', item.blogID]">
-              <div class="overflow-hidden" style="width: 263px; height: 250px;">
+              <div class="overflow-hidden" style="width: 265px; height: 250px;">
                 <img src="{{ pathEnvironment + '/' + item.image }}" />
               </div>
               <div>

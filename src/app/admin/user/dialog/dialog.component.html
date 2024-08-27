@@ -54,7 +54,7 @@
       <div class="flex flex-column gap-2">
         <label for="company" class="font-semibold">Công ty</label>
         <p-dropdown id="company" [options]="listCompany" [(ngModel)]="selectCompany" placeholder="Chọn công ty"
-                    [disabled]="data.roleName === SYSTEM_ROLE.ADMIN"
+                    [disabled]="data.roleName === SYSTEM_ROLE.ADMIN || data.roleName === SYSTEM_ROLE.CANDIDATE"
                     optionLabel="name" [showClear]="true" [style]="{ width: '100%' }">
         </p-dropdown>
       </div>
