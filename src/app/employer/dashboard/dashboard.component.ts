@@ -27,7 +27,8 @@ export class DashboardComponent {
     pending: 0,
     approved: 0,
     published: 0,
-    expiring: 0
+    expiring: 0,
+    expired: 0,
   };
   listFile: any = [];
   listProduct: any = [];
@@ -276,6 +277,10 @@ export class DashboardComponent {
               const timeEndDate = dayjs(item.timeEnd);
               if (timeEndDate.isAfter(today) && timeEndDate.isBefore(sevenDaysFromNow)) {
                 this.statusRecruitment.expiring++;
+              }
+
+              if (dayjs(item.timeEnd).isBefore(today)) {
+                this.statusRecruitment.expired++;
               }
             });
             this.loadingService.hide();
