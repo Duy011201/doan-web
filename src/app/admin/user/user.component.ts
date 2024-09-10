@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   LIST_SYSTEM_STATUS = CONSTANT.SYSTEM_STATUS;
   SYSTEM_STATUS = SETTING.SYSTEM_STATUS;
   SYSTEM_ACTION = SETTING.SYSTEM_ACTION;
+  LIST_SYSTEM_ROLE = CONSTANT.SYSTEM_ROLE;
   isYou = removeQuotes(getFromLocalStorage('userID'))
 
   constructor(
@@ -85,17 +86,17 @@ export class UserComponent implements OnInit {
     });
   }
 
-  confirmLock(event: Event, user: any) {
+  confirmLock(event: Event, user: any, status: string) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: 'Are you sure that you want lock user?',
+      message: `Are you sure that you want ${status === this.SYSTEM_STATUS.LOCK ? 'lock' : 'open'} user?`,
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: 'none',
       rejectIcon: 'none',
       rejectButtonStyleClass: 'p-button-text',
       accept: () => {
-        this.apiLock(user);
+        this.apiLock(user, status);
       },
       reject: () => {},
     });
@@ -144,8 +145,8 @@ export class UserComponent implements OnInit {
     );
   }
 
-  apiLock(user: any) {
-    this.service.lockUser({ userID: user.userID }).subscribe(
+  apiLock(user: any, status: string) {
+    this.service.lockUser({ userID: user.userID, status: status }).subscribe(
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           this.messageService.add({
