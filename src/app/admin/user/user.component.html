@@ -64,13 +64,13 @@
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td class="flex align-items-center gap-3">
+          <td class="flex align-items-center gap-1">
             <p-avatar image="{{ pathEnvironment + '/' + item.avatar }}" styleClass="mr-2" size="large"
                       shape="circle"></p-avatar>
             <span class="vertical-align-middle">{{ item.username ? item.username : '...' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle">{{ item.companyName ? item.companyName : '...' }}</span>
+            <span class="vertical-align-middle" [title]="item.companyName">{{ item.companyName ? truncateString(item.companyName, 20) : '...' }}</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.email }}</span>
