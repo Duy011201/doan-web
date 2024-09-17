@@ -41,7 +41,7 @@
     <div class="grid mt-3">
       <div *ngFor="let item of listRecruitment">
         <div class="col-12 border-round item"
-             style="min-width: 450px"
+             style="width: 450px; min-height: 130px"
              *ngIf="listRecruitment.length < 28" [routerLink]="['/search-recruitment', item.recruitmentID]">
 
           <div class="border-round {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
@@ -55,10 +55,10 @@
               </div>
 
               <div class="col-8 flex flex-column gap-2 p-2 h-full">
-                <span
+                <span  style="min-height: 48px"
                   class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
                   [title]="item.title">{{item.title ? truncateString(item.title,
-                  30) : '...' }}</span>
+                  50) : '...' }}</span>
 
                 <span class="block hover:underline"
                       [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,

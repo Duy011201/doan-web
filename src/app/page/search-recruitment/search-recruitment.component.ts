@@ -89,15 +89,19 @@ export class SearchRecruitmentComponent implements OnInit {
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
-            this.listProduct = result.data;
             this.listProduct = result.data.filter((item: any) => {
               if (item.totalExpiration > 0) {
                 let updatedAtDate = dayjs(item.updatedAt);
                 let differenceInDays = dayjs().diff(updatedAtDate, 'day');
                 item.totalExpiration -= differenceInDays;
+                if (item.totalExpiration < 0) {
+                  item.totalExpiration = 0;
+                }
               }
               return item;
             });
+
+            console.log(this.listProduct)
 
             this.loadingService.hide();
           }, 500);
@@ -126,7 +130,7 @@ export class SearchRecruitmentComponent implements OnInit {
             this.listRecruitment = result.data.filter((recruitment: any) => {
               for (let i = 0; i < this.listProduct.length; i++) {
                 if (this.listProduct[i].userID === recruitment.userID
-                  && this.listProduct[i].expirationDate > 0) {
+                  && this.listProduct[i].totalExpiration > 0) {
 
                   if (this.SERVICE_PACK.HIEU_UNG_DO_DAM === this.listProduct[i].servicePackName) {
                     recruitment.HIEU_UNG_DO_DAM = true;
@@ -142,8 +146,6 @@ export class SearchRecruitmentComponent implements OnInit {
               }
               return recruitment;
             });
-
-            console.log(this.listRecruitment)
           }, 500);
         }
       },

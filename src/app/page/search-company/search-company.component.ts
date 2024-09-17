@@ -103,20 +103,27 @@ export class SearchCompanyComponent implements OnInit {
                 let updatedAtDate = dayjs(item.updatedAt);
                 let differenceInDays = dayjs().diff(updatedAtDate, 'day');
                 item.totalExpiration -= differenceInDays;
+                if (item.totalExpiration < 0) {
+                  item.totalExpiration = 0;
+                }
               }
               return item;
             });
 
-            this.listCompany = this.listCompany.filter((company: any) => {
-              if (this.listProduct.find((product: any) => product.userID === company.userID
-                && product.servicePackName === this.SERVICE_PACK.CONG_TY_NOI_BAT
-                && product.expirationDate > 0)) {
-                company.isTop = true;
-              } else {
-                company.isTop = false;
-              }
-              return company;
-            });
+            this.listCompany = this.listCompany
+              .filter((company: any) => {
+                const product = this.listProduct.find((product: any) =>
+                  product.userID === company.userID &&
+                  product.servicePackName === this.SERVICE_PACK.CONG_TY_NOI_BAT &&
+                  product.totalExpiration > 0
+                );
+
+                company.isTop = !!product;
+                return company;
+              })
+              .sort((a: any, b: any) => {
+                return (a.isTop === b.isTop) ? 0 : a.isTop ? -1 : 1;
+              });
             this.loadingService.hide();
           }, 500);
         }

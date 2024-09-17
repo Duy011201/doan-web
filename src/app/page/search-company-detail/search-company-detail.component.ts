@@ -149,14 +149,10 @@ export class SearchCompanyDetailComponent implements OnInit {
       (result: any) => {
         if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
           setTimeout(() => {
-            this.listRecruitment = result.data;
-
-            console.log(this.listProduct)
-
             this.listRecruitment = result.data.filter((recruitment: any) => {
               for (let i = 0; i < this.listProduct.length; i++) {
                 if (this.listProduct[i].userID === recruitment.userID
-                  && this.listProduct[i].expirationDate > 0) {
+                  && this.listProduct[i].totalExpiration > 0) {
 
                   if (this.SERVICE_PACK.HIEU_UNG_DO_DAM === this.listProduct[i].servicePackName) {
                     recruitment.HIEU_UNG_DO_DAM = true;
@@ -244,6 +240,9 @@ export class SearchCompanyDetailComponent implements OnInit {
                 let updatedAtDate = dayjs(item.updatedAt);
                 let differenceInDays = dayjs().diff(updatedAtDate, 'day');
                 item.totalExpiration -= differenceInDays;
+                if (item.totalExpiration < 0) {
+                  item.totalExpiration = 0;
+                }
               }
               return item;
             });
