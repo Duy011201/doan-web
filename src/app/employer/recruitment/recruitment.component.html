@@ -88,7 +88,7 @@
           </td>
           <td>
             <span class="vertical-align-middle {{item.status === RECRUITMENT_STATUS.PENDING ? 'text-yellow-500'
-              : 'text-green-500' }}">{{
+              : item.status === RECRUITMENT_STATUS.APPROVED ? 'text-blue-500' : 'text-green-500' }}">{{
               item.status | DynamicPipe: LIST_RECRUITMENT_STATUS }}</span>
           </td>
           <td>
