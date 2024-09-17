@@ -1,7 +1,8 @@
+<app-loading></app-loading>
 <div class="banner">
   <div class="pl-8 pr-8 pt-5 pb-5 w-full text-white">
     <h2>
-      Thị trường việc làm hôm nay <span class="text-green-200">15/04/2024</span>
+      Thị trường việc làm hôm nay <span class="text-green-200">{{ genDay }}</span>
     </h2>
     <div class="grid">
       <div class="col-4">
@@ -17,11 +18,11 @@
         class="col-8 bg-gray-home border-round border-2 border-transparent box-shadow-app border-card hover:border-green-200">
         <div class="flex justify-content-evenly mt-3">
           <div class="p-3 border-2 border-round w-5 hover:text-green-200">
-            <span class="text-3xl">3.024</span>
+            <span class="text-3xl">{{ countRecruitment.countIn24h }}</span>
             <span class="block">Việc làm mới 24h gần nhất</span>
           </div>
           <div class="p-3 border-2 border-round w-5 hover:text-green-200">
-            <span class="text-3xl">47.446</span>
+            <span class="text-3xl">{{ countRecruitment.countAll }}</span>
             <span class="block">Việc làm đang tuyển</span>
           </div>
         </div>

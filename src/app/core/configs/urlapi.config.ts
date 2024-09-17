@@ -66,6 +66,8 @@ export enum UrlApi {
   DELETE_RECRUITMENT = `api/recruitment/delete`,
   GET_ALL_RECRUITMENT = `api/recruitment/get-all`,
   GET_ALL_RECRUITMENT_HEADER = `api/recruitment/get-all-header`,
+  GET_ALL_RECRUITMENT_HOME = `api/recruitment/get-all-home`,
+  GET_ALL_RECRUITMENT_COUNT = `api/recruitment/get-all-count-recruitment`,
   STATUS_RECRUITMENT = `api/recruitment/status`,
 
   // recruitment process

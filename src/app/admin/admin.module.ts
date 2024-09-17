@@ -17,9 +17,10 @@ import {RecruitmentComponent} from './recruitment/recruitment.component';
 import {DialogRecruitmentComponent} from './recruitment/dialog/dialog.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {ReportComponent} from "./report/report.component";
+import {SkeletonModule} from "primeng/skeleton";
 
 @NgModule({
-  imports: [AdminRoutesModule, SharedModule],
+    imports: [AdminRoutesModule, SharedModule, SkeletonModule],
   declarations: [
     MenuLeftComponent,
     UserComponent,

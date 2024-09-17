@@ -359,6 +359,26 @@ export class AdminService {
       );
   }
 
+  public getAllHome(body: object) {
+    return this._requestApiService
+      .postApi(`${UrlApi.GET_ALL_RECRUITMENT_HOME}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  public getAllCountRecruitment(body: object) {
+    return this._requestApiService
+      .postApi(`${UrlApi.GET_ALL_RECRUITMENT_COUNT}`, body)
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
   public updateRecruitment(body: object) {
     return this._requestApiService
       .postApiHeader(`${UrlApi.UPDATE_RECRUITMENT}`, body)
