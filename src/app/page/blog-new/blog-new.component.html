@@ -18,7 +18,7 @@
           <div class="col-12" *ngIf="listBlogView.length < 22">
             <div class="wrap-item-left border-round-md p-2" (click)="apiView(item)"
               [routerLink]="['/blog-new', item.blogID]">
-              <div class="overflow-hidden" style="width: 265px; height: 250px;">
+              <div class="overflow-hidden border-round" style="width: 265px; height: 200px;">
                 <img src="{{ pathEnvironment + '/' + item.image }}" />
               </div>
               <div>
@@ -39,7 +39,7 @@
       <div *ngFor="let item of listBlogView">
         <div *ngIf="listBlogView.length < 11" class="wrap-item-right flex gap-2 border-round-md p-2"
           (click)="apiView(item)" [routerLink]="['/blog-new', item.blogID]">
-          <div class="overflow-hidden" style="width: 120px; height: 80px;">
+          <div class="overflow-hidden border-round" style="width: 120px; height: 80px;">
             <img src="{{ pathEnvironment + '/' + item.image }}" />
           </div>
           <div>

@@ -8,13 +8,14 @@
 
       <div class="flex align-items-center justify-content-evenly h-full gap-5">
         <div>
-          <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}" shape="circle"></p-avatar>
+          <img class="border-round" width="150" height="110" src="{{ pathEnvironment + '/' + dataCompany.logo }}" alt=""
+               srcset="">
         </div>
 
         <div>
-          <p class="text-white">Công ty {{dataCompany.name}}</p>
+          <p class="text-white">Công ty {{ dataCompany.name }}</p>
 
-          <div class="flex gap-3">
+          <div class="flex gap-5">
             <div *ngIf="isTop">
               <span class="text-yellow-500 border-round px-2 py-1"
                     style="background: #ffefb7">Top</span>
@@ -22,17 +23,17 @@
 
             <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.website">
               <i class="fa-solid fa-link"></i>
-              <p>{{dataCompany.website}}</p>
+              <p>{{ dataCompany.website }}</p>
             </div>
 
             <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.scale">
               <i class="fa-regular fa-building"></i>
-              <p class="text-white">{{dataCompany.scale}}+</p>
+              <p class="text-white">{{ dataCompany.scale }}+</p>
             </div>
 
             <div class="text-white flex align-items-center gap-3" *ngIf="dataCompany.address">
               <i class="fa-solid fa-location-dot"></i>
-              <p class="text-white">{{dataCompany.address}}</p>
+              <p class="text-white">{{ dataCompany.address }}</p>
             </div>
           </div>
         </div>
@@ -68,43 +69,58 @@
             </div>
 
             <div class="grid">
-              <div class="col-12">
-                <div *ngFor="let item of listRecruitment">
-                  <div class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}"
-                       *ngIf="listRecruitment.length < 10" [routerLink]="['/search-recruitment', item.recruitmentID]">
+              @if (listRecruitment.length > 0) {
+                <div class="col-12">
+                  <div *ngFor="let item of listRecruitment">
+                    <div
+                      class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}"
+                      *ngIf="listRecruitment.length < 10" [routerLink]="['/search-recruitment', item.recruitmentID]">
 
-                    <div class="col">
-                      <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}"></p-avatar>
-                    </div>
+                      <div class="col">
+                        <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}"></p-avatar>
+                      </div>
 
-                    <div class="col">
-                      <div class="flex flex-column align-content-center justify-content-center h-full gap-2">
-                        <div class="flex gap-2">
-                          <span *ngIf="item?.HIEU_UNG_HOT" class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
+                      <div class="col">
+                        <div class="flex flex-column align-content-center justify-content-center h-full gap-2">
+                          <div class="flex gap-2">
+                          <span *ngIf="item?.HIEU_UNG_HOT"
+                                class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
                                 style="background: var(--primary-app-background)">
                               HOT
                           </span>
-                          <span class="text-gray-500 border-round px-2 py-1"
-                              style="background: var(--primary-app-background)">
-                              {{item.province | DynamicPipe: LIST_PROVINCE}}
+                            <span class="text-gray-500 border-round px-2 py-1"
+                                  style="background: var(--primary-app-background)">
+                              {{ item.province | DynamicPipe: LIST_PROVINCE }}
                           </span>
+                          </div>
+
+                          <span
+                            class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
+                            [title]="item.title">{{
+                              item.title ? truncateString(item.title,
+                                50) : '...'
+                            }}</span>
+                          <span class="block text-gray-500"
+                                [title]="item.companyName">{{
+                              item.companyName ? truncateString(item.companyName,
+                                30) : '...'
+                            }}</span>
                         </div>
-
-                        <span class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
-                              [title]="item.title">{{item.title ? truncateString(item.title,
-                          50) : '...' }}</span>
-                        <span class="block text-gray-500"
-                              [title]="item.companyName">{{item.companyName ? truncateString(item.companyName,
-                          30) : '...' }}</span>
                       </div>
-                    </div>
 
-                    <div class="col flex justify-content-center align-items-center">
-                      <p-button label="Ứng tuyển" (click)="createRecruitmentProcess(item)"></p-button>
+                      <div class="col flex justify-content-center align-items-center">
+                        <p-button label="Ứng tuyển" (click)="createRecruitmentProcess(item)"></p-button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              } @else {
+                <div class="col-12">
+                  <div class="h-15rem text-center flex justify-content-center align-items-center">
+                    Không có dữ liệu
+                  </div>
+                </div>
+              }
             </div>
           </div>
         </div>

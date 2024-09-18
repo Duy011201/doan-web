@@ -6,7 +6,7 @@
   <div class="grid">
     <div class="col-8">
       <div class="overflow-hidden">
-        <img class="w-full h-30rem" src="{{ pathEnvironment + '/' + itemBlog.image }}" />
+        <img class="w-full h-25rem" src="{{ pathEnvironment + '/' + itemBlog.image }}" />
       </div>
 
       <h3 [title]="itemBlog.title">{{itemBlog.title ? truncateString(itemBlog.title, 50) : '...' }}</h3>
@@ -25,7 +25,7 @@
       <div *ngFor="let item of listBlogView">
         <div *ngIf="listBlogView.length < 11" class="wrap-item flex gap-2 border-round-md p-2" (click)="apiView(item)"
           [routerLink]="['/blog-new', item.blogID]">
-          <div class="overflow-hidden" style="width: 120px; height: 80px;">
+          <div class="overflow-hidden border-round" style="width: 120px; height: 80px;">
             <img src="{{ pathEnvironment + '/' + item.image }}" />
           </div>
           <div class="">

@@ -32,14 +32,20 @@
 
       <div class="bg-content p-2 border-round mt-3" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
         <h3>Trạng thái gói dịch vụ</h3>
-        <div class="grid col border-round gap-2" *ngFor="let item of listProduct">
-          <div class="col-12 border-round-xl p-2" style="background-color: #f5f5f5">
-            <span class="block">{{item.servicePackName}}</span>
-            <span
-              class="block mt-1 {{item.totalExpiration !== 0 ? 'text-green-500' : 'text-red-500'}}">{{item.totalExpiration}}
-              Ngày</span>
+        @if (listProduct.length > 0) {
+          <div class="grid col border-round gap-2" *ngFor="let item of listProduct">
+            <div class="col-12 border-round-xl p-2" style="background-color: #f5f5f5">
+              <span class="block">{{item.servicePackName}}</span>
+              <span
+                class="block mt-1 {{item.totalExpiration !== 0 ? 'text-green-500' : 'text-red-500'}}">{{item.totalExpiration}}
+                Ngày</span>
+            </div>
           </div>
-        </div>
+        } @else {
+          <div class="h-12rem text-center flex justify-content-center align-items-center">
+            Không có dữ liệu
+          </div>
+        }
       </div>
     </div>
     <div class="col-3">

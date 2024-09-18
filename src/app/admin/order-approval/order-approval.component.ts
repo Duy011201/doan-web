@@ -137,6 +137,9 @@ export class OrderApprovalComponent implements OnInit {
                   'day'
                 );
                 item.totalExpiration -= differenceInDays;
+                if (item.totalExpiration < 0) {
+                  item.totalExpiration = 0;
+                }
               }
               return item;
             });
