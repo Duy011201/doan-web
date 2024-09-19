@@ -226,6 +226,7 @@ export const CONSTANT = {
     { CODE: 'PENDING', NAME: 'Đang chờ duyệt' },
     { CODE: 'APPROVED', NAME: 'Đã phê duyệt' },
     { CODE: 'PUBLISHED', NAME: 'Đã xuất bản' },
+    { CODE: 'REJECT', NAME: 'Từ chối' },
   ],
   PRODUCT_STATUS: [
     { CODE: 'DRAFT', NAME: 'Chưa thanh toán' },
@@ -236,6 +237,7 @@ export const CONSTANT = {
     { CODE: 'PENDING', NAME: 'Đang chờ duyệt' },
     { CODE: 'APPROVED', NAME: 'Đã phê duyệt' },
     { CODE: 'PUBLISHED', NAME: 'Đã xuất bản' },
+    { CODE: 'REJECT', NAME: 'Từ chối' },
   ],
   TIME_FORM: [
     { CODE: 'PART_TIME', NAME: 'Bán thời gian' },

@@ -87,15 +87,17 @@
             <span class="vertical-align-middle">{{ item.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle {{item.status === RECRUITMENT_STATUS.PENDING ? 'text-yellow-500'
-              : item.status === RECRUITMENT_STATUS.APPROVED ? 'text-blue-500' : 'text-green-500' }}">{{
-              item.status | DynamicPipe: LIST_RECRUITMENT_STATUS }}</span>
+            <span class="vertical-align-middle {{item.status === RECRUITMENT_STATUS.PENDING ? 'text-yellow-500' :
+              item.status === RECRUITMENT_STATUS.APPROVED ? 'text-blue-500' :
+              item.status === RECRUITMENT_STATUS.PUBLISHED ? 'text-green-500' : 'text-red-500' }}">{{
+                item.status | DynamicPipe: LIST_RECRUITMENT_STATUS }}</span>
           </td>
           <td>
             <div class="flex gap-2">
               <i class="text-xl icon fa-solid fa-eye" pTooltip="Xem chi tiết"
                 (click)="onShowDialog(SYSTEM_ACTION.VIEW, item)"></i>
-              <i class="text-xl icon fa-solid fa-pen-to-square"
+              <i *ngIf="item.status !== RECRUITMENT_STATUS.PUBLISHED && item.status !== RECRUITMENT_STATUS.REJECT"
+                 class="text-xl icon fa-solid fa-pen-to-square"
                 pTooltip="Chỉnh sửa" (click)="onShowDialog(SYSTEM_ACTION.UPDATE, item)"></i>
               <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa tin tuyển dụng"
                 (click)="confirmDelete($event, item)"></i>

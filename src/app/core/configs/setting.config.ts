@@ -55,6 +55,7 @@ export const SETTING = {
     PENDING: 'PENDING',
     APPROVED: 'APPROVED',
     PUBLISHED: 'PUBLISHED',
+    REJECT: 'REJECT'
   },
   SQL_METHOD: {
     GET: 'GET',
@@ -125,6 +126,7 @@ export const SETTING = {
     PENDING: 'PENDING',
     APPROVED: 'APPROVED',
     PUBLISHED: 'PUBLISHED',
+    REJECT: 'REJECT'
   },
   SERVICE_PACK: {
     HIEU_UNG_DO_DAM: 'Hiệu ứng đỏ đậm',
