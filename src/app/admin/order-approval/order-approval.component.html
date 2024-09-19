@@ -99,10 +99,9 @@
             <span class="vertical-align-middle">{{ item.totalExpiration | number:'1.0-0' }} ngày</span>
           </td>
           <td>
-            <span class="vertical-align-middle {{item.status === PRODUCT_STATUS.DRAFT ? 'text-red-500'
-              : item.status === PRODUCT_STATUS.PENDING ? 'text-yellow-500'
-              : 'text-green-500' }}">{{
-              item.status | DynamicPipe: LIST_PRODUCT_STATUS }}</span>
+            <span class="vertical-align-middle {{item.status === PRODUCT_STATUS.PENDING ? 'text-yellow-500'
+              : item.status === PRODUCT_STATUS.PAID ? 'text-green-500': 'text-red-500' }}">
+              {{ item.status | DynamicPipe: LIST_PRODUCT_STATUS }}</span>
           </td>
           <td>
             <span class="vertical-align-middle">{{ item.email }}</span>
@@ -110,7 +109,9 @@
           <td>
             <div class="flex align-items-center justify-content-center gap-2">
               <i *ngIf="item.status === PRODUCT_STATUS.PENDING" class="text-xl icon fa-brands fa-paypal"
-                (click)="apiUpdate(item)"></i>
+                (click)="apiUpdate(item, PRODUCT_STATUS.PAID)"></i>
+              <i *ngIf="item.status !== PRODUCT_STATUS.PAID && item.status !== PRODUCT_STATUS.REJECT" class="text-xl icon fa-solid fa-rotate-left"
+                 (click)="apiUpdate(item, PRODUCT_STATUS.REJECT)"></i>
               <i class="text-xl icon fa-solid fa-trash-can" pTooltip="Xóa gói dịch vụ"
                 (click)="confirmDelete($event, item)"></i>
             </div>

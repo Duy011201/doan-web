@@ -232,6 +232,7 @@ export const CONSTANT = {
     { CODE: 'DRAFT', NAME: 'Chưa thanh toán' },
     { CODE: 'PENDING', NAME: 'Chờ duyệt' },
     { CODE: 'PAID', NAME: 'Đã thanh toán' },
+    { CODE: 'REJECT', NAME: 'Từ chối' },
   ],
   RECRUITMENT: [
     { CODE: 'PENDING', NAME: 'Đang chờ duyệt' },

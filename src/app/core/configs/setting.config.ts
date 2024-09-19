@@ -121,6 +121,7 @@ export const SETTING = {
     DRAFT: 'DRAFT',
     PENDING: 'PENDING',
     PAID: 'PAID',
+    REJECT: 'REJECT'
   },
   RECRUITMENT: {
     PENDING: 'PENDING',

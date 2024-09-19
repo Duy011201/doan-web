@@ -93,11 +93,11 @@ export class OrderApprovalComponent implements OnInit {
     );
   }
 
-  apiUpdate(product: any) {
+  apiUpdate(product: any, status: string) {
     this.service
       .updateProduct({
         productID: product.productID,
-        status: this.PRODUCT_STATUS.PAID,
+        status: status,
         servicePackID: product.servicePackID,
         updatedBy: removeQuotes(getFromLocalStorage('userID')),
       })

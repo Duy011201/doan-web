@@ -91,10 +91,9 @@
             <span class="vertical-align-middle">{{ item.createdAt | date:'HH:mm:ss dd/MM/yyyy' }}</span>
           </td>
           <td>
-            <span class="vertical-align-middle {{item.status === PRODUCT_STATUS.DRAFT ? 'text-red-500'
-              : item.status === PRODUCT_STATUS.PENDING ? 'text-yellow-500'
-              : 'text-green-500' }}">{{
-              item.status | DynamicPipe: LIST_PRODUCT_STATUS }}</span>
+            <span class="vertical-align-middle {{item.status === PRODUCT_STATUS.PENDING ? 'text-yellow-500'
+              : item.status === PRODUCT_STATUS.PAID ? 'text-green-500': 'text-red-500' }}">
+              {{ item.status | DynamicPipe: LIST_PRODUCT_STATUS }}</span>
           </td>
           <td>
             <div class="flex align-items-center gap-2">
