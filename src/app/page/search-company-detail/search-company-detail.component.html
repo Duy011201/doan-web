@@ -73,33 +73,36 @@
                 <div class="col-12">
                   <div *ngFor="let item of listRecruitment">
                     <div
-                      class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-red-500' : ''}}"
+                      class="border-round grid mt-3 item {{item?.HIEU_UNG_DONG_KHUNG ? 'border-1 border-blue-200' : ''}}"
                       *ngIf="listRecruitment.length < 10" [routerLink]="['/search-recruitment', item.recruitmentID]">
 
-                      <div class="col">
+                      <div class="col-3">
                         <p-avatar image="{{ pathEnvironment + '/' + dataCompany.logo }}"></p-avatar>
                       </div>
 
-                      <div class="col">
+                      <div class="col-6">
                         <div class="flex flex-column align-content-center justify-content-center h-full gap-2">
+                          <span
+                            class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-400' : ''}}"
+                            [title]="item.title">{{
+                              item.title ? truncateString(item.title,
+                                50) : '...'
+                            }}</span>
                           <div class="flex gap-2">
-                          <span *ngIf="item?.HIEU_UNG_HOT"
-                                class="text-red-500 border-round border-1 px-2 py-1 border-red-500"
-                                style="background: var(--primary-app-background)">
+                            <span *ngIf="item?.HIEU_UNG_HOT"
+                                  class="text-red-500 border-round border-1 px-2 py-1 border-red-400"
+                                  style="background: var(--primary-app-background)">
                               HOT
-                          </span>
+                            </span>
+                            <span class="text-gray-500 border-round px-2 py-1 white-space-nowrap"
+                                  style="background: var(--primary-app-background)"><i
+                              class="fa-solid fa-money-bill"></i> {{ item.salaryFrom }} - {{ item.salaryTo }} triệu
+                            </span>
                             <span class="text-gray-500 border-round px-2 py-1"
                                   style="background: var(--primary-app-background)">
                               {{ item.province | DynamicPipe: LIST_PROVINCE }}
                           </span>
                           </div>
-
-                          <span
-                            class="block hover:underline font-semibold text-xl {{item?.HIEU_UNG_DO_DAM ? 'text-red-500' : ''}}"
-                            [title]="item.title">{{
-                              item.title ? truncateString(item.title,
-                                50) : '...'
-                            }}</span>
                           <span class="block text-gray-500"
                                 [title]="item.companyName">{{
                               item.companyName ? truncateString(item.companyName,
@@ -108,7 +111,7 @@
                         </div>
                       </div>
 
-                      <div class="col flex justify-content-center align-items-center">
+                      <div class="col-3 flex justify-content-center align-items-center">
                         <p-button label="Ứng tuyển" (click)="createRecruitmentProcess(item)"></p-button>
                       </div>
                     </div>
