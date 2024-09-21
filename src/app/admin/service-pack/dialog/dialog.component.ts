@@ -48,11 +48,11 @@ export class DialogServiceDialogComponent implements OnInit {
 
     if (isEmpty(this.data.servicePackName)) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_NAME;
-    } else if (isEmpty(this.data.price)) {
+    } else if (isEmpty(this.data.price) || this.data.price <= 0 || this.data.price > 100000000) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PRICE;
     } else if (typeof this.data.promotion !== 'number' || this.data.promotion < 0 || this.data.promotion > 100) {
       errorMessage = SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_PROMOTION;
-    } else if (isEmpty(this.data.expirationDate)) {
+    } else if (isEmpty(this.data.expirationDate) || this.data.expirationDate <= 0 || this.data.expirationDate > 100) {
       errorMessage =
         SETTING.SYSTEM_HTTP_MESSAGE.INVALID_SERVICE_PACK_EXPIRATION_DATE;
     } else if (isEmpty(this.data.content)) {

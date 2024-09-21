@@ -9,30 +9,29 @@
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="address" class="font-semibold">Khuyến mãi (%)<span class="pl-2 text-red-600">*</span></label>
-      <p-inputNumber inputId="integeronly" class="flex-auto" [style]="{ width: '100%' }" [(ngModel)]="data.promotion"
-        [min]="0" [max]="100" placeholder="Nhập khuyến mãi"></p-inputNumber>
+      <label for="promotion" class="font-semibold">Khuyến mãi (%)<span class="pl-2 text-red-600">*</span></label>
+      <p-inputNumber id="promotion" class="flex-auto" [style]="{ width: '100%' }" [(ngModel)]="data.promotion" placeholder="Nhập khuyến mãi"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="website" class="font-semibold">Giá gói (VNĐ)<span class="pl-2 text-red-600">*</span></label>
-      <p-inputNumber inputId="integeronly" class="flex-auto w-full" [style]="{ width: '100%' }"
+      <label for="price" class="font-semibold">Giá gói (VNĐ)<span class="pl-2 text-red-600">*</span></label>
+      <p-inputNumber id="price" class="flex-auto w-full" [style]="{ width: '100%' }"
         [(ngModel)]="data.price" placeholder="Nhập giá gói"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="website" class="font-semibold">Thời gian hết hạn (ngày)<span class="pl-2 text-red-600">*</span></label>
-      <p-inputNumber inputId="integeronly" class="flex-auto w-full" [style]="{ width: '100%' }"
-        [(ngModel)]="data.expirationDate" [min]="1" [max]="100" placeholder="Nhập thời gian hết hạn"></p-inputNumber>
+      <label for="expirationDate" class="font-semibold">Thời gian hết hạn (ngày)<span class="pl-2 text-red-600">*</span></label>
+      <p-inputNumber id="expirationDate" class="flex-auto w-full" [style]="{ width: '100%' }"
+        [(ngModel)]="data.expirationDate" placeholder="Nhập thời gian hết hạn"></p-inputNumber>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="website" class="font-semibold">Mô tả<span class="pl-2 text-red-600">*</span></label>
-      <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="data.content" placeholder="Nhập mô tả"></textarea>
+      <label for="content" class="font-semibold">Mô tả<span class="pl-2 text-red-600">*</span></label>
+      <textarea id="content" rows="5" cols="30" pInputTextarea [(ngModel)]="data.content" placeholder="Nhập mô tả"></textarea>
     </div>
 
     <div class="col-12 flex flex-column gap-2">
-      <label for="" class="font-semibold">Ảnh<span class="pl-2 text-red-600">*</span></label>
+      <label class="font-semibold">Ảnh<span class="pl-2 text-red-600">*</span></label>
       <div class="flex gap-2">
         <img width="500" height="300" src="{{ pathEnvironment + '/' + data.image }}" alt="favicon" />
         <div *ngIf="data.actionDialog !== SYSTEM_ACTION.VIEW">
