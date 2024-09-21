@@ -118,14 +118,12 @@ export class ReportComponent {
               this.listChart[month]++;
             });
 
-            console.log(this.listChart)
-
             this.basicData = {
               labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
                 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
               datasets: [
                 {
-                  label: 'Biểu đồ',
+                  label: this.payload.keyword === 'candidate' ? 'Số lượng ứng viên' : 'Số lượng tin tuyển dụng',
                   data: this.listChart,
                   backgroundColor: ['rgba(54, 162, 235, 0.2)'],
                   borderColor: ['rgb(54, 162, 235)'],
