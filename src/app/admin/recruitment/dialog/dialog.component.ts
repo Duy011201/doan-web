@@ -134,4 +134,53 @@ export class DialogRecruitmentComponent implements OnInit {
 
     return true;
   }
+
+  public async onUpdate(): Promise<void> {
+    const updatedBy = removeQuotes(getFromLocalStorage('userID'));
+
+    if (this.validInput()) {
+      this.data = trimStringObject(this.data);
+      const payload = {
+        recruitmentID: this.data.recruitmentID,
+        userID: removeQuotes(getFromLocalStorage('userID')),
+        keyword: this.data.keyword,
+        title: this.data.title,
+        address: this.data.address,
+        description: this.data.description,
+        required: this.data.required,
+        province: this.selectProvince?.CODE || this.data.province,
+        field: this.selectField?.CODE || this.data.field,
+        status: this.selectStatus?.CODE || this.data.status,
+        timeForm: this.selectTimeForm?.CODE || this.data.timeForm,
+        timeStart: this.data.timeStart,
+        timeEnd: this.data.timeEnd,
+        salaryFrom: this.data.salaryFrom,
+        salaryTo: this.data.salaryTo,
+        updatedBy: updatedBy,
+      };
+      this.apiUpdate(payload);
+    }
+  }
+
+  apiUpdate(payload: any) {
+    this.service.updateRecruitment(payload).subscribe(
+      (result: any) => {
+        if (result.status === SETTING.SYSTEM_HTTP_STATUS.OK) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: result.message,
+          });
+          this.onHideDialog();
+        }
+      },
+      (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: error.error.massage || error.error.message,
+        });
+      }
+    );
+  }
 }
